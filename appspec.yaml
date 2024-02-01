@@ -1,0 +1,11 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /home/ec2_user/job_crawler
+
+hooks:
+  - BeforeInstall:
+      - location: scripts/before_install.sh
+        timeout: 300
+        runas: ubuntu

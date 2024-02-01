@@ -1,0 +1,425 @@
+[2024-01-30T21:05:08.506+0000] {processor.py:161} INFO - Started process (PID=10149) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:05:08.508+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T21:05:08.510+0000] {logging_mixin.py:188} INFO - [2024-01-30T21:05:08.510+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:05:08.526+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:05:08.551+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.050 seconds
+[2024-01-30T21:05:38.787+0000] {processor.py:161} INFO - Started process (PID=10159) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:05:38.789+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T21:05:38.790+0000] {logging_mixin.py:188} INFO - [2024-01-30T21:05:38.790+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:05:38.800+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:05:38.825+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.044 seconds
+[2024-01-30T21:06:09.092+0000] {processor.py:161} INFO - Started process (PID=10169) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:06:09.094+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T21:06:09.096+0000] {logging_mixin.py:188} INFO - [2024-01-30T21:06:09.095+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:06:09.103+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:06:09.125+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.038 seconds
+[2024-01-30T21:06:39.381+0000] {processor.py:161} INFO - Started process (PID=10178) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:06:39.383+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T21:06:39.385+0000] {logging_mixin.py:188} INFO - [2024-01-30T21:06:39.384+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:06:39.390+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:06:39.414+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.038 seconds
+[2024-01-30T21:07:09.672+0000] {processor.py:161} INFO - Started process (PID=10187) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:07:09.674+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T21:07:09.676+0000] {logging_mixin.py:188} INFO - [2024-01-30T21:07:09.676+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:07:09.684+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:07:09.704+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.036 seconds
+[2024-01-30T21:07:39.973+0000] {processor.py:161} INFO - Started process (PID=10198) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:07:39.975+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T21:07:39.979+0000] {logging_mixin.py:188} INFO - [2024-01-30T21:07:39.978+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:07:39.986+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:07:40.007+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.038 seconds
+[2024-01-30T21:08:10.263+0000] {processor.py:161} INFO - Started process (PID=10209) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:08:10.265+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T21:08:10.267+0000] {logging_mixin.py:188} INFO - [2024-01-30T21:08:10.266+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:08:10.275+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:08:10.308+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.052 seconds
+[2024-01-30T21:08:40.561+0000] {processor.py:161} INFO - Started process (PID=10220) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:08:40.564+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T21:08:40.566+0000] {logging_mixin.py:188} INFO - [2024-01-30T21:08:40.565+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:08:40.573+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:08:40.598+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.042 seconds
+[2024-01-30T21:09:10.913+0000] {processor.py:161} INFO - Started process (PID=10230) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:09:10.915+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T21:09:10.918+0000] {logging_mixin.py:188} INFO - [2024-01-30T21:09:10.917+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:09:10.927+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:09:10.955+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.049 seconds
+[2024-01-30T21:09:41.209+0000] {processor.py:161} INFO - Started process (PID=10239) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:09:41.211+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T21:09:41.213+0000] {logging_mixin.py:188} INFO - [2024-01-30T21:09:41.212+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:09:41.219+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:09:41.245+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.047 seconds
+[2024-01-30T21:10:11.547+0000] {processor.py:161} INFO - Started process (PID=10251) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:10:11.549+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T21:10:11.551+0000] {logging_mixin.py:188} INFO - [2024-01-30T21:10:11.551+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:10:11.558+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:10:11.579+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.037 seconds
+[2024-01-30T21:10:41.839+0000] {processor.py:161} INFO - Started process (PID=10260) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:10:41.843+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T21:10:41.844+0000] {logging_mixin.py:188} INFO - [2024-01-30T21:10:41.844+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:10:41.852+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:10:41.873+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.039 seconds
+[2024-01-30T21:11:12.148+0000] {processor.py:161} INFO - Started process (PID=10270) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:11:12.150+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T21:11:12.153+0000] {logging_mixin.py:188} INFO - [2024-01-30T21:11:12.152+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:11:12.161+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:11:12.187+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.043 seconds
+[2024-01-30T21:11:42.454+0000] {processor.py:161} INFO - Started process (PID=10279) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:11:42.462+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T21:11:42.464+0000] {logging_mixin.py:188} INFO - [2024-01-30T21:11:42.463+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:11:42.470+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:11:42.491+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.041 seconds
+[2024-01-30T21:12:12.749+0000] {processor.py:161} INFO - Started process (PID=10290) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:12:12.751+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T21:12:12.753+0000] {logging_mixin.py:188} INFO - [2024-01-30T21:12:12.752+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:12:12.760+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:12:12.781+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.036 seconds
+[2024-01-30T21:12:43.059+0000] {processor.py:161} INFO - Started process (PID=10300) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:12:43.061+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T21:12:43.063+0000] {logging_mixin.py:188} INFO - [2024-01-30T21:12:43.062+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:12:43.070+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:12:43.090+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.036 seconds
+[2024-01-30T21:13:13.372+0000] {processor.py:161} INFO - Started process (PID=10309) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:13:13.374+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T21:13:13.376+0000] {logging_mixin.py:188} INFO - [2024-01-30T21:13:13.376+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:13:13.383+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:13:13.407+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.040 seconds
+[2024-01-30T21:13:43.664+0000] {processor.py:161} INFO - Started process (PID=10320) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:13:43.668+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T21:13:43.670+0000] {logging_mixin.py:188} INFO - [2024-01-30T21:13:43.669+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:13:43.677+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:13:43.705+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.046 seconds
+[2024-01-30T21:14:13.955+0000] {processor.py:161} INFO - Started process (PID=10330) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:14:13.957+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T21:14:13.959+0000] {logging_mixin.py:188} INFO - [2024-01-30T21:14:13.959+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:14:13.966+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:14:13.990+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.040 seconds
+[2024-01-30T21:14:44.239+0000] {processor.py:161} INFO - Started process (PID=10340) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:14:44.242+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T21:14:44.244+0000] {logging_mixin.py:188} INFO - [2024-01-30T21:14:44.243+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:14:44.252+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:14:44.276+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.041 seconds
+[2024-01-30T21:15:14.607+0000] {processor.py:161} INFO - Started process (PID=10349) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:15:14.610+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T21:15:14.612+0000] {logging_mixin.py:188} INFO - [2024-01-30T21:15:14.611+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:15:14.624+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:15:14.645+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.043 seconds
+[2024-01-30T21:15:44.887+0000] {processor.py:161} INFO - Started process (PID=10358) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:15:44.889+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T21:15:44.891+0000] {logging_mixin.py:188} INFO - [2024-01-30T21:15:44.891+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:15:44.898+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:15:44.921+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.038 seconds
+[2024-01-30T21:16:15.175+0000] {processor.py:161} INFO - Started process (PID=10368) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:16:15.177+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T21:16:15.179+0000] {logging_mixin.py:188} INFO - [2024-01-30T21:16:15.178+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:16:15.185+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:16:15.210+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.040 seconds
+[2024-01-30T21:16:45.439+0000] {processor.py:161} INFO - Started process (PID=10379) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:16:45.441+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T21:16:45.443+0000] {logging_mixin.py:188} INFO - [2024-01-30T21:16:45.443+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:16:45.450+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:16:45.469+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.036 seconds
+[2024-01-30T21:17:15.749+0000] {processor.py:161} INFO - Started process (PID=10388) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:17:15.751+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T21:17:15.752+0000] {logging_mixin.py:188} INFO - [2024-01-30T21:17:15.752+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:17:15.759+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:17:15.779+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.036 seconds
+[2024-01-30T21:17:46.055+0000] {processor.py:161} INFO - Started process (PID=10397) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:17:46.057+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T21:17:46.059+0000] {logging_mixin.py:188} INFO - [2024-01-30T21:17:46.058+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:17:46.065+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:17:46.087+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.036 seconds
+[2024-01-30T21:18:16.334+0000] {processor.py:161} INFO - Started process (PID=10408) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:18:16.335+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T21:18:16.337+0000] {logging_mixin.py:188} INFO - [2024-01-30T21:18:16.337+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:18:16.343+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:18:16.363+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.034 seconds
+[2024-01-30T21:18:46.609+0000] {processor.py:161} INFO - Started process (PID=10418) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:18:46.611+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T21:18:46.613+0000] {logging_mixin.py:188} INFO - [2024-01-30T21:18:46.612+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:18:46.620+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:18:46.641+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.037 seconds
+[2024-01-30T21:19:16.889+0000] {processor.py:161} INFO - Started process (PID=10429) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:19:16.891+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T21:19:16.893+0000] {logging_mixin.py:188} INFO - [2024-01-30T21:19:16.892+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:19:16.900+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:19:16.926+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.045 seconds
+[2024-01-30T21:19:47.196+0000] {processor.py:161} INFO - Started process (PID=10440) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:19:47.199+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T21:19:47.201+0000] {logging_mixin.py:188} INFO - [2024-01-30T21:19:47.200+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:19:47.208+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:19:47.234+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.044 seconds
+[2024-01-30T21:20:17.499+0000] {processor.py:161} INFO - Started process (PID=10451) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:20:17.501+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T21:20:17.503+0000] {logging_mixin.py:188} INFO - [2024-01-30T21:20:17.502+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:20:17.509+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:20:17.532+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.038 seconds
+[2024-01-30T21:20:47.770+0000] {processor.py:161} INFO - Started process (PID=10461) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:20:47.772+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T21:20:47.774+0000] {logging_mixin.py:188} INFO - [2024-01-30T21:20:47.773+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:20:47.780+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:20:47.801+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.037 seconds
+[2024-01-30T21:21:18.070+0000] {processor.py:161} INFO - Started process (PID=10472) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:21:18.072+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T21:21:18.074+0000] {logging_mixin.py:188} INFO - [2024-01-30T21:21:18.073+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:21:18.080+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:21:18.101+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.036 seconds
+[2024-01-30T21:21:48.371+0000] {processor.py:161} INFO - Started process (PID=10481) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:21:48.373+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T21:21:48.375+0000] {logging_mixin.py:188} INFO - [2024-01-30T21:21:48.374+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:21:48.381+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:21:48.402+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.036 seconds
+[2024-01-30T21:22:18.787+0000] {processor.py:161} INFO - Started process (PID=10491) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:22:18.789+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T21:22:18.793+0000] {logging_mixin.py:188} INFO - [2024-01-30T21:22:18.792+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:22:18.801+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:22:18.825+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.045 seconds
+[2024-01-30T21:22:49.087+0000] {processor.py:161} INFO - Started process (PID=10502) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:22:49.088+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T21:22:49.090+0000] {logging_mixin.py:188} INFO - [2024-01-30T21:22:49.090+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:22:49.096+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:22:49.117+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.035 seconds
+[2024-01-30T21:23:19.389+0000] {processor.py:161} INFO - Started process (PID=10512) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:23:19.391+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T21:23:19.393+0000] {logging_mixin.py:188} INFO - [2024-01-30T21:23:19.393+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:23:19.400+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:23:19.423+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.038 seconds
+[2024-01-30T21:23:49.697+0000] {processor.py:161} INFO - Started process (PID=10522) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:23:49.702+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T21:23:49.707+0000] {logging_mixin.py:188} INFO - [2024-01-30T21:23:49.706+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:23:49.723+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:23:49.765+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.076 seconds
+[2024-01-30T21:24:20.234+0000] {processor.py:161} INFO - Started process (PID=10532) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:24:20.239+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T21:24:20.241+0000] {logging_mixin.py:188} INFO - [2024-01-30T21:24:20.241+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:24:20.249+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:24:20.269+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.040 seconds
+[2024-01-30T21:24:50.507+0000] {processor.py:161} INFO - Started process (PID=10541) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:24:50.509+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T21:24:50.511+0000] {logging_mixin.py:188} INFO - [2024-01-30T21:24:50.511+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:24:50.518+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:24:50.540+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.038 seconds
+[2024-01-30T21:25:20.818+0000] {processor.py:161} INFO - Started process (PID=10551) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:25:20.820+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T21:25:20.822+0000] {logging_mixin.py:188} INFO - [2024-01-30T21:25:20.821+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:25:20.828+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:25:20.847+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.035 seconds
+[2024-01-30T21:25:51.179+0000] {processor.py:161} INFO - Started process (PID=10562) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:25:51.181+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T21:25:51.182+0000] {logging_mixin.py:188} INFO - [2024-01-30T21:25:51.182+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:25:51.190+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:25:51.208+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.034 seconds
+[2024-01-30T21:26:21.475+0000] {processor.py:161} INFO - Started process (PID=10572) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:26:21.477+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T21:26:21.479+0000] {logging_mixin.py:188} INFO - [2024-01-30T21:26:21.478+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:26:21.485+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:26:21.507+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.042 seconds
+[2024-01-30T21:26:51.755+0000] {processor.py:161} INFO - Started process (PID=10581) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:26:51.756+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T21:26:51.758+0000] {logging_mixin.py:188} INFO - [2024-01-30T21:26:51.758+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:26:51.765+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:26:51.788+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.038 seconds
+[2024-01-30T21:27:22.030+0000] {processor.py:161} INFO - Started process (PID=10591) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:27:22.032+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T21:27:22.034+0000] {logging_mixin.py:188} INFO - [2024-01-30T21:27:22.034+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:27:22.041+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:27:22.065+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.039 seconds
+[2024-01-30T21:27:52.319+0000] {processor.py:161} INFO - Started process (PID=10601) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:27:52.321+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T21:27:52.322+0000] {logging_mixin.py:188} INFO - [2024-01-30T21:27:52.322+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:27:52.329+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:27:52.351+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.038 seconds
+[2024-01-30T21:28:22.639+0000] {processor.py:161} INFO - Started process (PID=10612) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:28:22.641+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T21:28:22.644+0000] {logging_mixin.py:188} INFO - [2024-01-30T21:28:22.643+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:28:22.653+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:28:22.679+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.044 seconds
+[2024-01-30T21:28:52.954+0000] {processor.py:161} INFO - Started process (PID=10622) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:28:52.956+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T21:28:52.958+0000] {logging_mixin.py:188} INFO - [2024-01-30T21:28:52.957+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:28:52.964+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:28:52.984+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.035 seconds
+[2024-01-30T21:29:23.251+0000] {processor.py:161} INFO - Started process (PID=10632) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:29:23.253+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T21:29:23.255+0000] {logging_mixin.py:188} INFO - [2024-01-30T21:29:23.255+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:29:23.263+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:29:23.286+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.040 seconds
+[2024-01-30T21:29:53.547+0000] {processor.py:161} INFO - Started process (PID=10642) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:29:53.549+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T21:29:53.551+0000] {logging_mixin.py:188} INFO - [2024-01-30T21:29:53.550+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:29:53.559+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:29:53.585+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.043 seconds
+[2024-01-30T21:30:23.866+0000] {processor.py:161} INFO - Started process (PID=10651) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:30:23.868+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T21:30:23.870+0000] {logging_mixin.py:188} INFO - [2024-01-30T21:30:23.869+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:30:23.878+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:30:23.898+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.041 seconds
+[2024-01-30T21:30:54.151+0000] {processor.py:161} INFO - Started process (PID=10661) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:30:54.153+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T21:30:54.155+0000] {logging_mixin.py:188} INFO - [2024-01-30T21:30:54.154+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:30:54.163+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:30:54.192+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.046 seconds
+[2024-01-30T21:31:24.445+0000] {processor.py:161} INFO - Started process (PID=10670) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:31:24.447+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T21:31:24.449+0000] {logging_mixin.py:188} INFO - [2024-01-30T21:31:24.449+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:31:24.458+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:31:24.481+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.042 seconds
+[2024-01-30T21:31:54.729+0000] {processor.py:161} INFO - Started process (PID=10680) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:31:54.731+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T21:31:54.733+0000] {logging_mixin.py:188} INFO - [2024-01-30T21:31:54.732+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:31:54.739+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:31:54.768+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.044 seconds
+[2024-01-30T21:32:25.025+0000] {processor.py:161} INFO - Started process (PID=10693) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:32:25.029+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T21:32:25.030+0000] {logging_mixin.py:188} INFO - [2024-01-30T21:32:25.030+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:32:25.037+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:32:25.061+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.041 seconds
+[2024-01-30T21:32:55.370+0000] {processor.py:161} INFO - Started process (PID=10703) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:32:55.371+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T21:32:55.373+0000] {logging_mixin.py:188} INFO - [2024-01-30T21:32:55.373+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:32:55.382+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:32:55.404+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.039 seconds
+[2024-01-30T21:33:25.657+0000] {processor.py:161} INFO - Started process (PID=10713) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:33:25.665+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T21:33:25.667+0000] {logging_mixin.py:188} INFO - [2024-01-30T21:33:25.667+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:33:25.677+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:33:25.698+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.050 seconds
+[2024-01-30T21:33:55.989+0000] {processor.py:161} INFO - Started process (PID=10723) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:33:55.991+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T21:33:55.993+0000] {logging_mixin.py:188} INFO - [2024-01-30T21:33:55.992+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:33:56.001+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:33:56.028+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.044 seconds
+[2024-01-30T21:34:26.299+0000] {processor.py:161} INFO - Started process (PID=10734) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:34:26.301+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T21:34:26.303+0000] {logging_mixin.py:188} INFO - [2024-01-30T21:34:26.303+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:34:26.312+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:34:26.334+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.040 seconds
+[2024-01-30T21:34:56.373+0000] {processor.py:161} INFO - Started process (PID=10745) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:34:56.376+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T21:34:56.379+0000] {logging_mixin.py:188} INFO - [2024-01-30T21:34:56.378+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:34:56.389+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:34:56.416+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.049 seconds
+[2024-01-30T21:38:01.121+0000] {processor.py:161} INFO - Started process (PID=10746) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:38:01.126+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T21:38:01.128+0000] {logging_mixin.py:188} INFO - [2024-01-30T21:38:01.128+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:38:01.144+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:38:01.196+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.081 seconds
+[2024-01-30T21:38:31.454+0000] {processor.py:161} INFO - Started process (PID=10757) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:38:31.456+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T21:38:31.458+0000] {logging_mixin.py:188} INFO - [2024-01-30T21:38:31.458+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:38:31.465+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T21:38:31.498+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.051 seconds
+[2024-01-30T22:08:55.239+0000] {processor.py:161} INFO - Started process (PID=10766) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:08:55.394+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T22:08:55.477+0000] {logging_mixin.py:188} INFO - [2024-01-30T22:08:55.444+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:08:55.594+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:08:56.043+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.907 seconds
+[2024-01-30T22:09:26.481+0000] {processor.py:161} INFO - Started process (PID=10775) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:09:26.491+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T22:09:26.500+0000] {logging_mixin.py:188} INFO - [2024-01-30T22:09:26.498+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:09:26.522+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:09:26.642+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.178 seconds
+[2024-01-30T22:09:57.054+0000] {processor.py:161} INFO - Started process (PID=10784) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:09:57.058+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T22:09:57.062+0000] {logging_mixin.py:188} INFO - [2024-01-30T22:09:57.061+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:09:57.073+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:09:57.107+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.065 seconds
+[2024-01-30T22:10:27.462+0000] {processor.py:161} INFO - Started process (PID=10794) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:10:27.465+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T22:10:27.467+0000] {logging_mixin.py:188} INFO - [2024-01-30T22:10:27.466+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:10:27.476+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:10:27.508+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.056 seconds
+[2024-01-30T22:10:57.840+0000] {processor.py:161} INFO - Started process (PID=10804) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:10:57.843+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T22:10:57.846+0000] {logging_mixin.py:188} INFO - [2024-01-30T22:10:57.845+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:10:57.856+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:10:57.896+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.063 seconds
+[2024-01-30T22:11:28.197+0000] {processor.py:161} INFO - Started process (PID=10814) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:11:28.200+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T22:11:28.204+0000] {logging_mixin.py:188} INFO - [2024-01-30T22:11:28.201+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:11:28.214+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:11:28.236+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.049 seconds
+[2024-01-30T22:11:58.511+0000] {processor.py:161} INFO - Started process (PID=10824) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:11:58.513+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T22:11:58.515+0000] {logging_mixin.py:188} INFO - [2024-01-30T22:11:58.514+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:11:58.523+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:11:58.549+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.046 seconds
+[2024-01-30T22:12:28.874+0000] {processor.py:161} INFO - Started process (PID=10834) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:12:28.876+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T22:12:28.877+0000] {logging_mixin.py:188} INFO - [2024-01-30T22:12:28.877+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:12:28.884+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:12:28.913+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.043 seconds
+[2024-01-30T22:12:59.211+0000] {processor.py:161} INFO - Started process (PID=10845) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:12:59.213+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T22:12:59.215+0000] {logging_mixin.py:188} INFO - [2024-01-30T22:12:59.215+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:12:59.221+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:12:59.247+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.040 seconds
+[2024-01-30T22:13:29.526+0000] {processor.py:161} INFO - Started process (PID=10854) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:13:29.528+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T22:13:29.530+0000] {logging_mixin.py:188} INFO - [2024-01-30T22:13:29.530+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:13:29.537+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:13:29.566+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.045 seconds
+[2024-01-30T22:13:59.916+0000] {processor.py:161} INFO - Started process (PID=10865) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:13:59.919+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T22:13:59.921+0000] {logging_mixin.py:188} INFO - [2024-01-30T22:13:59.920+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:13:59.933+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:13:59.969+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.059 seconds
+[2024-01-30T22:14:30.285+0000] {processor.py:161} INFO - Started process (PID=10875) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:14:30.287+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T22:14:30.289+0000] {logging_mixin.py:188} INFO - [2024-01-30T22:14:30.289+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:14:30.304+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:14:30.331+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.051 seconds
+[2024-01-30T22:15:00.572+0000] {processor.py:161} INFO - Started process (PID=10884) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:15:00.574+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T22:15:00.576+0000] {logging_mixin.py:188} INFO - [2024-01-30T22:15:00.576+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:15:00.584+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:15:00.605+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.037 seconds
+[2024-01-30T22:15:30.887+0000] {processor.py:161} INFO - Started process (PID=10893) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:15:30.889+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T22:15:30.891+0000] {logging_mixin.py:188} INFO - [2024-01-30T22:15:30.890+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:15:30.897+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:15:30.925+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.043 seconds
+[2024-01-30T22:16:01.216+0000] {processor.py:161} INFO - Started process (PID=10904) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:16:01.219+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T22:16:01.222+0000] {logging_mixin.py:188} INFO - [2024-01-30T22:16:01.221+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:16:01.231+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:16:01.265+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.053 seconds
+[2024-01-30T22:16:31.528+0000] {processor.py:161} INFO - Started process (PID=10914) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:16:31.530+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T22:16:31.532+0000] {logging_mixin.py:188} INFO - [2024-01-30T22:16:31.532+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:16:31.538+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:16:31.565+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.041 seconds
+[2024-01-30T22:17:01.844+0000] {processor.py:161} INFO - Started process (PID=10923) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:17:01.846+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T22:17:01.848+0000] {logging_mixin.py:188} INFO - [2024-01-30T22:17:01.848+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:17:01.859+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:17:01.896+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.057 seconds
+[2024-01-30T22:17:32.130+0000] {processor.py:161} INFO - Started process (PID=10933) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:17:32.132+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T22:17:32.134+0000] {logging_mixin.py:188} INFO - [2024-01-30T22:17:32.134+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:17:32.143+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:17:32.176+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.052 seconds
+[2024-01-30T22:18:02.510+0000] {processor.py:161} INFO - Started process (PID=10942) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:18:02.513+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T22:18:02.515+0000] {logging_mixin.py:188} INFO - [2024-01-30T22:18:02.514+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:18:02.523+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:18:02.550+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.043 seconds
+[2024-01-30T22:18:32.852+0000] {processor.py:161} INFO - Started process (PID=10953) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:18:32.856+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T22:18:32.858+0000] {logging_mixin.py:188} INFO - [2024-01-30T22:18:32.858+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:18:32.865+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:18:32.894+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.046 seconds
+[2024-01-30T22:19:03.204+0000] {processor.py:161} INFO - Started process (PID=10963) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:19:03.206+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T22:19:03.208+0000] {logging_mixin.py:188} INFO - [2024-01-30T22:19:03.207+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:19:03.215+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:19:03.247+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.047 seconds
+[2024-01-30T22:19:33.574+0000] {processor.py:161} INFO - Started process (PID=10973) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:19:33.576+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T22:19:33.579+0000] {logging_mixin.py:188} INFO - [2024-01-30T22:19:33.578+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:19:33.585+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:19:33.612+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.042 seconds
+[2024-01-30T22:20:03.849+0000] {processor.py:161} INFO - Started process (PID=10983) to work on /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:20:03.851+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/seek_crawler.py for tasks to queue
+[2024-01-30T22:20:03.853+0000] {logging_mixin.py:188} INFO - [2024-01-30T22:20:03.853+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:20:03.861+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/seek_crawler.py
+[2024-01-30T22:20:03.891+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/seek_crawler.py took 0.046 seconds

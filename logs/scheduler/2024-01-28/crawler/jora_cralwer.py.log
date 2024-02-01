@@ -1,0 +1,574 @@
+[2024-01-28T11:09:16.773+0000] {processor.py:161} INFO - Started process (PID=2196) to work on /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:09:16.775+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/jora_cralwer.py for tasks to queue
+[2024-01-28T11:09:16.779+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:09:16.778+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:09:16.800+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:09:16.797+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/crawler/jora_cralwer.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/crawler/jora_cralwer.py", line 5, in <module>
+    from airflow.providers.amazon.transfers.local_to_s3 import LocalFilesystemToS3Operator
+ModuleNotFoundError: No module named 'airflow.providers.amazon.transfers'
+[2024-01-28T11:09:16.801+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:09:16.843+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/jora_cralwer.py took 0.074 seconds
+[2024-01-28T11:09:47.356+0000] {processor.py:161} INFO - Started process (PID=2252) to work on /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:09:47.387+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/jora_cralwer.py for tasks to queue
+[2024-01-28T11:09:47.393+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:09:47.392+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:09:47.407+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:09:47.404+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/crawler/jora_cralwer.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/crawler/jora_cralwer.py", line 5, in <module>
+    from airflow.providers.amazon.transfers.local_to_s3 import LocalFilesystemToS3Operator
+ModuleNotFoundError: No module named 'airflow.providers.amazon.transfers'
+[2024-01-28T11:09:47.408+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:09:47.445+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/jora_cralwer.py took 0.095 seconds
+[2024-01-28T11:10:17.596+0000] {processor.py:161} INFO - Started process (PID=2309) to work on /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:10:17.600+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/jora_cralwer.py for tasks to queue
+[2024-01-28T11:10:17.606+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:10:17.605+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:10:17.629+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:10:17.626+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/crawler/jora_cralwer.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/crawler/jora_cralwer.py", line 5, in <module>
+    from airflow.providers.amazon.transfers.local_to_s3 import LocalFilesystemToS3Operator
+ModuleNotFoundError: No module named 'airflow.providers.amazon.transfers'
+[2024-01-28T11:10:17.633+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:10:17.667+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/jora_cralwer.py took 0.079 seconds
+[2024-01-28T11:10:47.896+0000] {processor.py:161} INFO - Started process (PID=2366) to work on /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:10:47.900+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/jora_cralwer.py for tasks to queue
+[2024-01-28T11:10:47.903+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:10:47.902+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:10:47.911+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:10:47.910+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/crawler/jora_cralwer.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/crawler/jora_cralwer.py", line 5, in <module>
+    from airflow.providers.amazon.transfers.local_to_s3 import LocalFilesystemToS3Operator
+ModuleNotFoundError: No module named 'airflow.providers.amazon.transfers'
+[2024-01-28T11:10:47.913+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:10:47.939+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/jora_cralwer.py took 0.047 seconds
+[2024-01-28T11:11:18.516+0000] {processor.py:161} INFO - Started process (PID=2424) to work on /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:11:18.520+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/jora_cralwer.py for tasks to queue
+[2024-01-28T11:11:18.523+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:11:18.523+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:11:18.533+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:11:18.531+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/crawler/jora_cralwer.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/crawler/jora_cralwer.py", line 5, in <module>
+    from airflow.providers.amazon.transfers.local_to_s3 import LocalFilesystemToS3Operator
+ModuleNotFoundError: No module named 'airflow.providers.amazon.transfers'
+[2024-01-28T11:11:18.534+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:11:18.564+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/jora_cralwer.py took 0.053 seconds
+[2024-01-28T11:11:48.726+0000] {processor.py:161} INFO - Started process (PID=2481) to work on /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:11:48.728+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/jora_cralwer.py for tasks to queue
+[2024-01-28T11:11:48.731+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:11:48.731+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:11:48.741+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:11:48.739+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/crawler/jora_cralwer.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/crawler/jora_cralwer.py", line 5, in <module>
+    from airflow.providers.amazon.transfers.local_to_s3 import LocalFilesystemToS3Operator
+ModuleNotFoundError: No module named 'airflow.providers.amazon.transfers'
+[2024-01-28T11:11:48.742+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:11:48.771+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/jora_cralwer.py took 0.049 seconds
+[2024-01-28T11:12:18.873+0000] {processor.py:161} INFO - Started process (PID=2537) to work on /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:12:18.876+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/jora_cralwer.py for tasks to queue
+[2024-01-28T11:12:18.881+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:12:18.880+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:12:18.896+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:12:18.894+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/crawler/jora_cralwer.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/crawler/jora_cralwer.py", line 5, in <module>
+    from airflow.providers.amazon.transfers.local_to_s3 import LocalFilesystemToS3Operator
+ModuleNotFoundError: No module named 'airflow.providers.amazon.transfers'
+[2024-01-28T11:12:18.899+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:12:18.937+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/jora_cralwer.py took 0.071 seconds
+[2024-01-28T11:12:49.183+0000] {processor.py:161} INFO - Started process (PID=2595) to work on /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:12:49.185+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/jora_cralwer.py for tasks to queue
+[2024-01-28T11:12:49.188+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:12:49.188+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:12:49.200+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:12:49.198+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/crawler/jora_cralwer.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/crawler/jora_cralwer.py", line 5, in <module>
+    from airflow.providers.amazon.transfers.local_to_s3 import LocalFilesystemToS3Operator
+ModuleNotFoundError: No module named 'airflow.providers.amazon.transfers'
+[2024-01-28T11:12:49.201+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:12:49.230+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/jora_cralwer.py took 0.051 seconds
+[2024-01-28T11:13:19.377+0000] {processor.py:161} INFO - Started process (PID=2652) to work on /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:13:19.381+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/jora_cralwer.py for tasks to queue
+[2024-01-28T11:13:19.386+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:13:19.386+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:13:19.412+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:13:19.406+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/crawler/jora_cralwer.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/crawler/jora_cralwer.py", line 5, in <module>
+    from airflow.providers.amazon.transfers.local_to_s3 import LocalFilesystemToS3Operator
+ModuleNotFoundError: No module named 'airflow.providers.amazon.transfers'
+[2024-01-28T11:13:19.418+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:13:19.465+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/jora_cralwer.py took 0.094 seconds
+[2024-01-28T11:13:49.822+0000] {processor.py:161} INFO - Started process (PID=2709) to work on /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:13:49.825+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/jora_cralwer.py for tasks to queue
+[2024-01-28T11:13:49.828+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:13:49.827+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:13:49.843+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:13:49.839+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/crawler/jora_cralwer.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/crawler/jora_cralwer.py", line 5, in <module>
+    from airflow.providers.amazon.transfers.local_to_s3 import LocalFilesystemToS3Operator
+ModuleNotFoundError: No module named 'airflow.providers.amazon.transfers'
+[2024-01-28T11:13:49.846+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:13:49.893+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/jora_cralwer.py took 0.075 seconds
+[2024-01-28T11:14:20.315+0000] {processor.py:161} INFO - Started process (PID=2764) to work on /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:14:20.317+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/jora_cralwer.py for tasks to queue
+[2024-01-28T11:14:20.320+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:14:20.320+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:14:20.330+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:14:20.328+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/crawler/jora_cralwer.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/crawler/jora_cralwer.py", line 5, in <module>
+    from airflow.providers.amazon.transfers.local_to_s3 import LocalFilesystemToS3Operator
+ModuleNotFoundError: No module named 'airflow.providers.amazon.transfers'
+[2024-01-28T11:14:20.332+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:14:20.358+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/jora_cralwer.py took 0.047 seconds
+[2024-01-28T11:14:50.583+0000] {processor.py:161} INFO - Started process (PID=2822) to work on /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:14:50.586+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/jora_cralwer.py for tasks to queue
+[2024-01-28T11:14:50.589+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:14:50.589+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:14:50.604+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:14:50.600+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/crawler/jora_cralwer.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/crawler/jora_cralwer.py", line 5, in <module>
+    from airflow.providers.amazon.transfers.local_to_s3 import LocalFilesystemToS3Operator
+ModuleNotFoundError: No module named 'airflow.providers.amazon.transfers'
+[2024-01-28T11:14:50.606+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:14:50.636+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/jora_cralwer.py took 0.057 seconds
+[2024-01-28T11:15:21.197+0000] {processor.py:161} INFO - Started process (PID=2879) to work on /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:15:21.200+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/jora_cralwer.py for tasks to queue
+[2024-01-28T11:15:21.204+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:15:21.204+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:15:21.215+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:15:21.211+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/crawler/jora_cralwer.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/crawler/jora_cralwer.py", line 5, in <module>
+    from airflow.providers.amazon.transfers.local_to_s3 import LocalFilesystemToS3Operator
+ModuleNotFoundError: No module named 'airflow.providers.amazon.transfers'
+[2024-01-28T11:15:21.217+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:15:21.270+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/jora_cralwer.py took 0.080 seconds
+[2024-01-28T11:15:51.931+0000] {processor.py:161} INFO - Started process (PID=2935) to work on /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:15:51.934+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/jora_cralwer.py for tasks to queue
+[2024-01-28T11:15:51.940+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:15:51.939+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:15:51.959+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:15:51.955+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/crawler/jora_cralwer.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/crawler/jora_cralwer.py", line 5, in <module>
+    from airflow.providers.amazon.transfers.local_to_s3 import LocalFilesystemToS3Operator
+ModuleNotFoundError: No module named 'airflow.providers.amazon.transfers'
+[2024-01-28T11:15:51.962+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:15:52.013+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/jora_cralwer.py took 0.090 seconds
+[2024-01-28T11:16:22.419+0000] {processor.py:161} INFO - Started process (PID=2990) to work on /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:16:22.423+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/jora_cralwer.py for tasks to queue
+[2024-01-28T11:16:22.427+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:16:22.426+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:16:22.437+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:16:22.434+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/crawler/jora_cralwer.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/crawler/jora_cralwer.py", line 5, in <module>
+    from airflow.providers.amazon.transfers.local_to_s3 import LocalFilesystemToS3Operator
+ModuleNotFoundError: No module named 'airflow.providers.amazon.transfers'
+[2024-01-28T11:16:22.438+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:16:22.479+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/jora_cralwer.py took 0.065 seconds
+[2024-01-28T11:16:53.087+0000] {processor.py:161} INFO - Started process (PID=3047) to work on /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:16:53.095+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/jora_cralwer.py for tasks to queue
+[2024-01-28T11:16:53.104+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:16:53.103+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:16:53.126+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:16:53.122+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/crawler/jora_cralwer.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/crawler/jora_cralwer.py", line 5, in <module>
+    from airflow.providers.amazon.transfers.local_to_s3 import LocalFilesystemToS3Operator
+ModuleNotFoundError: No module named 'airflow.providers.amazon.transfers'
+[2024-01-28T11:16:53.130+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:16:53.189+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/jora_cralwer.py took 0.110 seconds
+[2024-01-28T11:17:23.704+0000] {processor.py:161} INFO - Started process (PID=3105) to work on /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:17:23.722+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/jora_cralwer.py for tasks to queue
+[2024-01-28T11:17:23.733+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:17:23.733+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:17:23.781+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:17:23.773+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/crawler/jora_cralwer.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/crawler/jora_cralwer.py", line 5, in <module>
+    from airflow.providers.amazon.transfers.local_to_s3 import LocalFilesystemToS3Operator
+ModuleNotFoundError: No module named 'airflow.providers.amazon.transfers'
+[2024-01-28T11:17:23.788+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:17:23.872+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/jora_cralwer.py took 0.176 seconds
+[2024-01-28T11:17:54.168+0000] {processor.py:161} INFO - Started process (PID=3162) to work on /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:17:54.170+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/jora_cralwer.py for tasks to queue
+[2024-01-28T11:17:54.174+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:17:54.173+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:17:54.183+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:17:54.181+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/crawler/jora_cralwer.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/crawler/jora_cralwer.py", line 5, in <module>
+    from airflow.providers.amazon.transfers.local_to_s3 import LocalFilesystemToS3Operator
+ModuleNotFoundError: No module named 'airflow.providers.amazon.transfers'
+[2024-01-28T11:17:54.185+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:17:54.212+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/jora_cralwer.py took 0.048 seconds
+[2024-01-28T11:18:24.545+0000] {processor.py:161} INFO - Started process (PID=3220) to work on /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:18:24.547+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/jora_cralwer.py for tasks to queue
+[2024-01-28T11:18:24.551+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:18:24.550+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:18:24.566+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:18:24.564+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/crawler/jora_cralwer.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/crawler/jora_cralwer.py", line 5, in <module>
+    from airflow.providers.amazon.transfers.local_to_s3 import LocalFilesystemToS3Operator
+ModuleNotFoundError: No module named 'airflow.providers.amazon.transfers'
+[2024-01-28T11:18:24.567+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:18:24.602+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/jora_cralwer.py took 0.061 seconds
+[2024-01-28T11:18:55.361+0000] {processor.py:161} INFO - Started process (PID=3276) to work on /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:18:55.365+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/jora_cralwer.py for tasks to queue
+[2024-01-28T11:18:55.371+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:18:55.371+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:18:55.385+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:18:55.382+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/crawler/jora_cralwer.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/crawler/jora_cralwer.py", line 5, in <module>
+    from airflow.providers.amazon.transfers.local_to_s3 import LocalFilesystemToS3Operator
+ModuleNotFoundError: No module named 'airflow.providers.amazon.transfers'
+[2024-01-28T11:18:55.388+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:18:55.429+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/jora_cralwer.py took 0.074 seconds
+[2024-01-28T11:19:25.669+0000] {processor.py:161} INFO - Started process (PID=3332) to work on /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:19:25.673+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/jora_cralwer.py for tasks to queue
+[2024-01-28T11:19:25.679+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:19:25.679+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:19:25.695+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:19:25.691+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/crawler/jora_cralwer.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/crawler/jora_cralwer.py", line 5, in <module>
+    from airflow.providers.amazon.transfers.local_to_s3 import LocalFilesystemToS3Operator
+ModuleNotFoundError: No module named 'airflow.providers.amazon.transfers'
+[2024-01-28T11:19:25.698+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:19:25.750+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/jora_cralwer.py took 0.090 seconds
+[2024-01-28T11:19:56.761+0000] {processor.py:161} INFO - Started process (PID=3390) to work on /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:19:56.764+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/jora_cralwer.py for tasks to queue
+[2024-01-28T11:19:56.769+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:19:56.768+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:19:56.785+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:19:56.782+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/crawler/jora_cralwer.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/crawler/jora_cralwer.py", line 5, in <module>
+    from airflow.providers.amazon.transfers.local_to_s3 import LocalFilesystemToS3Operator
+ModuleNotFoundError: No module named 'airflow.providers.amazon.transfers'
+[2024-01-28T11:19:56.786+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:19:56.840+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/jora_cralwer.py took 0.087 seconds
+[2024-01-28T11:20:27.487+0000] {processor.py:161} INFO - Started process (PID=3447) to work on /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:20:27.494+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/jora_cralwer.py for tasks to queue
+[2024-01-28T11:20:27.513+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:20:27.513+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:20:27.534+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:20:27.529+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/crawler/jora_cralwer.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/crawler/jora_cralwer.py", line 5, in <module>
+    from airflow.providers.amazon.transfers.local_to_s3 import LocalFilesystemToS3Operator
+ModuleNotFoundError: No module named 'airflow.providers.amazon.transfers'
+[2024-01-28T11:20:27.537+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:20:27.618+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/jora_cralwer.py took 0.155 seconds
+[2024-01-28T11:20:58.632+0000] {processor.py:161} INFO - Started process (PID=3505) to work on /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:20:58.633+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/jora_cralwer.py for tasks to queue
+[2024-01-28T11:20:58.637+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:20:58.637+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:20:58.647+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:20:58.645+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/crawler/jora_cralwer.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/crawler/jora_cralwer.py", line 5, in <module>
+    from airflow.providers.amazon.transfers.local_to_s3 import LocalFilesystemToS3Operator
+ModuleNotFoundError: No module named 'airflow.providers.amazon.transfers'
+[2024-01-28T11:20:58.649+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:20:58.680+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/jora_cralwer.py took 0.053 seconds
+[2024-01-28T11:21:29.353+0000] {processor.py:161} INFO - Started process (PID=3563) to work on /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:21:29.356+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/jora_cralwer.py for tasks to queue
+[2024-01-28T11:21:29.360+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:21:29.360+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:21:29.372+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:21:29.370+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/crawler/jora_cralwer.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/crawler/jora_cralwer.py", line 5, in <module>
+    from airflow.providers.amazon.transfers.local_to_s3 import LocalFilesystemToS3Operator
+ModuleNotFoundError: No module named 'airflow.providers.amazon.transfers'
+[2024-01-28T11:21:29.373+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:21:29.423+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/jora_cralwer.py took 0.076 seconds
+[2024-01-28T11:21:59.698+0000] {processor.py:161} INFO - Started process (PID=3621) to work on /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:21:59.703+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/jora_cralwer.py for tasks to queue
+[2024-01-28T11:21:59.709+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:21:59.709+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:21:59.720+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:21:59.717+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/crawler/jora_cralwer.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/crawler/jora_cralwer.py", line 5, in <module>
+    from airflow.providers.amazon.transfers.local_to_s3 import LocalFilesystemToS3Operator
+ModuleNotFoundError: No module named 'airflow.providers.amazon.transfers'
+[2024-01-28T11:21:59.722+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:21:59.757+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/jora_cralwer.py took 0.063 seconds
+[2024-01-28T11:22:30.236+0000] {processor.py:161} INFO - Started process (PID=3679) to work on /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:22:30.238+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/jora_cralwer.py for tasks to queue
+[2024-01-28T11:22:30.243+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:22:30.242+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:22:30.253+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:22:30.250+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/crawler/jora_cralwer.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/crawler/jora_cralwer.py", line 5, in <module>
+    from airflow.providers.amazon.transfers.local_to_s3 import LocalFilesystemToS3Operator
+ModuleNotFoundError: No module named 'airflow.providers.amazon.transfers'
+[2024-01-28T11:22:30.253+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:22:30.280+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/jora_cralwer.py took 0.048 seconds
+[2024-01-28T11:23:01.110+0000] {processor.py:161} INFO - Started process (PID=3737) to work on /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:23:01.113+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/jora_cralwer.py for tasks to queue
+[2024-01-28T11:23:01.119+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:23:01.118+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:23:01.134+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:23:01.130+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/crawler/jora_cralwer.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/crawler/jora_cralwer.py", line 5, in <module>
+    from airflow.providers.amazon.transfers.local_to_s3 import LocalFilesystemToS3Operator
+ModuleNotFoundError: No module named 'airflow.providers.amazon.transfers'
+[2024-01-28T11:23:01.139+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:23:01.184+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/jora_cralwer.py took 0.085 seconds
+[2024-01-28T11:23:31.410+0000] {processor.py:161} INFO - Started process (PID=3793) to work on /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:23:31.413+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/jora_cralwer.py for tasks to queue
+[2024-01-28T11:23:31.418+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:23:31.417+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:23:31.428+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:23:31.426+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/crawler/jora_cralwer.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/crawler/jora_cralwer.py", line 5, in <module>
+    from airflow.providers.amazon.transfers.local_to_s3 import LocalFilesystemToS3Operator
+ModuleNotFoundError: No module named 'airflow.providers.amazon.transfers'
+[2024-01-28T11:23:31.430+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:23:31.480+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/jora_cralwer.py took 0.075 seconds
+[2024-01-28T11:24:01.931+0000] {processor.py:161} INFO - Started process (PID=3851) to work on /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:24:01.933+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/jora_cralwer.py for tasks to queue
+[2024-01-28T11:24:01.939+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:24:01.938+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:24:01.950+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:24:01.947+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/crawler/jora_cralwer.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/crawler/jora_cralwer.py", line 5, in <module>
+    from airflow.providers.amazon.transfers.local_to_s3 import LocalFilesystemToS3Operator
+ModuleNotFoundError: No module named 'airflow.providers.amazon.transfers'
+[2024-01-28T11:24:01.952+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:24:01.985+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/jora_cralwer.py took 0.059 seconds
+[2024-01-28T11:24:31.936+0000] {processor.py:161} INFO - Started process (PID=3907) to work on /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:24:31.939+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/jora_cralwer.py for tasks to queue
+[2024-01-28T11:24:31.945+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:24:31.944+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:24:32.436+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:24:32.431+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/crawler/jora_cralwer.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/crawler/jora_cralwer.py", line 54, in <module>
+    job_contents = crawl_and_get_content.map(job_search_results)
+AttributeError: '_TaskDecorator' object has no attribute 'map'
+[2024-01-28T11:24:32.442+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:24:32.503+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/jora_cralwer.py took 0.574 seconds
+[2024-01-28T11:25:02.711+0000] {processor.py:161} INFO - Started process (PID=3965) to work on /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:25:02.713+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/jora_cralwer.py for tasks to queue
+[2024-01-28T11:25:02.716+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:25:02.716+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:25:02.831+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:25:02.828+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/crawler/jora_cralwer.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/crawler/jora_cralwer.py", line 54, in <module>
+    job_contents = crawl_and_get_content.map(job_search_results)
+AttributeError: '_TaskDecorator' object has no attribute 'map'
+[2024-01-28T11:25:02.832+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:25:02.860+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/jora_cralwer.py took 0.153 seconds
+[2024-01-28T11:25:33.678+0000] {processor.py:161} INFO - Started process (PID=4021) to work on /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:25:33.680+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/jora_cralwer.py for tasks to queue
+[2024-01-28T11:25:33.682+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:25:33.682+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:25:33.814+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:25:33.812+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/crawler/jora_cralwer.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/crawler/jora_cralwer.py", line 54, in <module>
+    job_contents = crawl_and_get_content.map(job_search_results)
+AttributeError: '_TaskDecorator' object has no attribute 'map'
+[2024-01-28T11:25:33.816+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:25:33.846+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/jora_cralwer.py took 0.173 seconds
+[2024-01-28T11:25:46.748+0000] {processor.py:161} INFO - Started process (PID=4049) to work on /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:25:46.751+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/jora_cralwer.py for tasks to queue
+[2024-01-28T11:25:46.755+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:25:46.754+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:25:46.916+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:25:46.914+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/crawler/jora_cralwer.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/crawler/jora_cralwer.py", line 54, in <module>
+    job_contents = crawl_and_get_content.map(job_search_results)
+AttributeError: '_TaskDecorator' object has no attribute 'map'
+[2024-01-28T11:25:46.917+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:25:46.947+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/jora_cralwer.py took 0.208 seconds
+[2024-01-28T11:26:17.102+0000] {processor.py:161} INFO - Started process (PID=4105) to work on /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:26:17.105+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/jora_cralwer.py for tasks to queue
+[2024-01-28T11:26:17.108+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:26:17.108+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:26:17.267+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:26:17.262+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/crawler/jora_cralwer.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/crawler/jora_cralwer.py", line 54, in <module>
+    job_contents = crawl_and_get_content.map(job_search_results)
+AttributeError: '_TaskDecorator' object has no attribute 'map'
+[2024-01-28T11:26:17.270+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:26:17.318+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/jora_cralwer.py took 0.222 seconds
+[2024-01-28T11:26:24.070+0000] {processor.py:161} INFO - Started process (PID=4113) to work on /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:26:24.081+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/jora_cralwer.py for tasks to queue
+[2024-01-28T11:26:24.087+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:26:24.086+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:26:24.849+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:26:24.838+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/crawler/jora_cralwer.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/crawler/jora_cralwer.py", line 54, in <module>
+    job_contents = crawl_and_get_content.map(job_search_results)
+AttributeError: '_TaskDecorator' object has no attribute 'map'
+[2024-01-28T11:26:24.852+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:26:25.180+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/jora_cralwer.py took 1.203 seconds
+[2024-01-28T11:26:55.431+0000] {processor.py:161} INFO - Started process (PID=4172) to work on /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:26:55.433+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/jora_cralwer.py for tasks to queue
+[2024-01-28T11:26:55.437+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:26:55.437+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:26:55.577+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:26:55.575+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/crawler/jora_cralwer.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/crawler/jora_cralwer.py", line 54, in <module>
+    job_contents = crawl_and_get_content.map(job_search_results)
+AttributeError: '_TaskDecorator' object has no attribute 'map'
+[2024-01-28T11:26:55.579+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:26:55.610+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/jora_cralwer.py took 0.183 seconds
+[2024-01-28T11:27:25.725+0000] {processor.py:161} INFO - Started process (PID=4229) to work on /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:27:25.728+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/jora_cralwer.py for tasks to queue
+[2024-01-28T11:27:25.736+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:27:25.734+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:27:25.884+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:27:25.882+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/crawler/jora_cralwer.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/crawler/jora_cralwer.py", line 54, in <module>
+    job_contents = crawl_and_get_content.map(job_search_results)
+AttributeError: '_TaskDecorator' object has no attribute 'map'
+[2024-01-28T11:27:25.885+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:27:25.912+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/jora_cralwer.py took 0.192 seconds
+[2024-01-28T11:27:55.950+0000] {processor.py:161} INFO - Started process (PID=4287) to work on /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:27:55.954+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/jora_cralwer.py for tasks to queue
+[2024-01-28T11:27:55.959+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:27:55.959+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:27:56.079+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:27:56.077+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/crawler/jora_cralwer.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/crawler/jora_cralwer.py", line 54, in <module>
+    job_contents = crawl_and_get_content.map(job_search_results)
+AttributeError: '_TaskDecorator' object has no attribute 'map'
+[2024-01-28T11:27:56.081+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:27:56.118+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/jora_cralwer.py took 0.172 seconds
+[2024-01-28T11:28:26.565+0000] {processor.py:161} INFO - Started process (PID=4343) to work on /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:28:26.568+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/jora_cralwer.py for tasks to queue
+[2024-01-28T11:28:26.591+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:28:26.590+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:28:26.876+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:28:26.867+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/crawler/jora_cralwer.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/crawler/jora_cralwer.py", line 54, in <module>
+    job_contents = crawl_and_get_content.map(job_search_results)
+AttributeError: '_TaskDecorator' object has no attribute 'map'
+[2024-01-28T11:28:26.880+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:28:26.928+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/jora_cralwer.py took 0.377 seconds
+[2024-01-28T11:28:29.930+0000] {processor.py:161} INFO - Started process (PID=4357) to work on /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:28:29.932+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/crawler/jora_cralwer.py for tasks to queue
+[2024-01-28T11:28:29.935+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:28:29.935+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:28:30.057+0000] {logging_mixin.py:188} INFO - [2024-01-28T11:28:30.054+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/crawler/jora_cralwer.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/crawler/jora_cralwer.py", line 54, in <module>
+    job_contents = crawl_and_get_content.map(job_search_results)
+AttributeError: '_TaskDecorator' object has no attribute 'map'
+[2024-01-28T11:28:30.058+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/crawler/jora_cralwer.py
+[2024-01-28T11:28:30.089+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/crawler/jora_cralwer.py took 0.166 seconds

@@ -1,0 +1,13 @@
+[2024-01-29T03:38:21.719+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: jora_crawler.search_seek_job scheduled__2024-01-28T18:00:00+00:00 [queued]>
+[2024-01-29T03:38:21.972+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: jora_crawler.search_seek_job scheduled__2024-01-28T18:00:00+00:00 [queued]>
+[2024-01-29T03:38:21.982+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2024-01-29T03:38:22.350+0000] {taskinstance.py:2191} INFO - Executing <Task(_PythonDecoratedOperator): search_seek_job> on 2024-01-28 18:00:00+00:00
+[2024-01-29T03:38:22.401+0000] {standard_task_runner.py:60} INFO - Started process 292 to run task
+[2024-01-29T03:38:22.499+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'jora_crawler', 'search_seek_job', 'scheduled__2024-01-28T18:00:00+00:00', '--job-id', '76', '--raw', '--subdir', 'DAGS_FOLDER/crawler/jora_cralwer.py', '--cfg-path', '/tmp/tmpblgeepkx']
+[2024-01-29T03:38:22.625+0000] {standard_task_runner.py:88} INFO - Job 76: Subtask search_seek_job
+[2024-01-29T03:38:23.143+0000] {task_command.py:423} INFO - Running <TaskInstance: jora_crawler.search_seek_job scheduled__2024-01-28T18:00:00+00:00 [running]> on host 5a789d336170
+[2024-01-29T03:38:24.354+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='jora_crawler' AIRFLOW_CTX_TASK_ID='search_seek_job' AIRFLOW_CTX_EXECUTION_DATE='2024-01-28T18:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-01-28T18:00:00+00:00'
+[2024-01-29T03:38:24.419+0000] {python.py:201} INFO - Done. Returned value was: ['a', 'b', 'c']
+[2024-01-29T03:38:24.632+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=jora_crawler, task_id=search_seek_job, execution_date=20240128T180000, start_date=20240129T033821, end_date=20240129T033824
+[2024-01-29T03:38:25.247+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2024-01-29T03:38:25.669+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

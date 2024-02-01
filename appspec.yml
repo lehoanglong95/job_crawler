@@ -2,7 +2,7 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /home/ec2_user/job_crawler
+    destination: /home/ec2-user/job_crawler
 
 hooks:
   ApplicationStop:

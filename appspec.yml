@@ -8,8 +8,8 @@ hooks:
   ApplicationStop:
     - location: scripts/application_stop.sh
       timeout: 300
-      runas: ec2_user
+      runas: ec2-user
   BeforeInstall:
     - location: scripts/before_install.sh
       timeout: 300
-      runas: ec2_user
+      runas: ec2-user

@@ -40,6 +40,7 @@ def save_to_s3(data: dict):
 
         s3_hook = S3Hook("s3_conn")
         s3_hook.load_file(filename=file_name, key=file_path, bucket_name="lhl-job-descriptions")
+        os.remove(file_name)
     except Exception as e:
         print(f"create file fail with error: {e}")
 

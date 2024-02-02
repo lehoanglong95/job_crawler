@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 from datetime import timedelta
 from airflow import DAG
 from airflow.decorators import task
-from dags.utils import save_to_s3
+from utils import save_to_s3
 
 with DAG(
     dag_id="seek_crawler",

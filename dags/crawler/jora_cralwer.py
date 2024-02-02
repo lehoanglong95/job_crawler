@@ -4,7 +4,7 @@ from airflow import DAG
 from airflow.decorators import task
 from bs4 import BeautifulSoup
 import requests
-from dags.utils import save_to_s3
+from utils import save_to_s3
 
 
 # Define the DAG using the with statement
@@ -17,38 +17,44 @@ with DAG(
 ) as dag:
 
     @task
-    def get_job_description_link(url, hrefs, depth, stop=1e9):
-        print(f"START CRAWL WITH DEPTH: {depth}")
-        if depth >= stop:
-            return
+    def get_job_description_link(url="https://au.jora.com/j?sp=homepage&trigger_source=homepage&q=Data+Engineer&l=sydney"):
+        out_hrefs = []
         headers = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'}
-        response = requests.get(url, headers=headers)
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
+        }
 
+        def _get_job_dfs(url, hrefs, depth, stop=1e9):
+            response = requests.get(url, headers=headers)
+            print(f"START CRAWL WITH DEPTH: {depth}")
+            if depth >= stop:
+                return
 
-        # Check if the request was successful (status code 200)
-        if response.status_code == 200:
-            # Parse the HTML content with BeautifulSoup
-            soup = BeautifulSoup(response.content, 'html.parser')
+            # Check if the request was successful (status code 200)
+            if response.status_code == 200:
+                # Parse the HTML content with BeautifulSoup
+                soup = BeautifulSoup(response.content, 'html.parser')
 
-            job_results_div = soup.find('div', class_='jobresults')
+                job_results_div = soup.find('div', class_='jobresults')
 
-            if job_results_div:
-                # Find all <a> tags within the job results div
-                a_tags = job_results_div.find_all('a')
+                if job_results_div:
+                    # Find all <a> tags within the job results div
+                    a_tags = job_results_div.find_all('a')
 
-                # Extract and print the href attributes
-                for a_tag in a_tags:
-                    hrefs.append(f"https://au.jora.com/job{a_tag.get('href')}")
-            div_next_page = soup.find('div', class_='multi-pages-pagination pagination-container')
-            if div_next_page:
-                next_page_buttons = div_next_page.find_all('a', class_='next-page-button')
-                if next_page_buttons:
-                    for next_page_button in next_page_buttons:
-                        time.sleep(3)
-                        get_job_description_link(f"https://au.jora.com{next_page_button.get('href')}", hrefs, depth + 1, stop)
-        else:
-            print(f"Failed to fetch the page. Status code: {response.status_code}")
+                    # Extract and print the href attributes
+                    for a_tag in a_tags:
+                        hrefs.append(f"https://au.jora.com/job{a_tag.get('href')}")
+                div_next_page = soup.find('div', class_='multi-pages-pagination pagination-container')
+                if div_next_page:
+                    next_page_buttons = div_next_page.find_all('a', class_='next-page-button')
+                    if next_page_buttons:
+                        for next_page_button in next_page_buttons:
+                            time.sleep(3)
+                            get_job_description_link(f"https://au.jora.com{next_page_button.get('href')}", hrefs, depth + 1, stop)
+            else:
+                print(f"Failed to fetch the page. Status code: {response.status_code}")
+
+        _get_job_dfs(url, out_hrefs, 0)
+        return out_hrefs
 
     @task
     def get_job_description(url):

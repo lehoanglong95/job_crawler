@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 from datetime import timedelta
 from airflow import DAG
 from airflow.decorators import task
-from ..utils import save_to_s3
+from dags.utils import save_to_s3
 
 with DAG(
     dag_id="seek_crawler",
@@ -89,4 +89,4 @@ with DAG(
 
     job_description_link = get_job_description_link()
     job_description = get_job_description.expand(url=job_description_link)
-    save_to_s3.expand(job_description)
+    save_to_s3.expand(data=job_description)

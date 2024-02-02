@@ -241,4 +241,4 @@ with DAG(
 
     job_description = get_job_descriptions()
     job_metadata = extract_job_description.expand(data=job_description)
-    save_to_redshift.expand(job_metadata)
+    save_to_redshift.expand(data=job_metadata)

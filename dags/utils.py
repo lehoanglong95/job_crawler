@@ -1,7 +1,8 @@
 import os
 import hashlib
 from airflow.decorators import task
-from airflow.hooks.S3_hook import S3Hook
+# from airflow.hooks.S3_hook import S3Hook
+import boto3
 
 def normalize_text(input: str) -> str:
     return input.lower().strip()
@@ -38,8 +39,10 @@ def save_to_s3(data: dict):
         with open(file_name, 'w', encoding='utf-8') as file:
             file.write(combination_text)
 
-        s3_hook = S3Hook("s3_conn")
-        s3_hook.load_file(filename=file_name, key=file_path, bucket_name="lhl-job-descriptions")
+        s3 = boto3.client('s3')
+        s3.upload_file(file_name, "lhl-job-descriptions", file_path)
+        # s3_hook = S3Hook("s3_conn")
+        # s3_hook.load_file(filename=file_name, key=file_path, bucket_name="lhl-job-descriptions")
         os.remove(file_name)
     except Exception as e:
         print(f"create file fail with error: {e}")

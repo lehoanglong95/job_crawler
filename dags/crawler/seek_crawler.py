@@ -88,5 +88,5 @@ with DAG(
         return out_dict
 
     job_description_link = get_job_description_link()
-    job_description = get_job_description.expand(url=job_description_link)
-    save_to_s3.expand(data=job_description)
+    job_description = get_job_description.expand(urls=job_description_link)
+    save_to_s3.expand(list_data=job_description)

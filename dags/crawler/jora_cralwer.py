@@ -17,7 +17,8 @@ with DAG(
 ) as dag:
 
     @task
-    def get_job_description_link(url="https://au.jora.com/j?sp=homepage&trigger_source=homepage&q=Data+Engineer&l=sydney"):
+    def get_job_description_link():
+        raw_url="https://au.jora.com/j?sp=homepage&trigger_source=homepage&q=Data+Engineer&l=sydney"
         out_hrefs = []
         headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
@@ -49,11 +50,11 @@ with DAG(
                     if next_page_buttons:
                         for next_page_button in next_page_buttons:
                             time.sleep(3)
-                            get_job_description_link(f"https://au.jora.com{next_page_button.get('href')}", hrefs, depth + 1, stop)
+                            _get_job_dfs(f"https://au.jora.com{next_page_button.get('href')}", hrefs, depth + 1, stop)
             else:
                 print(f"Failed to fetch the page. Status code: {response.status_code}")
 
-        _get_job_dfs(url, out_hrefs, 0)
+        _get_job_dfs(raw_url, out_hrefs, 0)
         return out_hrefs
 
     @task

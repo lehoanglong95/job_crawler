@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 from datetime import timedelta
 from airflow import DAG
 from airflow.decorators import task
-from utils import save_to_s3
+from utils import save_to_s3, chunk
 
 with DAG(
     dag_id="seek_crawler",
@@ -30,9 +30,6 @@ with DAG(
                 job_results_div = soup.find_all('div', class_='_1wkzzau0 a1msqi4y a1msqi4w')
                 if job_results_div:
                     for job_result_div in job_results_div:
-                        # job_href_divs = job_result_div.find_all("div", class_="_1wkzzau0 a1msqi4y a1msqi4w")
-                        # if job_href_divs:
-                        #     for job_href_div in job_href_divs:
                         a_tags = job_result_div.find_all('a')
                         if a_tags:
                             for a_tag in a_tags:
@@ -47,45 +44,48 @@ with DAG(
                             next_page_href = a_tag.get("href")
                             _get_job_dfs(f"https://www.seek.com.au{next_page_href}", out_hrefs, depth + 1)
         _get_job_dfs(url, out_hrefs, 0)
-        return out_hrefs
+        return chunk(out_hrefs)
 
     @task
-    def get_job_description(url):
+    def get_job_description(urls):
         print(f"START TO CRAWL JOB DESCRIPTION: {url}")
         headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
         }
-        try:
-            response = requests.get(url, headers=headers)
-            if response.status_code == 200:
-                soup = BeautifulSoup(response.content, 'html.parser')
-                job_title_ele = soup.find('h1', {'data-automation': 'job-detail-title'})
-                job_title = job_title_ele.get_text() if job_title_ele else ""
-                company_ele = soup.find('span', {'data-automation': 'advertiser-name'})
-                company = company_ele.get_text() if company_ele else ""
-                job_info_eles = soup.find_all('span', class_='_1wkzzau0 a1msqi4y a1msqir')
-                job_infos = [job_title, company]
-                if job_info_eles:
-                    for job_info_ele in job_info_eles:
-                        # job_info_ele = job_info_ele.find("span", class_="_1wkzzau0 a1msqi4y a1msqir")
-                        # if job_info_ele:
-                        job_infos.append(job_info_ele.get_text())
-                listed_time_ele = soup.find("span", class_="_1wkzzau0 a1msqi4y lnocuo0 lnocuo1 lnocuo22 _1d0g9qk4 lnocuoa")
-                if listed_time_ele:
-                    job_infos.append(listed_time_ele.get_text())
-                job_description_ele = soup.find("div", class_="_1wkzzau0 _1pehz540")
-                job_description = job_description_ele.get_text(separator='\n',
-                                                               strip=True) if job_info_ele else ""
-                return {"crawled_url": url,
+        out_dict = []
+        for url in urls:
+            try:
+                response = requests.get(url, headers=headers)
+                if response.status_code == 200:
+                    soup = BeautifulSoup(response.content, 'html.parser')
+                    job_title_ele = soup.find('h1', {'data-automation': 'job-detail-title'})
+                    job_title = job_title_ele.get_text() if job_title_ele else ""
+                    company_ele = soup.find('span', {'data-automation': 'advertiser-name'})
+                    company = company_ele.get_text() if company_ele else ""
+                    job_info_eles = soup.find_all('span', class_='_1wkzzau0 a1msqi4y a1msqir')
+                    job_infos = [job_title, company]
+                    if job_info_eles:
+                        for job_info_ele in job_info_eles:
+                            # job_info_ele = job_info_ele.find("span", class_="_1wkzzau0 a1msqi4y a1msqir")
+                            # if job_info_ele:
+                            job_infos.append(job_info_ele.get_text())
+                    listed_time_ele = soup.find("span", class_="_1wkzzau0 a1msqi4y lnocuo0 lnocuo1 lnocuo22 _1d0g9qk4 lnocuoa")
+                    if listed_time_ele:
+                        job_infos.append(listed_time_ele.get_text())
+                    job_description_ele = soup.find("div", class_="_1wkzzau0 _1pehz540")
+                    job_description = job_description_ele.get_text(separator='\n',
+                                                                   strip=True) if job_info_ele else ""
+                    out_dict.append({"crawled_url": url,
+                            "crawled_website": "seek",
+                            "job_info": "\n".join(job_infos),
+                            "job_description": job_description})
+            except Exception as e:
+                print(f"get job description fail with error: {e}")
+                out_dict.append({"crawled_url": url,
                         "crawled_website": "seek",
-                        "job_info": "\n".join(job_infos),
-                        "job_description": job_description}
-        except Exception as e:
-            print(f"get job description fail with error: {e}")
-            return {"crawled_url": url,
-                    "crawled_website": "seek",
-                    "job_info": "",
-                    "job_description": ""}
+                        "job_info": "",
+                        "job_description": ""})
+        return out_dict
 
     job_description_link = get_job_description_link()
     job_description = get_job_description.expand(url=job_description_link)

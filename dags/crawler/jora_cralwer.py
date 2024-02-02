@@ -4,7 +4,7 @@ from airflow import DAG
 from airflow.decorators import task
 from bs4 import BeautifulSoup
 import requests
-from utils import save_to_s3
+from utils import save_to_s3, chunk
 
 
 # Define the DAG using the with statement
@@ -55,32 +55,34 @@ with DAG(
                 print(f"Failed to fetch the page. Status code: {response.status_code}")
 
         _get_job_dfs(raw_url, out_hrefs, 0)
-        return out_hrefs
+        return chunk(out_hrefs)
 
     @task
-    def get_job_description(url):
+    def get_job_description(urls):
         headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'}
-        try:
-            response = requests.get(url, headers=headers)
-            if response.status_code == 200:
-                soup = BeautifulSoup(response.content, 'html.parser')
-                job_info_container = soup.find("div", id="job-info-container")
-                job_info = job_info_container.get_text() if job_info_container else ""
+        out_dict = []
+        for url in urls:
+            try:
+                response = requests.get(url, headers=headers)
+                if response.status_code == 200:
+                    soup = BeautifulSoup(response.content, 'html.parser')
+                    job_info_container = soup.find("div", id="job-info-container")
+                    job_info = job_info_container.get_text() if job_info_container else ""
 
-            job_description_div = soup.find('div', id='job-description-container')
-            job_description = job_description_div.get_text(separator='\n',
-                                                           strip=True) if job_description_div else ""
-            return {"crawled_url": url,
-                    "crawled_website": "jora",
-                    "job_info": job_info,
-                    "job_description": job_description}
-        except Exception as e:
-            print(f"get job description fail with error: {e}")
-            return {"crawled_url": url,
-                    "crawled_website": "jora",
-                    "job_info": "",
-                    "job_description": ""}
+                job_description_div = soup.find('div', id='job-description-container')
+                job_description = job_description_div.get_text(separator='\n',
+                                                               strip=True) if job_description_div else ""
+                out_dict.append({"crawled_url": url,
+                        "crawled_website": "jora",
+                        "job_info": job_info,
+                        "job_description": job_description})
+            except Exception as e:
+                print(f"get job description fail with error: {e}")
+                out_dict.append({"crawled_url": url,
+                        "crawled_website": "jora",
+                        "job_info": "",
+                        "job_description": ""})
 
     job_description_link = get_job_description_link()
     job_description = get_job_description.expand(url=job_description_link)

@@ -1,6 +1,7 @@
 import os
 import hashlib
 from airflow.decorators import task
+from typing import List, Any
 # from airflow.hooks.S3_hook import S3Hook
 import boto3
 
@@ -20,30 +21,37 @@ def hash_string(input_string):
 
     return hashed_string
 
+
+def chunk(input: List[Any], number_of_chunks=50):
+    chunk_size = input // number_of_chunks
+    return [input[i:i+chunk_size] for i in range(0, len(input), chunk_size)]
+
+
 @task
-def save_to_s3(data: dict):
-    if not data["job_info"] and not data["job_description"]:
-        return
-    try:
-        crawled_url_hash = hash_string(data["crawled_url"])
-        file_name = f"{crawled_url_hash}.txt"
-        file_path = os.path.join(data["crawled_website"], file_name)
+def save_to_s3(list_data: List[dict]):
+    for data in list_data:
+        if not data["job_info"] and not data["job_description"]:
+            continue
+        try:
+            crawled_url_hash = hash_string(data["crawled_url"])
+            file_name = f"{crawled_url_hash}.txt"
+            file_path = os.path.join(data["crawled_website"], file_name)
 
-        # Check if the output folder exists; if not, create it
-        if not os.path.exists(data["crawled_website"]):
-            os.makedirs(data["crawled_website"])
+            # Check if the output folder exists; if not, create it
+            if not os.path.exists(data["crawled_website"]):
+                os.makedirs(data["crawled_website"])
 
-        combination_text = f"url: {data['crawled_url']}\n\n{data['job_info']}\n\n{data['job_description']}"
+            combination_text = f"url: {data['crawled_url']}\n\n{data['job_info']}\n\n{data['job_description']}"
 
-        # Write content to the file
-        with open(file_name, 'w', encoding='utf-8') as file:
-            file.write(combination_text)
+            # Write content to the file
+            with open(file_name, 'w', encoding='utf-8') as file:
+                file.write(combination_text)
 
-        s3 = boto3.client('s3')
-        s3.upload_file(file_name, "lhl-job-descriptions", file_path)
-        # s3_hook = S3Hook("s3_conn")
-        # s3_hook.load_file(filename=file_name, key=file_path, bucket_name="lhl-job-descriptions")
-        os.remove(file_name)
-    except Exception as e:
-        print(f"create file fail with error: {e}")
+            s3 = boto3.client('s3')
+            s3.upload_file(file_name, "lhl-job-descriptions", file_path)
+            # s3_hook = S3Hook("s3_conn")
+            # s3_hook.load_file(filename=file_name, key=file_path, bucket_name="lhl-job-descriptions")
+            os.remove(file_name)
+        except Exception as e:
+            print(f"create file fail with error: {e}")
 

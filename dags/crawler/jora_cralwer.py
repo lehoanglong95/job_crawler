@@ -54,7 +54,7 @@ with DAG(
             else:
                 print(f"Failed to fetch the page. Status code: {response.status_code}")
 
-        _get_job_dfs(raw_url, out_hrefs, 0)
+        _get_job_dfs(raw_url, out_hrefs, 0, 10)
         return chunk(out_hrefs)
 
     @task

@@ -23,7 +23,7 @@ def hash_string(input_string):
 
 
 def chunk(input: List[Any], number_of_chunks=50):
-    chunk_size = input // number_of_chunks
+    chunk_size = len(input) // number_of_chunks
     return [input[i:i+chunk_size] for i in range(0, len(input), chunk_size)]
 
 

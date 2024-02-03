@@ -55,7 +55,7 @@ with DAG(
                 print(f"Failed to fetch the page. Status code: {response.status_code}")
 
         _get_job_dfs(raw_url, out_hrefs, 0, 3)
-        print(f"len out hrefs: {out_hrefs}")
+        print(f"len out hrefs: {len(out_hrefs)}")
         return chunk(out_hrefs)
 
     @task
@@ -84,6 +84,7 @@ with DAG(
                         "crawled_website": "jora",
                         "job_info": "",
                         "job_description": ""})
+        return out_dict
 
     job_description_link = get_job_description_link()
     job_description = get_job_description.expand(urls=job_description_link)

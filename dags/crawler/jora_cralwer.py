@@ -69,7 +69,7 @@ with DAG(
             if response.status_code == 200:
                 soup = BeautifulSoup(response.content, 'html.parser')
                 job_info_container = soup.find("div", id="job-info-container")
-                job_info = job_info_container.get_text() if job_info_container else ""
+                # job_info = job_info_container.get_text() if job_info_container else ""
                 role_ele = job_info_container.find("h1", class_="job-title heading-xxlarge")
                 company_ele = job_info_container.find("span", class_="company")
                 location_ele = job_info_container.find("span", class_="location")

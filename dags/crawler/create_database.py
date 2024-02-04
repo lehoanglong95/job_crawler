@@ -80,4 +80,4 @@ with DAG(
 
 
     # Set the task execution order
-    create_database >> create_tables
+    create_database() >> create_tables()

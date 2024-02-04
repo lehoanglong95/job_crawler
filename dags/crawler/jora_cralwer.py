@@ -93,6 +93,7 @@ with DAG(
             #             "crawled_website": "jora",
             #             "job_info": "",
             #             "job_description": ""})
+        print(f"LEN OUT: {len(out_dict)}")
         return out_dict
 
     job_description_link = get_job_description_link()

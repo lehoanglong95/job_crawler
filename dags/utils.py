@@ -31,6 +31,7 @@ def chunk(input: List[Any], number_of_chunks=50):
 
 @task
 def save_to_s3(list_data: List[dict]):
+    print(f"LEN INPUT: {len(list_data)}")
     for data in list_data:
         if not data["job_info"] and not data["job_description"]:
             print("DO NOT PROCESS")

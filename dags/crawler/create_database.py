@@ -32,7 +32,7 @@ with DAG(
             """
             CREATE TABLE IF NOT EXISTS job_metadata (
                 id SERIAL PRIMARY KEY,
-                crawled_website_id,
+                crawled_website_id INTEGER,
                 url TEXT NOT NULL,
                 city TEXT,
                 role TEXT,

@@ -49,6 +49,7 @@ def save_to_s3(list_data: List[dict]):
             with open(file_name, 'w', encoding='utf-8') as file:
                 file.write(combination_text)
 
+            print(f"file exist: {file_name in os.listdir()}")
             s3 = boto3.client('s3')
             s3.upload_file(file_name, "lhl-job-descriptions", file_path)
             time.sleep(10)

@@ -52,8 +52,9 @@ def save_to_s3(list_data: List[dict]):
             print(f"file exist: {file_name in os.listdir()}")
             s3 = boto3.client('s3')
             s3.upload_file(file_name, "lhl-job-descriptions", file_path)
-            time.sleep(10)
-            os.remove(file_name)
+            print("do not remove file after upload")
+            # time.sleep(10)
+            # os.remove(file_name)
         except Exception as e:
             print(f"create file fail with error: {e}")
 

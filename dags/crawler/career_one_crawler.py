@@ -199,10 +199,10 @@ with DAG(
 
     @task
     def save_to_redshift(data: dict):
-        redshift_hook = PostgresHook(postgres_conn_id='redshift_conn_id', schema='Jobs')
+        postgres_hook = PostgresHook(postgres_conn_id='postgres_conn_id', schema='Jobs')
         def get_crawled_website_id() -> dict:
             sql_query = f"SELECT id, website_name FROM crawled_website"
-            result = redshift_hook.get_records(sql_query)
+            result = postgres_hook.get_records(sql_query)
 
             # Create a dictionary {website_name: id}
             dict = {row[1]: row[0] for row in result}
@@ -225,19 +225,19 @@ with DAG(
             data['raw_content_file'], data['crawled_website_id'],
             data['job_type']
         )
-        job_metadata_id = redshift_hook.get_first(insert_job_metadata_query, parameters=job_metadata_values)[0]
+        job_metadata_id = postgres_hook.get_first(insert_job_metadata_query, parameters=job_metadata_values)[0]
 
         # Insert into career_level table
         if data['career_levels']:
             insert_career_levels_query = "INSERT INTO career_level (job_id, career_level) VALUES (%s, %s)"
             career_levels_values = [(job_metadata_id, level) for level in data['career_levels']]
-            redshift_hook.run(insert_career_levels_query, parameters=career_levels_values)
+            postgres_hook.run(insert_career_levels_query, parameters=career_levels_values)
 
         # Insert into skills table
         if data['skills']:
             insert_skills_query = "INSERT INTO skills (job_id, skill) VALUES (%s, %s)"
             skills_values = [(job_metadata_id, skill) for skill in data['skills']]
-            redshift_hook.run(insert_skills_query, parameters=skills_values)
+            postgres_hook.run(insert_skills_query, parameters=skills_values)
 
     job_description = get_job_descriptions()
     job_metadata = extract_job_description.expand(data=job_description)

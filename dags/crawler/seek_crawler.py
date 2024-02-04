@@ -58,20 +58,20 @@ with DAG(
                 response = requests.get(url, headers=headers)
                 if response.status_code == 200:
                     soup = BeautifulSoup(response.content, 'html.parser')
-                    job_title_ele = soup.find('h1', {'data-automation': 'job-detail-title'})
-                    job_title = job_title_ele.get_text() if job_title_ele else ""
+                    role_ele = soup.find('h1', {'data-automation': 'job-detail-title'})
+                    role = role_ele.get_text() if role_ele else ""
                     company_ele = soup.find('span', {'data-automation': 'advertiser-name'})
                     company = company_ele.get_text() if company_ele else ""
                     job_info_eles = soup.find_all('span', class_='_1wkzzau0 a1msqi4y a1msqir')
-                    job_infos = [job_title, company]
+                    job_infos = {"role": role, "company": company}
                     if job_info_eles:
                         for job_info_ele in job_info_eles:
                             # job_info_ele = job_info_ele.find("span", class_="_1wkzzau0 a1msqi4y a1msqir")
                             # if job_info_ele:
-                            job_infos.append(job_info_ele.get_text())
-                    listed_time_ele = soup.find("span", class_="_1wkzzau0 a1msqi4y lnocuo0 lnocuo1 lnocuo22 _1d0g9qk4 lnocuoa")
-                    if listed_time_ele:
-                        job_infos.append(listed_time_ele.get_text())
+                            job_infos["other job info"] = job_info_ele.get_text()
+                    listed_date_ele = soup.find("span", class_="_1wkzzau0 a1msqi4y lnocuo0 lnocuo1 lnocuo22 _1d0g9qk4 lnocuoa")
+                    if listed_date_ele:
+                        job_infos["listed date"] = listed_date_ele.get_text()
                     job_description_ele = soup.find("div", class_="_1wkzzau0 _1pehz540")
                     job_description = job_description_ele.get_text(separator='\n',
                                                                    strip=True) if job_info_ele else ""

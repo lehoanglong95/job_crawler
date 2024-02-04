@@ -48,9 +48,7 @@ def save_to_s3(list_data: List[dict]):
                 file.write(combination_text)
 
             s3 = boto3.client('s3')
-            s3.upload_file(file_name, "lhl-job-descriptions", file_path)
-            # s3_hook = S3Hook("s3_conn")
-            # s3_hook.load_file(filename=file_name, key=file_path, bucket_name="lhl-job-descriptions")
+            s3.upload_file(filename=file_name, bucket_name="lhl-job-descriptions", key=file_path)
             os.remove(file_name)
         except Exception as e:
             print(f"create file fail with error: {e}")

@@ -65,18 +65,28 @@ with DAG(
         out_dict = []
         for url in urls:
             try:
+                job_info = dict()
                 response = requests.get(url, headers=headers)
                 if response.status_code == 200:
                     soup = BeautifulSoup(response.content, 'html.parser')
                     job_info_container = soup.find("div", id="job-info-container")
                     job_info = job_info_container.get_text() if job_info_container else ""
-
+                    role_ele = job_info_container.find("h1", class_="job-title heading-xxlarge")
+                    company_ele = job_info_container.find("span", class_="company")
+                    location_ele = job_info_container.find("span", class_="location")
+                    contract_type_ele = job_info_container.find("div", class_="badge -default-badge")
+                    listed_date_ele = job_info_container.find("span", class_="listed-date")
+                    job_info["role"] = role_ele.get_text() if role_ele else ""
+                    job_info["company"] = company_ele.get_text() if company_ele else ""
+                    job_info["location"] = location_ele.get_text() if location_ele else ""
+                    job_info["contract_type"] = contract_type_ele.get_text() if contract_type_ele else ""
+                    job_info["listed_date"] = listed_date_ele.get_text() if listed_date_ele else ""
                 job_description_div = soup.find('div', id='job-description-container')
                 job_description = job_description_div.get_text(separator='\n',
                                                                strip=True) if job_description_div else ""
                 out_dict.append({"crawled_url": url,
                         "crawled_website": "jora",
-                        "job_info": job_info,
+                        "job_info": str(job_info),
                         "job_description": job_description})
             except Exception as e:
                 print(f"get job description fail with error: {e}")

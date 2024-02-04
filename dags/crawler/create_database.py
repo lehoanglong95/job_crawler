@@ -18,7 +18,7 @@ with DAG(
         sql_statement = "CREATE DATABASE IF NOT EXISTS Jobs"
 
         # Connect to the default PostgreSQL database
-        pg_hook = PostgresHook(postgres_conn_id='your_postgres_conn_id')
+        pg_hook = PostgresHook(postgres_conn_id='postgres_job_crawler_conn_id')
 
         # Execute the SQL statement to create the database
         pg_hook.run(sql_statement)
@@ -44,27 +44,21 @@ with DAG(
             """
             CREATE TABLE IF NOT EXISTS job_metadata (
                 id SERIAL PRIMARY KEY,
-                url VARCHAR(255) NOT NULL,
-                city VARCHAR(255),
-                role VARCHAR(255),
-                company VARCHAR(255),
+                crawled_website_id,
+                url TEXT NOT NULL,
+                city TEXT,
+                role TEXT,
+                company TEXT,
                 listed_date DATE,
                 min_salary INTEGER,
                 max_salary INTEGER,
-                state VARCHAR(255),
-                contract_type_id INTEGER,
+                state TEXT,
+                contract_type TEXT,
+                number_of_experience INTEGER,
+                job_type VARCHAR(255),
+                is_working_rights BOOLEAN,
                 raw_content_file TEXT,
-                career_level_id INTEGER,
-                job_type INTEGER,
             )
-            """,
-
-            """
-            CREATE TABLE IF NOT EXISTS career_level (
-                id SERIAL PRIMARY KEY,
-                job_id INTEGER REFERENCES job_metadata(id),
-                career_level TEXT
-            );
             """,
 
             """
@@ -77,7 +71,7 @@ with DAG(
         ]
 
         # Connect to the PostgreSQL database
-        pg_hook = PostgresHook(postgres_conn_id='redshift_conn_id', schema='Jobs')
+        pg_hook = PostgresHook(postgres_conn_id='postgres_job_crawler_conn_id', schema='Jobs')
 
         # Execute each SQL statement
         for sql_statement in sql_statements:

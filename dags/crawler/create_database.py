@@ -13,18 +13,6 @@ with DAG(
 ) as dag:
 
     @task
-    def create_database():
-        # Define SQL statement to create the database
-        sql_statement = "CREATE DATABASE IF NOT EXISTS Jobs"
-
-        # Connect to the default PostgreSQL database
-        pg_hook = PostgresHook(postgres_conn_id='postgres_job_crawler_conn_id')
-
-        # Execute the SQL statement to create the database
-        pg_hook.run(sql_statement)
-        print(f"Executed SQL statement:\n{sql_statement}")
-
-    @task
     def create_tables():
         # Define SQL statements to create tables
         sql_statements = [
@@ -80,4 +68,4 @@ with DAG(
 
 
     # Set the task execution order
-    create_database() >> create_tables()
+    create_tables()

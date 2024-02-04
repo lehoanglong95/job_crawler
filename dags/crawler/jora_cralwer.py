@@ -56,6 +56,9 @@ with DAG(
 
         _get_job_dfs(raw_url, out_hrefs, 0, 3)
         print(f"len out hrefs: {len(out_hrefs)}")
+        out_hrefs = set(out_hrefs)
+        out_hrefs = list(out_hrefs)
+        print(f"len out hrefs: {len(out_hrefs)}")
         return chunk(out_hrefs)
 
     @task
@@ -65,6 +68,7 @@ with DAG(
         out_dict = []
         print(f"LEN IN: {len(urls)}")
         for url in urls:
+            time.sleep(10)
             job_info = dict()
             response = requests.get(url, headers=headers)
             if response.status_code == 200:

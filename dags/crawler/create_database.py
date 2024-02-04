@@ -20,7 +20,7 @@ with DAG(
             CREATE TABLE IF NOT EXISTS crawled_website (
                 id SERIAL PRIMARY KEY,
                 website_name VARCHAR(255) NOT NULL
-            )
+            );
             """,
 
             """
@@ -46,7 +46,7 @@ with DAG(
                 job_type VARCHAR(255),
                 is_working_rights BOOLEAN,
                 raw_content_file TEXT,
-            )
+            );
             """,
 
             """

@@ -43,9 +43,9 @@ with DAG(
                 state TEXT,
                 contract_type TEXT,
                 number_of_experience INTEGER,
-                job_type VARCHAR(255),
+                job_type TEXT,
                 is_working_rights BOOLEAN,
-                raw_content_file TEXT,
+                raw_content_file TEXT
             );
             """,
 

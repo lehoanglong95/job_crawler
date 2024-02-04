@@ -1,5 +1,7 @@
 import os
 import hashlib
+import time
+
 from airflow.decorators import task
 from typing import List, Any
 # from airflow.hooks.S3_hook import S3Hook
@@ -47,9 +49,13 @@ def save_to_s3(list_data: List[dict]):
             with open(file_name, 'w', encoding='utf-8') as file:
                 file.write(combination_text)
 
-            s3 = boto3.client('s3')
-            s3.upload_file(file_name, "lhl-job-descriptions", file_path)
-            os.remove(file_name)
+            while True:
+                time.sleep(5)
+                if file_name in os.listdir():
+                    s3 = boto3.client('s3')
+                    s3.upload_file(file_name, "lhl-job-descriptions", file_path)
+                    os.remove(file_name)
+                    break
         except Exception as e:
             print(f"create file fail with error: {e}")
 

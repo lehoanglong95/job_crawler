@@ -80,13 +80,13 @@ with DAG(
                 job_info["location"] = location_ele.get_text() if location_ele else ""
                 job_info["contract_type"] = contract_type_ele.get_text() if contract_type_ele else ""
                 job_info["listed_date"] = listed_date_ele.get_text() if listed_date_ele else ""
-            job_description_div = soup.find('div', id='job-description-container')
-            job_description = job_description_div.get_text(separator='\n',
-                                                           strip=True) if job_description_div else ""
-            out_dict.append({"crawled_url": url,
-                    "crawled_website": "jora",
-                    "job_info": str(job_info),
-                    "job_description": job_description})
+                job_description_div = soup.find('div', id='job-description-container')
+                job_description = job_description_div.get_text(separator='\n',
+                                                               strip=True) if job_description_div else ""
+                out_dict.append({"crawled_url": url,
+                        "crawled_website": "jora",
+                        "job_info": str(job_info),
+                        "job_description": job_description})
             # except Exception as e:
             #     print(f"get job description fail with error: {e}")
             #     out_dict.append({"crawled_url": url,

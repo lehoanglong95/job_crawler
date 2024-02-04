@@ -31,7 +31,8 @@ def chunk(input: List[Any], number_of_chunks=50):
 
 @task
 def save_to_s3(list_data: List[dict]):
-    print(f"LEN INPUT: {len(list_data)}")
+    print(f"LEN IN: {len(list_data)}")
+    cnt = 0
     for data in list_data:
         if not data["job_info"] and not data["job_description"]:
             print("DO NOT PROCESS")
@@ -54,6 +55,8 @@ def save_to_s3(list_data: List[dict]):
         s3 = boto3.client('s3')
         s3.upload_file(file_name, "lhl-job-descriptions", file_path)
         print("do not remove file after upload")
+        cnt += 1
+    print(f"LEN OUT: {cnt}")
             # time.sleep(10)
             # os.remove(file_name)
         # except Exception as e:

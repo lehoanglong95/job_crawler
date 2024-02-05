@@ -88,7 +88,7 @@ def get_openai_api_key_from_sm() -> str:
     secret_response = secrets_manager_client.get_secret_value(SecretId=openai_api_key_name)
     secret_data = secret_response['SecretString']
     secret_dict = json.loads(secret_data)
-    openai_api_key = secret_dict["openai_api_key"]
+    openai_api_key = secret_dict["open_api_key"]
     return openai_api_key
 
 

@@ -20,6 +20,8 @@ with DAG(
     start_date=datetime(2024, 1, 31),
     description="a dag to crawl data engineer job Sydney in jora",
     schedule_interval=timedelta(days=1),
+    concurrency=8,
+    max_active_tasks=3,
     tags=["crawler", "jora"],
 ) as dag:
 

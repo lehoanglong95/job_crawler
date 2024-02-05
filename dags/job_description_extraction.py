@@ -111,7 +111,7 @@ class JobInfoForDB(JobInfoInput):
         return value
 
 
-@task
+@task(max_active_tis_per_dagrun=2)
 def extract_job_description(list_data: List[dict]):
     openai_api_key = get_openai_api_key_from_sm()
     website_id_dict = get_crawled_website_id()
@@ -188,15 +188,16 @@ def extract_job_description(list_data: List[dict]):
             try:
                 job_info_temp = agent_executor.invoke({"input": e})["output"]
                 job_info_temp = {k: v for k, v in job_info_temp.items() if v}
-                print(f"job_info_temp: {job_info_temp}")
                 merge_2_dicts(job_info, job_info_temp)
-            except:
+            except Exception as e:
+                print(f"call openai with error: {e}")
                 continue
         job_info_db = JobInfoForDB(**job_info)
         job_info_db.post_salary_validator()
         job_info_db_json = job_info_db.dict()
         job_info_db_json["crawled_website_id"] = website_id_dict.get(data["crawled_website"], -1)
         job_info_db_json["raw_content_file"] = file_path
+        print(f"job_info: {job_info_db_json}")
         out.append(job_info_db_json)
 
     return out

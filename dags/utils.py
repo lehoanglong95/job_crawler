@@ -105,7 +105,7 @@ def get_crawled_website_id() -> dict:
     return website_dict
 
 
-@task
+@task(max_active_tis_per_dagrun=4)
 def save_job_metadata_to_postgres(list_data: List[dict]):
     pg_hook = PostgresHook(postgres_conn_id='postgres_job_crawler_conn_id', schema='jobs')
     insert_job_metadata_sql = """

@@ -76,8 +76,13 @@ def merge_2_dicts(dict_a, dict_b):
 
 def get_openai_api_key_from_sm() -> str:
     openai_api_key_name = "job-crawler-openai-api-key"
+    region_name = "ap-southeast-2"
     # Create a Secrets Manager client
-    secrets_manager_client = boto3.client('secretsmanager')
+    session = boto3.session.Session()
+    secrets_manager_client = session.client(
+        service_name='secretsmanager',
+        region_name=region_name
+    )
 
     #retrieve the openai api key value
     secret_response = secrets_manager_client.get_secret_value(SecretId=openai_api_key_name)

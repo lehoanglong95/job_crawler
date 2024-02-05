@@ -4,7 +4,14 @@ from airflow import DAG
 from airflow.decorators import task
 from bs4 import BeautifulSoup
 import requests
-from utils import save_to_s3, chunk
+from utils import (
+    save_to_s3,
+    chunk,
+    save_job_metadata_to_postgres,
+)
+from job_description_extraction import (
+    extract_job_description,
+)
 
 
 # Define the DAG using the with statement
@@ -104,3 +111,5 @@ with DAG(
     job_description_link = get_job_description_link()
     job_description = get_job_description.expand(urls=job_description_link)
     save_to_s3.expand(list_data=job_description)
+    job_descriptions = extract_job_description.expand(list_data=job_description)
+    save_job_metadata_to_postgres(list_data=job_descriptions)

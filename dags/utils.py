@@ -3,7 +3,7 @@ import hashlib
 
 from airflow.decorators import task
 from airflow.providers.postgres.hooks.postgres import PostgresHook
-from typing import List, Any
+from typing import List, Any, Set
 import json
 import boto3
 
@@ -92,8 +92,7 @@ def get_openai_api_key_from_sm() -> str:
     return openai_api_key
 
 
-def get_crawled_website_id() -> dict:
-    pg_hook = PostgresHook(postgres_conn_id='postgres_job_crawler_conn_id', schema='jobs')
+def get_crawled_website_id(pg_hook: PostgresHook) -> dict:
     query = "SELECT id, website_name FROM crawled_website"
 
     df = pg_hook.get_pandas_df(sql=query)
@@ -106,11 +105,13 @@ def get_crawled_website_id() -> dict:
 
 
 @task(max_active_tis_per_dagrun=4)
-def save_job_metadata_to_postgres(list_data: List[dict]):
-    pg_hook = PostgresHook(postgres_conn_id='postgres_job_crawler_conn_id', schema='jobs')
+def save_job_metadata_to_postgres(
+        pg_hook: PostgresHook,
+        list_data: List[dict]
+    ):
     insert_job_metadata_sql = """
     INSERT INTO job_metadata (
-        crawled_website_id, url, city, role, company, listed_date, min_salary, max_salary, state, 
+        crawled_website_id, url, location, role, company, listed_date, min_salary, max_salary, 
         contract_type, number_of_experience, job_type, is_working_rights, raw_content_file
     ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
     RETURNING id
@@ -120,9 +121,9 @@ def save_job_metadata_to_postgres(list_data: List[dict]):
 
     for data in list_data:
         job_metadata_values = (
-            data["crawled_website_id"], data['url'], data['city'], data['role'],
+            data["crawled_website_id"], data['url'], data['location'], data['role'],
             data['company'], data['listed_date'], data['min_salary'],
-            data['max_salary'], data['state'], data['contract_type'],
+            data['max_salary'], data['contract_type'],
             data["number_of_experience"], data['job_type'],
             data['is_working_right'], data['raw_content_file'],
         )
@@ -130,3 +131,14 @@ def save_job_metadata_to_postgres(list_data: List[dict]):
         if data['skills']:
             skills_values = [(job_metadata_id, skill) for skill in data['skills']]
             pg_hook.run(insert_skills_query, parameters=skills_values)
+
+def get_crawled_url(crawled_website_name: str,
+                    pg_hook: PostgresHook) -> Set[str]:
+    website_dict = get_crawled_website_id(pg_hook)
+    crawled_website_id = website_dict.get(crawled_website_name)
+    if crawled_website_id:
+        df = pg_hook.get_pandas_df(f"SELECT * FROM job_metadata WHERE crawled_website_id = {crawled_website_id}")
+        return set(df["url"].tolist())
+    else:
+        print(f"website dict: {website_dict}")
+        print(f"crawled website name: {crawled_website_name}")

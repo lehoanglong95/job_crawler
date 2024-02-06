@@ -1,6 +1,7 @@
 import os
 from typing import List
 from airflow.decorators import task
+from airflow.providers.postgres.hooks.postgres import PostgresHook
 from langchain_core.pydantic_v1 import BaseModel, Field, validator
 from langchain.tools import tool
 from langchain_openai import ChatOpenAI
@@ -43,14 +44,13 @@ class JobType(str, Enum):
 
 class JobInfoInput(BaseModel):
     url: str = Field(description="url of crawled website", default=None)
-    city: str = Field(description="city of job location. Ex: Sydney", default=None)
+    location: str = Field(description="job location. Ex: Sydney", default=None)
     role: str = Field(description="role is mentioned in job info. Ex: Data Engineer, Backend Engineer", default=None)
     company: str = Field(description="company name", default=None)
     listed_date: str = Field(description="relative time compared to today this job is posted. Ex: 14 days ago, 2 weeks ago", default=None)
     salary: int = Field(description="amount of money the company can pay per year", default=None)
     min_salary: int = Field(description="minimum amount of money the company pay per year", default=None)
     max_salary: int = Field(description="maximum amount of money the company can pay per year", default=None)
-    state: str = Field(description="state of job location. It could be full name or abbreviation. Ex: NSW, New South Wale", default=None)
     contract_type: str = Field(enum=["full time", "part time"],
                                description="contract type is mention in job description. Ex: full time, part time",
                                default=ContractType.Full_Time.value)
@@ -112,9 +112,9 @@ class JobInfoForDB(JobInfoInput):
 
 
 @task(max_active_tis_per_dagrun=2)
-def extract_job_description(list_data: List[dict]):
+def extract_job_description(pg_hook: PostgresHook, list_data: List[dict]):
     openai_api_key = get_openai_api_key_from_sm()
-    website_id_dict = get_crawled_website_id()
+    website_id_dict = get_crawled_website_id(pg_hook)
     llm = ChatOpenAI(
         openai_api_key=openai_api_key
     )
@@ -123,7 +123,7 @@ def extract_job_description(list_data: List[dict]):
         SystemMessagePromptTemplate(prompt=PromptTemplate(input_variables=[],
                                                           template='You are AI assistant who help me extract useful data '
                                                                    'from job info and job description. The input is seperated into 2 sections: '
-                                                                   'job info which contains information like city, company name, role and '
+                                                                   'job info which contains information like location, company name, role and '
                                                                    'job description which describes salary, required skills for this role')),
         HumanMessagePromptTemplate(prompt=PromptTemplate(input_variables=['input'], template='{input}')),
         MessagesPlaceholder(variable_name='agent_scratchpad')
@@ -133,7 +133,7 @@ def extract_job_description(list_data: List[dict]):
     @tool("extract-job-info-tool", args_schema=JobInfoInput, return_direct=True)
     def extract_job_info_tool(
         url: str = None,
-        city: str = None,
+        location: str = None,
         role: str = None,
         company: str = None,
         listed_date: str = None,
@@ -141,7 +141,6 @@ def extract_job_description(list_data: List[dict]):
         min_salary: int = None,
         max_salary: int = None,
         salary: int = None,
-        state: str = None,
         contract_type: str = None,
         number_of_experience: int = None,
         job_type: str = None,
@@ -150,14 +149,13 @@ def extract_job_description(list_data: List[dict]):
         """extract job info from job description."""
         out = {
             "url": url,
-            "city": city,
+            "location": location,
             "role": role,
             "company": company,
             "listed_date": listed_date,
             "min_salary": min_salary,
             "max_salary": max_salary,
             "salary": salary,
-            "state": state,
             "contract_type": contract_type,
             "job_type": job_type,
             "number_of_experience": number_of_experience,
@@ -197,6 +195,11 @@ def extract_job_description(list_data: List[dict]):
         job_info_db_json = job_info_db.dict()
         job_info_db_json["crawled_website_id"] = website_id_dict.get(data["crawled_website"], -1)
         job_info_db_json["raw_content_file"] = file_path
+        job_info_db_json["role"] = data.get("job_info", {}).get("role", "")
+        job_info_db_json["role"] = data.get("job_info", {}).get("role", "")
+        job_info_db_json["role"] = data.get("job_info", {}).get("role", "")
+        job_info_db_json["role"] = data.get("job_info", {}).get("role", "")
+        job_info_db_json["role"] = data.get("job_info", {}).get("role", "")
         print(f"job_info: {job_info_db_json}")
         out.append(job_info_db_json)
 

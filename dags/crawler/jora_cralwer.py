@@ -2,6 +2,7 @@ import time
 from datetime import datetime, timedelta
 from airflow import DAG
 from airflow.decorators import task
+from airflow.providers.postgres.hooks.postgres import PostgresHook
 from bs4 import BeautifulSoup
 import requests
 from utils import (
@@ -24,6 +25,8 @@ with DAG(
     max_active_tasks=3,
     tags=["crawler", "jora"],
 ) as dag:
+
+    pg_hook = PostgresHook(postgres_conn_id='postgres_job_crawler_conn_id', schema='jobs')
 
     @task
     def get_job_description_link():
@@ -113,5 +116,5 @@ with DAG(
     job_description_link = get_job_description_link()
     job_description = get_job_description.expand(urls=job_description_link)
     save_to_s3.expand(list_data=job_description)
-    job_descriptions = extract_job_description.expand(list_data=job_description)
-    save_job_metadata_to_postgres(list_data=job_descriptions)
+    job_descriptions = extract_job_description.partial(pg_hook=pg_hook).expand(list_data=job_description)
+    save_job_metadata_to_postgres.partial(pg_hook=pg_hook).expand(list_data=job_descriptions)

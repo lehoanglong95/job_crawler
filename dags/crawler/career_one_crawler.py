@@ -182,13 +182,12 @@ with DAG(
         skills = get_skills()
         return {
                     "url": url,
-                    "city": city,
+                    "location": f"{city} {state}",
                     "role": role,
                     "company": company,
                     "listed_date": listed_date,
                     "min_salary": min_salary,
                     "max_salary": max_salary,
-                    "state": state,
                     "contract_type": contract_type,
                     "raw_content_file": "",
                     "crawled_website": crawled_website,
@@ -212,16 +211,16 @@ with DAG(
         data["crawled_website_id"] = website_dict.get(data["crawled_website"])
         insert_job_metadata_query = """
         INSERT INTO job_metadata (
-            url, city, role, company, listed_date, min_salary, max_salary,
-            state, contract_type_id, raw_content_file, crawled_website_id,
+            url, location, role, company, listed_date, min_salary, max_salary,
+            contract_type_id, raw_content_file, crawled_website_id,
             job_type
         ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         RETURNING id
         """
         job_metadata_values = (
-            data['url'], data['city'], data['role'],
+            data['url'], data['location'], data['role'],
             data['company'], data['listed_date'], data['min_salary'],
-            data['max_salary'], data['state'], data['contract_type'],
+            data['max_salary'], data['contract_type'],
             data['raw_content_file'], data['crawled_website_id'],
             data['job_type']
         )

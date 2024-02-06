@@ -104,10 +104,10 @@ class JobInfoForDB(JobInfoInput):
             match = re.search(r'\d+', values.get("listed_date"))
             if match:
                 number = int(match.group())
-            if "day" in values.get("listed_date") or "days" in values.get("listed_date"):
-                values["listed_date_for_db"] = now().subtract(days=number).format("YYYY-MM-DD")
-            if "week" in values.get("listed_date") or "days" in values.get("listed_date"):
-                values["listed_date_for_db"] = now().subtract(weeks=number).format("YYYY-MM-DD")
+                if "day" in values.get("listed_date") or "days" in values.get("listed_date"):
+                    return now().subtract(days=number).format("YYYY-MM-DD")
+                if "week" in values.get("listed_date") or "days" in values.get("listed_date"):
+                    return now().subtract(weeks=number).format("YYYY-MM-DD")
         return value
 
 

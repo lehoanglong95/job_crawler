@@ -102,7 +102,7 @@ with DAG(
                                                                strip=True) if job_description_div else ""
                 out_dict.append({"crawled_url": url,
                         "crawled_website": "jora",
-                        "job_info": str(job_info),
+                        "job_info": job_info,
                         "job_description": job_description})
             # except Exception as e:
             #     print(f"get job description fail with error: {e}")

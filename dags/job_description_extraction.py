@@ -196,10 +196,10 @@ def extract_job_description(pg_hook: PostgresHook, list_data: List[dict]):
         job_info_db_json["crawled_website_id"] = website_id_dict.get(data["crawled_website"], -1)
         job_info_db_json["raw_content_file"] = file_path
         job_info_db_json["role"] = data.get("job_info", {}).get("role", "")
-        job_info_db_json["role"] = data.get("job_info", {}).get("role", "")
-        job_info_db_json["role"] = data.get("job_info", {}).get("role", "")
-        job_info_db_json["role"] = data.get("job_info", {}).get("role", "")
-        job_info_db_json["role"] = data.get("job_info", {}).get("role", "")
+        job_info_db_json["company"] = data.get("job_info", {}).get("company", "")
+        job_info_db_json["location"] = data.get("job_info", {}).get("location", "")
+        job_info_db_json["contract_type"] = data.get("job_info", {}).get("contract_type", "")
+        job_info_db_json["listed_date"] = data.get("job_info", {}).get("listed_date", "")
         print(f"job_info: {job_info_db_json}")
         out.append(job_info_db_json)
 

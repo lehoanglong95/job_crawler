@@ -46,7 +46,7 @@ def save_to_s3(list_data: List[dict]):
         if not os.path.exists(data["crawled_website"]):
             os.makedirs(data["crawled_website"])
 
-        combination_text = f"url: {data['crawled_url']}\n\n{data['job_info']}\n\n{data['job_description']}"
+        combination_text = f"url: {data['crawled_url']}\n\n{json.dump(data['job_info'])}\n\n{data['job_description']}"
 
         # Write content to the file
         with open(file_name, 'w', encoding='utf-8') as file:

@@ -21,7 +21,7 @@ from base_dag import (
 
 with DAG(
     dag_id="careerone_crawler",
-    start_date=datetime(2024, 1, 31),
+    start_date=datetime(2024, 2, 11),
     description="a dag to crawl data engineer job Sydney in careerone",
     schedule_interval="0 0 * * *",
     tags=["crawler", "careerone"],

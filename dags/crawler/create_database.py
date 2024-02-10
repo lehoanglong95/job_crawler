@@ -13,7 +13,7 @@ with DAG(
     'create_tables_dag',
     description='DAG to create tables and database in PostgreSQL',
     schedule_interval=None,  # Set to None for one-time execution
-    start_date=datetime(2024, 1, 30),
+    start_date=datetime(2024, 2, 11),
     catchup=False,
 ) as dag:
 

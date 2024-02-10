@@ -3,11 +3,15 @@ import hashlib
 
 from airflow.decorators import task
 from airflow.providers.postgres.hooks.postgres import PostgresHook
+from pendulum import now
 from typing import List, Any, Set
 import json
 import boto3
+import uuid
 
 def normalize_text(input: str) -> str:
+    if not input:
+        return input
     return input.lower().strip()
 
 
@@ -25,6 +29,8 @@ def hash_string(input_string):
 
 
 def chunk(input: List[Any], number_of_chunks=50):
+    if len(input) < number_of_chunks:
+        return [input[:]]
     chunk_size = len(input) // number_of_chunks
     return [input[i:i+chunk_size] for i in range(0, len(input), chunk_size)]
 
@@ -111,28 +117,57 @@ def save_job_metadata_to_postgres(
     ):
     insert_job_metadata_sql = """
     INSERT INTO job_metadata (
-        crawled_website_id, url, location, role, company, listed_date, min_salary, max_salary, 
-        contract_type, number_of_experience, job_type, is_working_rights, raw_content_file
+        id, crawled_website_id, url, location, role, company, listed_date, min_salary, max_salary, 
+        contract_type, number_of_experience, job_type, is_working_right, raw_content_file, crawled_date
     ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+    ON CONFLICT (crawled_website_id, location, role, company, listed_date, contract_type) DO UPDATE
+    SET
+        url = EXCLUDED.url,
+        location = EXCLUDED.location,
+        role = EXCLUDED.role,
+        company = EXCLUDED.company,
+        listed_date = EXCLUDED.listed_date,
+        min_salary = EXCLUDED.min_salary,
+        max_salary = EXCLUDED.max_salary,
+        contract_type = EXCLUDED.contract_type,
+        number_of_experience = EXCLUDED.number_of_experience,
+        job_type = EXCLUDED.job_type,
+        is_working_right = EXCLUDED.is_working_right,
+        raw_content_file = EXCLUDED.raw_content_file,
+        crawled_date = EXCLUDED.crawled_date
     RETURNING id
     """
 
     insert_skills_query = "INSERT INTO skills (job_id, skill) VALUES (%s, %s)"
 
     for data in list_data:
+        job_metadata_id = str(uuid.uuid4())
         job_metadata_values = (
-            data["crawled_website_id"], data['url'], data['location'], data['role'],
-            data['company'], data['listed_date'], data['min_salary'],
-            data['max_salary'], data['contract_type'],
-            data["number_of_experience"], data['job_type'],
-            data['is_working_right'], data['raw_content_file'],
+            job_metadata_id, data["crawled_website_id"], normalize_text(data['url']),
+            normalize_text(data.get('location', "")), normalize_text(data.get('role', "")),
+            normalize_text(data.get('company', "")), data.get('listed_date_for_db', None), data.get('min_salary', None),
+            data.get('max_salary', None), normalize_text(data.get('contract_type', "")),
+            data.get("number_of_experience", None), normalize_text(data.get('job_type', "")),
+            data.get('is_working_right', True), normalize_text(data.get('raw_content_file', '')),
+            now().format("YYYY-MM-DD")
         )
         job_metadata_id = pg_hook.get_first(insert_job_metadata_sql, parameters=job_metadata_values)[0]
+        print(job_metadata_id)
         if data['skills']:
-            skills_values = [(job_metadata_id, skill) for skill in data['skills']]
-            pg_hook.run(insert_skills_query, parameters=skills_values)
+            skills = [normalize_text(str(e)) for e in data["skills"]]
+            skills = set(skills)
+            skills_values = [(job_metadata_id, skill) for skill in skills]
+            # print(f"skills_values: {skills_values}")
+            # skills_values = skills_values[:2]
+            # print(f"skills_values: {skills_values}")
+            # for skills_value in skills_values:
+            with pg_hook.get_conn() as conn:
+                with conn.cursor() as cursor:
+                    cursor.executemany(insert_skills_query, skills_values)
+                    conn.commit()
 
-def get_crawled_url(crawled_website_name: str,
+@task
+def get_crawled_urls(crawled_website_name: str,
                     pg_hook: PostgresHook) -> Set[str]:
     website_dict = get_crawled_website_id(pg_hook)
     crawled_website_id = website_dict.get(crawled_website_name)

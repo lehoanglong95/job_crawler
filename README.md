@@ -24,4 +24,10 @@ chmod +x ./install
 sudo ./install auto
 sudo service codedeploy-agent start
 sudo chkconfig codedeploy-agent on
+sudo apt-get update
+sudo apt-get install awscli
+SMTP_USER=$(aws secretsmanager get-secret-value --secret-id job-crawler-smtp --region ap-southeast-2 --output json | jq -r '.SecretString' | jq -r '.smtp_user')
+SMTP_PW=$(aws secretsmanager get-secret-value --secret-id job-crawler-smtp --region ap-southeast-2 --output json | jq -r '.SecretString' | jq -r '.smtp_pw')
+echo "export SMTP_USER=\"$SMTP_USER\"" >> /etc/profile
+echo "export SMTP_PW=\"$SMTP_PW\"" >> /etc/profile
 ```

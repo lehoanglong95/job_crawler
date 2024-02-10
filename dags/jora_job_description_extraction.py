@@ -1,5 +1,6 @@
 import os
 from typing import List
+import json
 from airflow.decorators import task
 from airflow.providers.postgres.hooks.postgres import PostgresHook
 from langchain_core.pydantic_v1 import BaseModel, Field, validator
@@ -61,7 +62,7 @@ class JobInfoInput(BaseModel):
                           default=JobType.On_Site.value)
     skills: List[str] = Field(description="list of skills for this role. Ex: [AWS, Airflow, Python]",
                               default=None)
-    is_working_rights: bool = Field(description="is working rights required for this role",
+    is_working_right: bool = Field(description="is working rights required for this role",
                                     default=True)
 
     @validator("min_salary", pre=True, always=True)
@@ -101,13 +102,17 @@ class JobInfoForDB(JobInfoInput):
     @validator("listed_date_for_db", pre=True, always=True)
     def set_listed_date_for_db(cls, value, values):
         if values.get("listed_date") is not None:
-            match = re.search(r'\d+', values.get("listed_date"))
+            listed_date = values.get("listed_date")
+            match = re.search(r'\d+', listed_date)
             if match:
                 number = int(match.group())
-                if "day" in values.get("listed_date") or "days" in values.get("listed_date"):
-                    return now().subtract(days=number).format("YYYY-MM-DD")
-                if "week" in values.get("listed_date") or "days" in values.get("listed_date"):
-                    return now().subtract(weeks=number).format("YYYY-MM-DD")
+                if "day" in listed_date or "days" in listed_date:
+                    listed_date_for_db = now().subtract(days=number).format("YYYY-MM-DD")
+                elif "week" in listed_date or "days" in listed_date:
+                    listed_date_for_db = now().subtract(weeks=number).format("YYYY-MM-DD")
+                else:
+                    listed_date_for_db = None
+                return listed_date_for_db
         return value
 
 
@@ -122,9 +127,8 @@ def extract_job_description(pg_hook: PostgresHook, list_data: List[dict]):
     template = ChatPromptTemplate.from_messages([
         SystemMessagePromptTemplate(prompt=PromptTemplate(input_variables=[],
                                                           template='You are AI assistant who help me extract useful data '
-                                                                   'from job info and job description. The input is seperated into 2 sections: '
-                                                                   'job info which contains information like location, company name, role and '
-                                                                   'job description which describes salary, required skills for this role')),
+                                                                   'from job info and job description like location, company name, role, '
+                                                                   'salary, required skills for this role')),
         HumanMessagePromptTemplate(prompt=PromptTemplate(input_variables=['input'], template='{input}')),
         MessagesPlaceholder(variable_name='agent_scratchpad')
     ])
@@ -144,7 +148,7 @@ def extract_job_description(pg_hook: PostgresHook, list_data: List[dict]):
         contract_type: str = None,
         number_of_experience: int = None,
         job_type: str = None,
-        is_working_rights: bool = True,
+        is_working_right: bool = True,
     ):
         """extract job info from job description."""
         out = {
@@ -160,7 +164,7 @@ def extract_job_description(pg_hook: PostgresHook, list_data: List[dict]):
             "job_type": job_type,
             "number_of_experience": number_of_experience,
             "skills": skills,
-            "is_working_rights": is_working_rights
+            "is_working_right": is_working_right
         }
         return out
     tools = [extract_job_info_tool]
@@ -180,7 +184,7 @@ def extract_job_description(pg_hook: PostgresHook, list_data: List[dict]):
             print("DO NOT PROCESS")
             continue
         job_info = dict()
-        job_des = f"url: {data['crawled_url']}\n\n{data['job_info']}\n\n{data['job_description']}"
+        job_des = f"url: {data['crawled_url']}\n\n{json.dumps(data['job_info'])}\n\n{data['job_description']}"
         print(len(job_des))
         for e in [job_des[i : i + chunk_size] for i in range(0, len(job_des), chunk_size)]:
             try:
@@ -190,16 +194,17 @@ def extract_job_description(pg_hook: PostgresHook, list_data: List[dict]):
             except Exception as e:
                 print(f"call openai with error: {e}")
                 continue
+        job_info["role"] = data.get("job_info", {}).get("role", "") if data.get("job_info", {}).get("role", "") != "" else job_info.get("role", "")
+        job_info["company"] = data.get("job_info", {}).get("company", "") if data.get("job_info", {}).get("company", "") != "" else job_info.get("company", "")
+        job_info["location"] = data.get("job_info", {}).get("location", "") if data.get("job_info", {}).get("location", "") != "" else job_info.get("location", "")
+        job_info["contract_type"] = data.get("job_info", {}).get("contract_type", "") if data.get("job_info", {}).get("contract_type", "") != "" else job_info.get("contract_type", "")
+        job_info["listed_date"] = data.get("job_info", {}).get("listed_date", "") if data.get("job_info", {}).get("listed_date", "") != "" else job_info.get("listed_date", "")
+        job_info["url"] = data["crawled_url"]
         job_info_db = JobInfoForDB(**job_info)
         job_info_db.post_salary_validator()
         job_info_db_json = job_info_db.dict()
         job_info_db_json["crawled_website_id"] = website_id_dict.get(data["crawled_website"], -1)
         job_info_db_json["raw_content_file"] = file_path
-        job_info_db_json["role"] = data.get("job_info", {}).get("role", "")
-        job_info_db_json["company"] = data.get("job_info", {}).get("company", "")
-        job_info_db_json["location"] = data.get("job_info", {}).get("location", "")
-        job_info_db_json["contract_type"] = data.get("job_info", {}).get("contract_type", "")
-        job_info_db_json["listed_date"] = data.get("job_info", {}).get("listed_date", "")
         print(f"job_info: {job_info_db_json}")
         out.append(job_info_db_json)
 

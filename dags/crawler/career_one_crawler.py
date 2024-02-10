@@ -1,22 +1,38 @@
+from typing import List
 from pendulum import datetime, now
 from datetime import timedelta
 import requests
 import re
-from airflow import DAG
 from airflow.decorators import task
 from airflow.providers.postgres.hooks.postgres import PostgresHook
+from jora_job_description_extraction import (
+    JobInfoForDB
+)
+from utils import (
+    save_job_metadata_to_postgres,
+    get_crawled_website_id,
+)
+from constant import (
+    job_crawler_postgres_conn,
+)
+from base_dag import (
+    DAG
+)
 
 with DAG(
     dag_id="careerone_crawler",
     start_date=datetime(2024, 1, 31),
     description="a dag to crawl data engineer job Sydney in careerone",
-    schedule_interval=timedelta(days=1),
+    schedule_interval="0 0 * * *",
     tags=["crawler", "careerone"],
 ) as dag:
 
+    pg_hook = PostgresHook(postgres_conn_id=job_crawler_postgres_conn(), schema='jobs')
 
     @task
-    def get_job_descriptions(url="https://seeker-api.careerone.com.au/api/v1/search-job"):
+    def get_job_descriptions(
+        url="https://seeker-api.careerone.com.au/api/v1/search-job",
+    ):
         job_descriptions = []
         headers = {
             'authority': 'seeker-api.careerone.com.au',
@@ -122,7 +138,7 @@ with DAG(
 
         # get job description links per search page
         number_of_pages = _calculate_number_of_pages()
-        for page_number in range(2, number_of_pages + 1):
+        for page_number in range(1, number_of_pages):
             res = requests.post(f"https://seeker-api.careerone.com.au/api/v1/search-job",
                                 headers=headers,
                                 json=_get_payload(page_number))
@@ -142,6 +158,7 @@ with DAG(
     def extract_job_description(data: dict):
 
         url = data.get("url", "")
+        website_id_dict = get_crawled_website_id(pg_hook)
         location = data.get("location", {})
         job_description = data.get("job_description", {})
 
@@ -160,13 +177,13 @@ with DAG(
                 match = re.search(r'\d+', date_label)
                 if match:
                     number = int(match.group())
-                if "week" in date_label:
-                    return now().subtract(weeks=number).format("YYYY-MM-DD")
-                elif "day" in date_label:
-                    return now().subtract(days=number).format("YYYY-MM-DD")
-                else:
-                    return now().format("YYYY-MM-DD")
-            return now().format("YYYY-MM-DD")
+                    if "week" in date_label:
+                        return now().subtract(weeks=number).format("YYYY-MM-DD")
+                    elif "day" in date_label:
+                        return now().subtract(days=number).format("YYYY-MM-DD")
+                    else:
+                        return None
+            return None
 
         city = location.get("region_name", "")
         role = job_description.get("job_title")
@@ -174,13 +191,14 @@ with DAG(
         min_salary = job_description.get("pay_min_normalised")
         max_salary = job_description.get("pay_max_normalised")
         state = location.get("state_name", "")
-        crawled_website = "career_one"
+        crawled_website = "careerone"
         listed_date = calculate_listed_date()
         career_levels = job_description.get("career_level_label", [])
         job_type = "on-site"
         contract_type = job_description.get("contract_type_label", "permanent")
         skills = get_skills()
-        return {
+        crawled_website_id = website_id_dict.get(crawled_website, -1)
+        job_info_for_db = JobInfoForDB(**{
                     "url": url,
                     "location": f"{city} {state}",
                     "role": role,
@@ -194,44 +212,11 @@ with DAG(
                     "career_levels": career_levels,
                     "job_type": job_type,
                     "skills": skills,
-               }
-
-    @task
-    def save_to_postgres(data: dict):
-        postgres_hook = PostgresHook(postgres_conn_id='postgres_conn_id', schema='Jobs')
-        def get_crawled_website_id() -> dict:
-            sql_query = f"SELECT id, website_name FROM crawled_website"
-            result = postgres_hook.get_records(sql_query)
-
-            # Create a dictionary {website_name: id}
-            dict = {row[1]: row[0] for row in result}
-            return dict
-
-        website_dict = get_crawled_website_id()
-        data["crawled_website_id"] = website_dict.get(data["crawled_website"])
-        insert_job_metadata_query = """
-        INSERT INTO job_metadata (
-            url, location, role, company, listed_date, min_salary, max_salary,
-            contract_type_id, raw_content_file, crawled_website_id,
-            job_type
-        ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-        RETURNING id
-        """
-        job_metadata_values = (
-            data['url'], data['location'], data['role'],
-            data['company'], data['listed_date'], data['min_salary'],
-            data['max_salary'], data['contract_type'],
-            data['raw_content_file'], data['crawled_website_id'],
-            data['job_type']
-        )
-        job_metadata_id = postgres_hook.get_first(insert_job_metadata_query, parameters=job_metadata_values)[0]
-
-        # Insert into skills table
-        if data['skills']:
-            insert_skills_query = "INSERT INTO skills (job_id, skill) VALUES (%s, %s)"
-            skills_values = [(job_metadata_id, skill) for skill in data['skills']]
-            postgres_hook.run(insert_skills_query, parameters=skills_values)
+               })
+        json_data = job_info_for_db.dict()
+        json_data["crawled_website_id"] = crawled_website_id
+        return [json_data]
 
     job_description = get_job_descriptions()
     job_metadata = extract_job_description.expand(data=job_description)
-    save_to_postgres.expand(data=job_metadata)
+    save_job_metadata_to_postgres.partial(pg_hook=pg_hook).expand(list_data=job_metadata)

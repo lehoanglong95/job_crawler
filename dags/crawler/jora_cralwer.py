@@ -1,6 +1,9 @@
+from typing import List
 import time
-from datetime import datetime, timedelta
-from airflow import DAG
+from datetime import datetime
+from base_dag import (
+    DAG
+)
 from airflow.decorators import task
 from airflow.providers.postgres.hooks.postgres import PostgresHook
 from bs4 import BeautifulSoup
@@ -9,8 +12,12 @@ from utils import (
     save_to_s3,
     chunk,
     save_job_metadata_to_postgres,
+    get_crawled_urls,
 )
-from job_description_extraction import (
+from constant import (
+    job_crawler_postgres_conn,
+)
+from jora_job_description_extraction import (
     extract_job_description,
 )
 
@@ -20,16 +27,16 @@ with DAG(
     dag_id="jora_crawler",
     start_date=datetime(2024, 1, 31),
     description="a dag to crawl data engineer job Sydney in jora",
-    schedule_interval=timedelta(days=1),
+    schedule_interval="0 1 * * *",
     concurrency=8,
     max_active_tasks=3,
     tags=["crawler", "jora"],
 ) as dag:
 
-    pg_hook = PostgresHook(postgres_conn_id='postgres_job_crawler_conn_id', schema='jobs')
+    pg_hook = PostgresHook(postgres_conn_id=job_crawler_postgres_conn(), schema='jobs')
 
     @task
-    def get_job_description_link():
+    def get_job_description_link(crawled_urls: List[str]):
         raw_url="https://au.jora.com/j?sp=homepage&trigger_source=homepage&q=Data+Engineer&l=sydney"
         out_hrefs = []
         headers = {
@@ -65,10 +72,9 @@ with DAG(
                             _get_job_dfs(f"https://au.jora.com{next_page_button.get('href')}", hrefs, depth + 1, stop)
             else:
                 print(f"Failed to fetch the page. Status code: {response.status_code}")
-
-        _get_job_dfs(raw_url, out_hrefs, 0, 3)
+        _get_job_dfs(raw_url, out_hrefs, 0)
         print(f"len out hrefs: {len(out_hrefs)}")
-        out_hrefs = set(out_hrefs)
+        out_hrefs = set(out_hrefs).difference(set(crawled_urls))
         out_hrefs = list(out_hrefs)
         print(f"len out hrefs: {len(out_hrefs)}")
         return chunk(out_hrefs)
@@ -86,7 +92,6 @@ with DAG(
             if response.status_code == 200:
                 soup = BeautifulSoup(response.content, 'html.parser')
                 job_info_container = soup.find("div", id="job-info-container")
-                # job_info = job_info_container.get_text() if job_info_container else ""
                 role_ele = job_info_container.find("h1", class_="job-title heading-xxlarge")
                 company_ele = job_info_container.find("span", class_="company")
                 location_ele = job_info_container.find("span", class_="location")
@@ -104,17 +109,15 @@ with DAG(
                         "crawled_website": "jora",
                         "job_info": job_info,
                         "job_description": job_description})
-            # except Exception as e:
-            #     print(f"get job description fail with error: {e}")
-            #     out_dict.append({"crawled_url": url,
-            #             "crawled_website": "jora",
-            #             "job_info": "",
-            #             "job_description": ""})
         print(f"LEN OUT: {len(out_dict)}")
         return out_dict
 
-    job_description_link = get_job_description_link()
-    job_description = get_job_description.expand(urls=job_description_link)
-    save_to_s3.expand(list_data=job_description)
-    job_descriptions = extract_job_description.partial(pg_hook=pg_hook).expand(list_data=job_description)
-    save_job_metadata_to_postgres.partial(pg_hook=pg_hook).expand(list_data=job_descriptions)
+    crawled_urls = get_crawled_urls(
+        crawled_website_name="jora",
+        pg_hook=pg_hook,
+    )
+    job_description_link = get_job_description_link(crawled_urls=crawled_urls)
+    job_descriptions = get_job_description.expand(urls=job_description_link)
+    save_to_s3.expand(list_data=job_descriptions)
+    extracted_job_descriptions = extract_job_description.partial(pg_hook=pg_hook).expand(list_data=job_descriptions)
+    save_job_metadata_to_postgres.partial(pg_hook=pg_hook).expand(list_data=extracted_job_descriptions)

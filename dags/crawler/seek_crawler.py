@@ -66,7 +66,7 @@ with DAG(
         out_hrefs = list(set(out_hrefs).difference(crawled_urls))
         return chunk(out_hrefs)
 
-    @task
+    @task(max_active_tis_per_dagrun=4)
     def get_job_description(urls):
         headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'

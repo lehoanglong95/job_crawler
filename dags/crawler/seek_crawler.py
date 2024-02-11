@@ -24,7 +24,7 @@ with DAG(
     dag_id="seek_crawler",
     start_date=datetime(2024, 2, 11),
     description="a dag to crawl data engineer job Sydney in seek",
-    schedule_interval="0 2 * * *",
+    schedule_interval="0 5 * * *",
     tags=["crawler", "seek"],
 ) as dag:
 

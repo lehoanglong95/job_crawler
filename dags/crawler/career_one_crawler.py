@@ -24,6 +24,8 @@ with DAG(
     start_date=datetime(2024, 2, 11),
     description="a dag to crawl data engineer job Sydney in careerone",
     schedule_interval="0 0 * * *",
+    concurrency=8,
+    max_active_tasks=3,
     tags=["crawler", "careerone"],
 ) as dag:
 

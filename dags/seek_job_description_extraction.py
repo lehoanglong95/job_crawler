@@ -1,27 +1,8 @@
-import os
-from typing import List
-import json
 from airflow.decorators import task
-from airflow.providers.postgres.hooks.postgres import PostgresHook
+from typing import List
+# from airflow.providers.postgres.hooks.postgres import PostgresHook
 from langchain_core.pydantic_v1 import BaseModel, Field, validator
-from langchain.tools import tool
-from langchain_openai import ChatOpenAI
-from langchain.agents import AgentExecutor, create_openai_functions_agent
-from langchain_core.prompts import ChatPromptTemplate
-from langchain_core.prompts import (
-    HumanMessagePromptTemplate,
-    SystemMessagePromptTemplate,
-    MessagesPlaceholder,
-    PromptTemplate,
-)
-from utils import (
-    merge_2_dicts,
-    get_openai_api_key_from_sm,
-    get_crawled_website_id,
-    hash_string,
-)
-from pendulum import now
-import re
+
 from jora_job_description_extraction import (
     ContractType,
     JobType,
@@ -83,85 +64,104 @@ class JobDescriptionInput(BaseModel):
             return "on site"
         return value
 
-@tool("extract-job-info-tool", args_schema=JobInfoInput, return_direct=True)
-def extract_job_info_tool(
-    location: str = None,
-    role: str = None,
-    company: str = None,
-    listed_date: str = None,
-    min_salary: int = None,
-    max_salary: int = None,
-    salary: int = None,
-    contract_type: str = None,
-):
-    """extract job info."""
-    out = {
-        "location": location,
-        "role": role,
-        "company": company,
-        "listed_date": listed_date,
-        "min_salary": min_salary,
-        "max_salary": max_salary,
-        "salary": salary,
-        "contract_type": contract_type,
-    }
-    return out
-
-@tool("extract-job-description-tool", args_schema=JobDescriptionInput, return_direct=True)
-def extract_job_description_tool(
-    number_of_experience: int = None,
-    job_type: str = None,
-    skills: List[str] = None,
-    is_working_right: bool = True
-):
-    """extract job description"""
-    return {
-        "number_of_experience": number_of_experience,
-        "job_type": job_type,
-        "skills": skills,
-        "is_working_right": is_working_right,
-    }
-
-def create_job_info_agent(llm):
-    template = ChatPromptTemplate.from_messages([
-        SystemMessagePromptTemplate(prompt=PromptTemplate(input_variables=[],
-                                                          template='You are AI assistant who help me extract useful data '
-                                                                   'from job info such as: location, role, company,'
-                                                                   'listed_date, salary, minimum salary, maximum salary, contract type')),
-        HumanMessagePromptTemplate(prompt=PromptTemplate(input_variables=['input'], template='{input}')),
-        MessagesPlaceholder(variable_name='agent_scratchpad')
-    ])
-
-    agent = create_openai_functions_agent(llm,
-                                           [extract_job_info_tool],
-                                           template)
-    agent_executor = AgentExecutor(agent=agent,
-                                            tools=[extract_job_info_tool],
-                                            verbose=True)
-    return agent_executor
-
-
-def create_job_description_agent(llm):
-    template = ChatPromptTemplate.from_messages([
-        SystemMessagePromptTemplate(prompt=PromptTemplate(input_variables=[],
-                                                          template='You are AI assistant who help me extract useful data '
-                                                                   'from job description such as: number of experience, '
-                                                                   'job type, skills, is working rights')),
-        HumanMessagePromptTemplate(prompt=PromptTemplate(input_variables=['input'], template='{input}')),
-        MessagesPlaceholder(variable_name='agent_scratchpad')
-    ])
-
-    agent = create_openai_functions_agent(llm,
-                                          [extract_job_description_tool],
-                                          template)
-    agent_executor = AgentExecutor(agent=agent,
-                                   tools=[extract_job_description_tool],
-                                   verbose=True)
-    return agent_executor
-
-
 @task(max_active_tis_per_dagrun=2)
-def extract_job_description(pg_hook: PostgresHook, list_data: List[dict]):
+def extract_job_description(pg_hook, list_data: List[dict]):
+
+    import json
+    import os
+    from langchain.tools import tool
+    from langchain_openai import ChatOpenAI
+    from langchain.agents import AgentExecutor, create_openai_functions_agent
+    from langchain_core.prompts import ChatPromptTemplate
+    from langchain_core.prompts import (
+        HumanMessagePromptTemplate,
+        SystemMessagePromptTemplate,
+        MessagesPlaceholder,
+        PromptTemplate,
+    )
+    from utils import (
+        merge_2_dicts,
+        get_openai_api_key_from_sm,
+        get_crawled_website_id,
+        hash_string,
+    )
+
+    @tool("extract-job-info-tool", args_schema=JobInfoInput, return_direct=True)
+    def extract_job_info_tool(
+            location: str = None,
+            role: str = None,
+            company: str = None,
+            listed_date: str = None,
+            min_salary: int = None,
+            max_salary: int = None,
+            salary: int = None,
+            contract_type: str = None,
+    ):
+        """extract job info."""
+        out = {
+            "location": location,
+            "role": role,
+            "company": company,
+            "listed_date": listed_date,
+            "min_salary": min_salary,
+            "max_salary": max_salary,
+            "salary": salary,
+            "contract_type": contract_type,
+        }
+        return out
+
+    @tool("extract-job-description-tool", args_schema=JobDescriptionInput, return_direct=True)
+    def extract_job_description_tool(
+            number_of_experience: int = None,
+            job_type: str = None,
+            skills: List[str] = None,
+            is_working_right: bool = True
+    ):
+        """extract job description"""
+        return {
+            "number_of_experience": number_of_experience,
+            "job_type": job_type,
+            "skills": skills,
+            "is_working_right": is_working_right,
+        }
+
+    def create_job_info_agent(llm):
+        template = ChatPromptTemplate.from_messages([
+            SystemMessagePromptTemplate(prompt=PromptTemplate(input_variables=[],
+                                                              template='You are AI assistant who help me extract useful data '
+                                                                       'from job info such as: location, role, company,'
+                                                                       'listed_date, salary, minimum salary, maximum salary, contract type')),
+            HumanMessagePromptTemplate(prompt=PromptTemplate(input_variables=['input'], template='{input}')),
+            MessagesPlaceholder(variable_name='agent_scratchpad')
+        ])
+
+        agent = create_openai_functions_agent(llm,
+                                              [extract_job_info_tool],
+                                              template)
+        agent_executor = AgentExecutor(agent=agent,
+                                       tools=[extract_job_info_tool],
+                                       verbose=True)
+        return agent_executor
+
+
+    def create_job_description_agent(llm):
+        template = ChatPromptTemplate.from_messages([
+            SystemMessagePromptTemplate(prompt=PromptTemplate(input_variables=[],
+                                                              template='You are AI assistant who help me extract useful data '
+                                                                       'from job description such as: number of experience, '
+                                                                       'job type, skills, is working rights')),
+            HumanMessagePromptTemplate(prompt=PromptTemplate(input_variables=['input'], template='{input}')),
+            MessagesPlaceholder(variable_name='agent_scratchpad')
+        ])
+
+        agent = create_openai_functions_agent(llm,
+                                              [extract_job_description_tool],
+                                              template)
+        agent_executor = AgentExecutor(agent=agent,
+                                       tools=[extract_job_description_tool],
+                                       verbose=True)
+        return agent_executor
+
     openai_api_key = get_openai_api_key_from_sm()
     website_id_dict = get_crawled_website_id(pg_hook)
     llm = ChatOpenAI(

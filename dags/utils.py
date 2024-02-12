@@ -1,13 +1,5 @@
-import os
-import hashlib
 
 from airflow.decorators import task
-from airflow.providers.postgres.hooks.postgres import PostgresHook
-from pendulum import now
-from typing import List, Any, Set
-import json
-import boto3
-import uuid
 
 def normalize_text(input: str) -> str:
     if not input:
@@ -16,6 +8,7 @@ def normalize_text(input: str) -> str:
 
 
 def hash_string(input_string):
+    import hashlib
     # Create a new SHA-256 hash object
     sha256_hash = hashlib.sha256()
 
@@ -28,7 +21,7 @@ def hash_string(input_string):
     return hashed_string
 
 
-def chunk(input: List[Any], number_of_chunks=50):
+def chunk(input, number_of_chunks=50):
     if len(input) < number_of_chunks:
         return [input[:]]
     chunk_size = len(input) // number_of_chunks
@@ -36,7 +29,11 @@ def chunk(input: List[Any], number_of_chunks=50):
 
 
 @task
-def save_to_s3(list_data: List[dict]):
+def save_to_s3(list_data):
+    import os
+    import boto3
+    import json
+
     print(f"LEN IN: {len(list_data)}")
     cnt = 0
     for data in list_data:
@@ -81,6 +78,9 @@ def merge_2_dicts(dict_a, dict_b):
 
 
 def get_openai_api_key_from_sm() -> str:
+    import boto3
+    import json
+
     openai_api_key_name = "job-crawler-openai-api-key"
     region_name = "ap-southeast-2"
     # Create a Secrets Manager client
@@ -98,7 +98,7 @@ def get_openai_api_key_from_sm() -> str:
     return openai_api_key
 
 
-def get_crawled_website_id(pg_hook: PostgresHook) -> dict:
+def get_crawled_website_id(pg_hook) -> dict:
     query = "SELECT id, website_name FROM crawled_website"
 
     df = pg_hook.get_pandas_df(sql=query)
@@ -112,9 +112,13 @@ def get_crawled_website_id(pg_hook: PostgresHook) -> dict:
 
 @task(max_active_tis_per_dagrun=4)
 def save_job_metadata_to_postgres(
-        pg_hook: PostgresHook,
-        list_data: List[dict]
+        pg_hook,
+        list_data,
     ):
+
+    from pendulum import now
+    from uuid import uuid4
+
     insert_job_metadata_sql = """
     INSERT INTO job_metadata (
         id, crawled_website_id, url, location, role, company, listed_date, min_salary, max_salary, 
@@ -141,7 +145,7 @@ def save_job_metadata_to_postgres(
     insert_skills_query = "INSERT INTO skills (job_id, skill) VALUES (%s, %s)"
 
     for data in list_data:
-        job_metadata_id = str(uuid.uuid4())
+        job_metadata_id = str(uuid4())
         job_metadata_values = (
             job_metadata_id, data["crawled_website_id"], normalize_text(data['url']),
             normalize_text(data.get('location', "")), normalize_text(data.get('role', "")),
@@ -168,7 +172,7 @@ def save_job_metadata_to_postgres(
 
 @task
 def get_crawled_urls(crawled_website_name: str,
-                    pg_hook: PostgresHook) -> Set[str]:
+                    pg_hook) -> set:
     website_dict = get_crawled_website_id(pg_hook)
     crawled_website_id = website_dict.get(crawled_website_name)
     if crawled_website_id:

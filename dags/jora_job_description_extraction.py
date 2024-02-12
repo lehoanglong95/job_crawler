@@ -1,27 +1,6 @@
-import os
 from typing import List
-import json
 from airflow.decorators import task
-from airflow.providers.postgres.hooks.postgres import PostgresHook
 from langchain_core.pydantic_v1 import BaseModel, Field, validator
-from langchain.tools import tool
-from langchain_openai import ChatOpenAI
-from langchain.agents import AgentExecutor, create_openai_functions_agent
-from langchain_core.prompts import ChatPromptTemplate
-from langchain_core.prompts import (
-    HumanMessagePromptTemplate,
-    SystemMessagePromptTemplate,
-    MessagesPlaceholder,
-    PromptTemplate,
-)
-from utils import (
-    merge_2_dicts,
-    get_openai_api_key_from_sm,
-    get_crawled_website_id,
-    hash_string,
-)
-from pendulum import now
-import re
 from enum import Enum
 
 
@@ -101,6 +80,9 @@ class JobInfoForDB(JobInfoInput):
 
     @validator("listed_date_for_db", pre=True, always=True)
     def set_listed_date_for_db(cls, value, values):
+        import re
+        from pendulum import now
+
         if values.get("listed_date") is not None:
             listed_date = values.get("listed_date")
             match = re.search(r'\d+', listed_date)
@@ -117,7 +99,28 @@ class JobInfoForDB(JobInfoInput):
 
 
 @task(max_active_tis_per_dagrun=2)
-def extract_job_description(pg_hook: PostgresHook, list_data: List[dict]):
+def extract_job_description(pg_hook, list_data: List[dict]):
+    from utils import (
+        get_openai_api_key_from_sm,
+        get_crawled_website_id,
+    )
+    from langchain_openai import ChatOpenAI
+    from langchain.agents import AgentExecutor, create_openai_functions_agent
+    from langchain_core.prompts import ChatPromptTemplate
+    from langchain_core.prompts import (
+        HumanMessagePromptTemplate,
+        SystemMessagePromptTemplate,
+        MessagesPlaceholder,
+        PromptTemplate,
+    )
+    from langchain.tools import tool
+    import os
+    from utils import (
+        hash_string,
+        merge_2_dicts,
+    )
+    import json
+
     openai_api_key = get_openai_api_key_from_sm()
     website_id_dict = get_crawled_website_id(pg_hook)
     llm = ChatOpenAI(

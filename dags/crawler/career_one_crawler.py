@@ -1,20 +1,4 @@
-from typing import List
-from pendulum import datetime, now
-from datetime import timedelta
-import requests
-import re
-from airflow.decorators import task
-from airflow.providers.postgres.hooks.postgres import PostgresHook
-from jora_job_description_extraction import (
-    JobInfoForDB
-)
-from utils import (
-    save_job_metadata_to_postgres,
-    get_crawled_website_id,
-)
-from constant import (
-    job_crawler_postgres_conn,
-)
+from pendulum import datetime
 from base_dag import (
     DAG
 )
@@ -28,6 +12,22 @@ with DAG(
     max_active_tasks=3,
     tags=["crawler", "careerone"],
 ) as dag:
+
+    from pendulum import now
+    import requests
+    import re
+    from airflow.decorators import task
+    from airflow.providers.postgres.hooks.postgres import PostgresHook
+    from jora_job_description_extraction import (
+        JobInfoForDB
+    )
+    from utils import (
+        save_job_metadata_to_postgres,
+        get_crawled_website_id,
+    )
+    from constant import (
+        job_crawler_postgres_conn,
+    )
 
     pg_hook = PostgresHook(postgres_conn_id=job_crawler_postgres_conn(), schema='jobs')
 

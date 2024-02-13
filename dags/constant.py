@@ -5,7 +5,7 @@ class CustomVariable:
     def __init__(self,
                  key,
                  val,
-                 normalize_text,
+                 normalize_text=None,
                  default_value=None):
         self.key = key
         self.val = val
@@ -17,7 +17,7 @@ class CustomVariable:
         return Variable.get(self.key, default_var=self.default_value)
 
     def __repr__(self):
-        return self.normalize_text
+        return self.normalize_text if self.normalize_text else self.val
 
 job_crawler_postgres_conn = CustomVariable("postgres_job_crawler_conn_id",
                                           "postgres_job_crawler_conn_id")

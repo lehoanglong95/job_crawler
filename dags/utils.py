@@ -182,6 +182,7 @@ def save_job_metadata_to_postgres(
     for data in list_data:
         job_metadata_id = str(uuid4())
         data["listed_date_for_db"] = convert_listed_date_to_dateformat(data.get("listed_date", None))
+        print(f"listed_date_for_db: {data['listed_date_for_db']}")
         job_metadata_values = (
             job_metadata_id, data["crawled_website_id"], normalize_text(data['url']),
             normalize_text(data.get('location', "")), normalize_text(data.get('role', "")),

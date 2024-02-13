@@ -1,3 +1,5 @@
+import time
+
 from pendulum import datetime
 from base_dag import (
     DAG
@@ -13,6 +15,7 @@ with DAG(
     tags=["crawler", "careerone"],
 ) as dag:
 
+    from typing import List
     from pendulum import now
     import requests
     import re
@@ -32,29 +35,8 @@ with DAG(
     pg_hook = PostgresHook(postgres_conn_id=job_crawler_postgres_conn(), schema='jobs')
 
     @task
-    def get_job_descriptions(
-        url="https://seeker-api.careerone.com.au/api/v1/search-job",
-    ):
-        job_descriptions = []
-        headers = {
-            'authority': 'seeker-api.careerone.com.au',
-            'accept': 'application/json',
-            'accept-language': 'en-US,en;q=0.9,vi;q=0.8',
-            'content-type': 'application/json',
-            'origin': 'https://www.careerone.com.au',
-            'platform-code': 'careerone',
-            'referer': 'https://www.careerone.com.au/',
-            'sec-ch-ua': '"Not_A Brand";v="8", "Chromium";v="120", "Google Chrome";v="120"',
-            'sec-ch-ua-mobile': '?1',
-            'sec-ch-ua-platform': '"Android"',
-            'sec-fetch-dest': 'empty',
-            'sec-fetch-mode': 'cors',
-            'sec-fetch-site': 'same-site',
-            'site-code': 'careerone',
-            'user-agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36',
-        }
-
-        def _get_payload(page: int = 1):
+    def get_payload() -> List[dict]:
+        def de_syd_payload(page):
             return {
                 'search_keywords': 'data engineer',
                 'search': 'data engineer',
@@ -126,8 +108,67 @@ with DAG(
                 'locale': 'AU',
                 'bucket_code': 'ORGANIC,PRIORITISE',
             }
-        def _calculate_number_of_pages() -> int:
-            payload = _get_payload()
+
+        def ai_eng_syd_payload(page):
+            return {"search_keywords": "ai engineer", "search": "ai engineer", "sort_by": "", "job_type": [],
+                    "categories": [], "skills": [], "source_code": [], "equal_opportunity_tags": [], "hiring_site": [],
+                    "hiring_platform": [], "ad_type": [], "posted_within_days": {"days": 0, "value": "Any time"},
+                    "keywords": [], "sector": [], "job_title": [], "industry": [], "company_size": [], "job_mode": [],
+                    "contract_type": [], "career_level": [], "perks": [], "work_authorisation": [],
+                    "education_level": [], "languages": [], "licenses": [], "certifications": [], "pay_max": "",
+                    "pay_min": "", "brands": [], "employer_name": "",
+                    "location": {"id": 15279, "type": "REGION", "label": "All Sydney NSW",
+                                 "display_label": "Sydney NSW", "region_name": "Sydney NSW", "area_name": "",
+                                 "state_name": "New South Wales", "suburb_name": "", "suburb_location_id": 0,
+                                 "area_location_id": 0, "region_location_id": 15279, "state_location_id": 15295,
+                                 "country_location_id": 15299, "state_code": "NSW", "country_name": "Australia",
+                                 "country_code": "AU", "post_code": "", "slug": "sydney-nsw", "meta_robots": "index"},
+                    "include_surrounding_location": True, "page": page, "resultsPerPage": 20, "parsed_filter": "1",
+                    "parsed": {"job_title": [{"id": "85520", "title": "AI Engineer"},
+                                             {"id": "85520", "title": "Artificial Intelligence Engineer"},
+                                             {"id": "85520", "title": "Artificial Inteligence Engineer"},
+                                             {"id": "85520", "title": "Artificial Intelligence (AI) Engineer"},
+                                             {"id": "85520", "title": "Artificial Inteligence (AI) Engineer"}],
+                               "search_phrase": ""}, "locale": "AU", "bucket_code": "ORGANIC,PRIORITISE"}
+        return [
+            {
+                "payload": de_syd_payload,
+                "searched_location": "Sydney",
+                "searched_role": "data engineer"
+
+            },
+            # {
+            #     "payload": ai_eng_syd_payload,
+            #     "searched_location": "Sydney",
+            #     "searched_role": "AI Engineer"
+            # }
+        ]
+
+    @task
+    def get_job_descriptions(
+        payloads: List[dict],
+        url="https://seeker-api.careerone.com.au/api/v1/search-job",
+    ):
+        job_descriptions = []
+        headers = {
+            'authority': 'seeker-api.careerone.com.au',
+            'accept': 'application/json',
+            'accept-language': 'en-US,en;q=0.9,vi;q=0.8',
+            'content-type': 'application/json',
+            'origin': 'https://www.careerone.com.au',
+            'platform-code': 'careerone',
+            'referer': 'https://www.careerone.com.au/',
+            'sec-ch-ua': '"Not_A Brand";v="8", "Chromium";v="120", "Google Chrome";v="120"',
+            'sec-ch-ua-mobile': '?1',
+            'sec-ch-ua-platform': '"Android"',
+            'sec-fetch-dest': 'empty',
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-site': 'same-site',
+            'site-code': 'careerone',
+            'user-agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36',
+        }
+
+        def _calculate_number_of_pages(payload: dict) -> int:
             response = requests.post('https://seeker-api.careerone.com.au/api/v1/search-job', headers=headers, json=payload)
             no_of_pages = 0
             if response.status_code == 200:
@@ -138,23 +179,27 @@ with DAG(
                     no_of_pages = job_count // result_per_page + 1
             return no_of_pages
 
-        # get job description links per search page
-        number_of_pages = _calculate_number_of_pages()
-        for page_number in range(1, number_of_pages):
-            res = requests.post(f"https://seeker-api.careerone.com.au/api/v1/search-job",
-                                headers=headers,
-                                json=_get_payload(page_number))
-            if res.status_code == 200:
-                data = res.json()
-                search_results = data.get("search_results", {})
-                location = data.get("search_filters", {}).get("location", {})
-                jobs = search_results.get("jobs", [])
-                for job in jobs:
-                    job_descriptions.append({"url": url,
-                                             "location": location,
-                                             "job_description": job})
+        for payload in payloads:
+            # get job description links per search page
+            number_of_pages = _calculate_number_of_pages()
+            for page_number in range(1, number_of_pages):
+                time.sleep(5)
+                res = requests.post(f"https://seeker-api.careerone.com.au/api/v1/search-job",
+                                    headers=headers,
+                                    json=payload["payload"](page_number))
+                if res.status_code == 200:
+                    data = res.json()
+                    search_results = data.get("search_results", {})
+                    location = data.get("search_filters", {}).get("location", {})
+                    jobs = search_results.get("jobs", [])
+                    for job in jobs:
+                        job_descriptions.append({"url": url,
+                                                 "location": location,
+                                                 "job_description": job,
+                                                 "searched_location": payload["searched_location"],
+                                                 "searched_role": payload["searched_role"]})
 
-        return job_descriptions
+            return job_descriptions
 
     @task
     def extract_job_description(data: dict):
@@ -217,6 +262,8 @@ with DAG(
                })
         json_data = job_info_for_db.dict()
         json_data["crawled_website_id"] = crawled_website_id
+        json_data["searched_location"] = data.get("searched_location", "")
+        json_data["searched_role"] = data.get("searched_role", "")
         return [json_data]
 
     job_description = get_job_descriptions()

@@ -1,5 +1,5 @@
-
 from airflow.decorators import task
+
 
 def normalize_text(input: str) -> str:
     if not input:
@@ -33,6 +33,7 @@ def save_to_s3(list_data):
     import os
     import boto3
     import json
+    from pendulum import now
 
     print(f"LEN IN: {len(list_data)}")
     cnt = 0
@@ -43,7 +44,13 @@ def save_to_s3(list_data):
         # try:
         crawled_url_hash = hash_string(data["crawled_url"])
         file_name = f"{crawled_url_hash}.txt"
-        file_path = os.path.join(data["crawled_website"], file_name)
+        searched_location = data.get["searched_location"]
+        searched_role = data.get["searched_role"]
+        file_path = os.path.join(data["crawled_website"],
+                                 now().format("YYYY-MM-DD"),
+                                 searched_location,
+                                 searched_role,
+                                 file_name)
 
         # Check if the output folder exists; if not, create it
         if not os.path.exists(data["crawled_website"]):
@@ -121,9 +128,10 @@ def save_job_metadata_to_postgres(
 
     insert_job_metadata_sql = """
     INSERT INTO job_metadata (
-        id, crawled_website_id, url, location, role, company, listed_date, min_salary, max_salary, 
-        contract_type, number_of_experience, job_type, is_working_right, raw_content_file, crawled_date
-    ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+        id, crawled_website_id, url, location, role, company, listed_date, raw_listed_date, min_salary, max_salary, 
+        contract_type, number_of_experience, job_type, is_working_right, raw_content_file, crawled_date,
+        searched_location, searched_role
+    ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
     ON CONFLICT (crawled_website_id, location, role, company, listed_date, contract_type) DO UPDATE
     SET
         url = EXCLUDED.url,
@@ -131,6 +139,7 @@ def save_job_metadata_to_postgres(
         role = EXCLUDED.role,
         company = EXCLUDED.company,
         listed_date = EXCLUDED.listed_date,
+        raw_listed_date = EXCLUDED.raw_listed_date,
         min_salary = EXCLUDED.min_salary,
         max_salary = EXCLUDED.max_salary,
         contract_type = EXCLUDED.contract_type,
@@ -138,7 +147,9 @@ def save_job_metadata_to_postgres(
         job_type = EXCLUDED.job_type,
         is_working_right = EXCLUDED.is_working_right,
         raw_content_file = EXCLUDED.raw_content_file,
-        crawled_date = EXCLUDED.crawled_date
+        crawled_date = EXCLUDED.crawled_date,
+        searched_location = EXCLUDED.searched_location,
+        searched_role = EXCLUDED.searched_role
     RETURNING id
     """
 
@@ -149,11 +160,13 @@ def save_job_metadata_to_postgres(
         job_metadata_values = (
             job_metadata_id, data["crawled_website_id"], normalize_text(data['url']),
             normalize_text(data.get('location', "")), normalize_text(data.get('role', "")),
-            normalize_text(data.get('company', "")), data.get('listed_date_for_db', None), data.get('min_salary', None),
+            normalize_text(data.get('company', "")), data.get('listed_date_for_db', None),
+            data.get("listed_date", None), data.get('min_salary', None),
             data.get('max_salary', None), normalize_text(data.get('contract_type', "")),
             data.get("number_of_experience", None), normalize_text(data.get('job_type', "")),
             data.get('is_working_right', True), normalize_text(data.get('raw_content_file', '')),
-            now().format("YYYY-MM-DD")
+            now().format("YYYY-MM-DD"), normalize_text(data.get("searched_location", "")),
+            normalize_text(data.get("searched_role", ""))
         )
         job_metadata_id = pg_hook.get_first(insert_job_metadata_sql, parameters=job_metadata_values)[0]
         print(job_metadata_id)

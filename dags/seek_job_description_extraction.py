@@ -165,7 +165,8 @@ def extract_job_description(pg_hook, list_data: List[dict]):
     openai_api_key = get_openai_api_key_from_sm()
     website_id_dict = get_crawled_website_id(pg_hook)
     llm = ChatOpenAI(
-        openai_api_key=openai_api_key
+        openai_api_key=openai_api_key,
+        model_name="gpt-3.5-turbo-0125",
     )
 
     job_info_agent = create_job_info_agent(llm)
@@ -207,6 +208,8 @@ def extract_job_description(pg_hook, list_data: List[dict]):
         job_info_db_json["crawled_website_id"] = website_id_dict.get(data["crawled_website"], -1)
         job_info_db_json["raw_content_file"] = file_path
         job_info_db_json["url"] = data.get("crawled_url", "")
+        job_info_db_json["searched_location"] = data.get("searched_location", "")
+        job_info_db_json["searched_role"] = data.get("searched_role", "")
         print(f"job_info: {job_info_db_json}")
         out.append(job_info_db_json)
 

@@ -1,24 +1,8 @@
-from typing import List
-from pendulum import datetime
-import requests
-from bs4 import BeautifulSoup
 from base_dag import (
     DAG
 )
-from airflow.decorators import task
-from airflow.providers.postgres.hooks.postgres import PostgresHook
-from utils import (
-    save_to_s3,
-    chunk,
-    save_job_metadata_to_postgres,
-    get_crawled_urls,
-)
-from constant import (
-    job_crawler_postgres_conn,
-)
-from seek_job_description_extraction import (
-    extract_job_description,
-)
+from pendulum import datetime
+
 
 with DAG(
     dag_id="seek_crawler",
@@ -30,21 +14,82 @@ with DAG(
     tags=["crawler", "seek"],
 ) as dag:
 
+    import time
+    from typing import List, Set
+    import requests
+    from bs4 import BeautifulSoup
+    from airflow.decorators import task
+    from airflow.providers.postgres.hooks.postgres import PostgresHook
+    from utils import (
+        save_to_s3,
+        chunk,
+        save_job_metadata_to_postgres,
+        get_crawled_urls,
+    )
+    from seek_job_description_extraction import (
+        extract_job_description,
+    )
+    from constant import (
+        job_crawler_postgres_conn,
+        seek_searched_sydney,
+        seek_searched_melbourne,
+        seek_searched_ai_engineer,
+        seek_searched_data_engineer,
+        seek_searched_full_stack_developer
+    )
+
     pg_hook = PostgresHook(postgres_conn_id=job_crawler_postgres_conn(), schema='jobs')
 
     @task
+    def get_searched_dicts() -> List[dict]:
+        return [
+            {
+                "searched_role": seek_searched_data_engineer,
+                "searched_location": seek_searched_sydney,
+            },
+            # {
+            #     "searched_role": seek_searched_ai_engineer,
+            #     "searched_location": seek_searched_sydney,
+            # },
+            # {
+            #     "searched_role": seek_searched_full_stack_developer,
+            #     "searched_location": seek_searched_sydney,
+            # },
+            # {
+            #     "searched_role": seek_searched_data_engineer,
+            #     "searched_location": seek_searched_melbourne,
+            # },
+            # {
+            #     "searched_role": seek_searched_ai_engineer,
+            #     "searched_location": seek_searched_melbourne,
+            # },
+            # {
+            #     "searched_role": seek_searched_full_stack_developer,
+            #     "searched_location": seek_searched_melbourne,
+            # }
+        ]
+
+    @task
     def get_job_description_link(
-        crawled_urls: List[str],
-        url="https://www.seek.com.au/data-engineer-jobs/in-All-Sydney-NSW"
+        searched_dicts: List[dict],
+        crawled_urls: Set[str],
     ):
         out_hrefs = []
         headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
         }
-        def _get_job_dfs(url, hrefs, depth, stop=1e9):
+        url_to_searched_term_dict = dict()
+        def _get_job_dfs(url,
+                         hrefs,
+                         depth,
+                         searched_location,
+                         searched_role,
+                         stop=1e9):
             print(f"START CRAWL WITH DEPTH: {depth}")
             if depth >= stop:
                 return
+            url_to_searched_term_dict[url] = {"searched_location": searched_location,
+                                              "searched_role": searched_role}
             response = requests.get(url, headers=headers)
             if response.status_code == 200:
                 soup = BeautifulSoup(response.content, 'html.parser')
@@ -63,58 +108,82 @@ with DAG(
                     if a_tags:
                         for a_tag in a_tags:
                             next_page_href = a_tag.get("href")
-                            _get_job_dfs(f"https://www.seek.com.au{next_page_href}", out_hrefs, depth + 1)
-        _get_job_dfs(url, out_hrefs, 0)
+                            time.sleep(5)
+                            _get_job_dfs(f"https://www.seek.com.au{next_page_href}",
+                                         out_hrefs,
+                                         depth + 1,
+                                         searched_location,
+                                         searched_role,
+                                         stop)
+        for searched_dict in searched_dicts:
+            s_role = searched_dict["searched_role"]
+            s_location = searched_dict["searched_location"]
+            raw_url=f"https://www.seek.com.au/{s_role()}/{s_location()}"
+            _get_job_dfs(raw_url,
+                         out_hrefs,
+                         0,
+                         str(s_location),
+                         str(s_role))
         out_hrefs = list(set(out_hrefs).difference(crawled_urls))
-        return chunk(out_hrefs)
+        out = [{"url": url,
+                "searched_location": url_to_searched_term_dict[url]["searched_location"],
+                "searched_role": url_to_searched_term_dict[url]["searched_role"]} for url in out_hrefs]
+        return chunk(out)
 
     @task(max_active_tis_per_dagrun=4)
-    def get_job_description(urls):
+    def get_job_description(list_data: List[dict]):
         headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
         }
         out_dict = []
-        for url in urls:
-            try:
-                response = requests.get(url, headers=headers)
-                if response.status_code == 200:
-                    soup = BeautifulSoup(response.content, 'html.parser')
-                    role_ele = soup.find('h1', {'data-automation': 'job-detail-title'})
-                    role = role_ele.get_text() if role_ele else ""
-                    company_ele = soup.find('span', {'data-automation': 'advertiser-name'})
-                    company = company_ele.get_text() if company_ele else ""
-                    job_info_eles = soup.find_all('span', class_='_1wkzzau0 a1msqi4y a1msqir')
-                    job_info = {"role": role, "company": company}
-                    job_info["other job info"] = []
-                    if job_info_eles:
-                        for job_info_ele in job_info_eles:
-                            # job_info_ele = job_info_ele.find("span", class_="_1wkzzau0 a1msqi4y a1msqir")
-                            # if job_info_ele:
-                            job_info["other job info"].append(job_info_ele.get_text())
-                    listed_date_divs = soup.find("div", class_="_1wkzzau0 a1msqi6y")
-                    for listed_date_div in listed_date_divs:
-                        listed_date_ele = listed_date_div.find("span", class_="_1wkzzau0 a1msqi4y lnocuo0 lnocuo1 lnocuo22 _1d0g9qk4 lnocuoa")
-                        if listed_date_ele:
-                            job_info["listed date"] = listed_date_ele.get_text()
-                    job_description_ele = soup.find("div", class_="_1wkzzau0 _1pehz540")
-                    job_description = job_description_ele.get_text(separator='\n',
-                                                                   strip=True) if job_info_ele else ""
-                    out_dict.append({"crawled_url": url,
-                            "crawled_website": "seek",
-                            "job_info": job_info,
-                            "job_description": job_description})
-            except Exception as e:
-                print(f"get job description fail with error: {e}")
+        for data in list_data:
+            # try:
+            url = data.get("url")
+            response = requests.get(url, headers=headers)
+            if response.status_code == 200:
+                soup = BeautifulSoup(response.content, 'html.parser')
+                role_ele = soup.find('h1', {'data-automation': 'job-detail-title'})
+                role = role_ele.get_text() if role_ele else ""
+                company_ele = soup.find('span', {'data-automation': 'advertiser-name'})
+                company = company_ele.get_text() if company_ele else ""
+                job_info_eles = soup.find_all('span', class_='_1wkzzau0 a1msqi4y a1msqir')
+                job_info = {"role": role, "company": company}
+                job_info["other job info"] = []
+                if job_info_eles:
+                    for job_info_ele in job_info_eles:
+                        # job_info_ele = job_info_ele.find("span", class_="_1wkzzau0 a1msqi4y a1msqir")
+                        # if job_info_ele:
+                        job_info["other job info"].append(job_info_ele.get_text())
+                listed_date_divs = soup.find("div", class_="_1wkzzau0 a1msqi6y")
+                for listed_date_div in listed_date_divs:
+                    listed_date_ele = listed_date_div.find("span", class_="_1wkzzau0 a1msqi4y lnocuo0 lnocuo1 lnocuo22 _1d0g9qk4 lnocuoa")
+                    if listed_date_ele:
+                        job_info["listed date"] = listed_date_ele.get_text()
+                job_description_ele = soup.find("div", class_="_1wkzzau0 _1pehz540")
+                job_description = job_description_ele.get_text(separator='\n',
+                                                               strip=True) if job_info_ele else ""
                 out_dict.append({"crawled_url": url,
-                        "crawled_website": "seek",
-                        "job_info": "",
-                        "job_description": ""})
+                                 "crawled_website": "seek",
+                                 "job_info": job_info,
+                                 "job_description": job_description,
+                                 "searched_location": data["searched_location"],
+                                 "searched_role": data["searched_role"]})
+            # except Exception as e:
+            #     print(f"get job description fail with error: {e}")
+            #     out_dict.append({"crawled_url": url,
+            #             "crawled_website": "seek",
+            #             "job_info": "",
+            #             "job_description": "",
+            #             "searched_location": data.get("searched_location"),
+            #             "searched_role": data.get("searched_role")})
         return out_dict
     crawled_urls = get_crawled_urls(
         "seek",
         pg_hook=pg_hook,
     )
-    job_description_link = get_job_description_link(crawled_urls=crawled_urls)
+    searched_dicts = get_searched_dicts()
+    job_description_link = get_job_description_link(crawled_urls=crawled_urls,
+                                                    searched_dicts=searched_dicts)
     job_descriptions = get_job_description.expand(urls=job_description_link)
     save_to_s3.expand(list_data=job_descriptions)
     extracted_job_descriptions = extract_job_description.partial(pg_hook=pg_hook).expand(list_data=job_descriptions)

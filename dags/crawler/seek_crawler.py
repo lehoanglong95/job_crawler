@@ -25,6 +25,7 @@ with DAG(
         chunk,
         save_job_metadata_to_postgres,
         get_crawled_urls,
+        hash_string,
     )
     from seek_job_description_extraction import (
         extract_job_description,
@@ -90,7 +91,7 @@ with DAG(
             print(f"START CRAWL WITH DEPTH: {depth}")
             if depth >= stop:
                 return
-            url_to_searched_term_dict[url] = {"searched_location": searched_location,
+            url_to_searched_term_dict[hash_string(url)] = {"searched_location": searched_location,
                                               "searched_role": searched_role}
             print(f"URL: {url}")
             response = requests.get(url, headers=headers)
@@ -132,8 +133,8 @@ with DAG(
                          normalized_s_role)
         out_hrefs = list(set(out_hrefs).difference(crawled_urls))
         out = [{"url": url,
-                "searched_location": url_to_searched_term_dict[url]["searched_location"],
-                "searched_role": url_to_searched_term_dict[url]["searched_role"]} for url in out_hrefs]
+                "searched_location": url_to_searched_term_dict[hash_string(url)]["searched_location"],
+                "searched_role": url_to_searched_term_dict[hash_string(url)]["searched_role"]} for url in out_hrefs]
         return chunk(out)
 
     @task(max_active_tis_per_dagrun=4)

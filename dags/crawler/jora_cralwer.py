@@ -24,6 +24,7 @@ with DAG(
         chunk,
         save_job_metadata_to_postgres,
         get_crawled_urls,
+        hash_string,
     )
     from constant import (
         job_crawler_postgres_conn,
@@ -91,7 +92,7 @@ with DAG(
             print(f"START CRAWL WITH DEPTH: {depth}")
             if depth >= stop:
                 return
-            url_to_searched_term_dict[url] = {"searched_location": searched_location,
+            url_to_searched_term_dict[hash_string(url)] = {"searched_location": searched_location,
                                               "searched_role": searched_role}
             # Check if the request was successful (status code 200)
             if response.status_code == 200:
@@ -137,8 +138,8 @@ with DAG(
         out_hrefs = list(out_hrefs)
         print(f"len out hrefs: {len(out_hrefs)}")
         out = [{"url": url,
-                "searched_location": url_to_searched_term_dict[url]["searched_location"],
-                "searched_role": url_to_searched_term_dict[url]["searched_role"]} for url in out_hrefs]
+                "searched_location": url_to_searched_term_dict[hash_string(url)]["searched_location"],
+                "searched_role": url_to_searched_term_dict[hash_string(url)]["searched_role"]} for url in out_hrefs]
         return chunk(out)
 
 

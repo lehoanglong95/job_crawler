@@ -9,7 +9,7 @@ class CustomVariable:
                  default_value=None):
         self.key = key
         self.val = val
-        self.normalize_text = normalize_text()
+        self.normalize_text = normalize_text
         self.default_value = default_value
         Variable.set(key, val)
 

@@ -91,8 +91,6 @@ with DAG(
             print(f"START CRAWL WITH DEPTH: {depth}")
             if depth >= stop:
                 return
-            url_to_searched_term_dict[hash_string(url)] = {"searched_location": searched_location,
-                                              "searched_role": searched_role}
             print(f"URL: {url}")
             response = requests.get(url, headers=headers)
             print(f"response: {response}")
@@ -107,6 +105,8 @@ with DAG(
                                 href = a_tag.get("href")
                                 if href:
                                     hrefs.append(f"https://www.seek.com.au{href}")
+                                    url_to_searched_term_dict[hash_string(f"https://www.seek.com.au{href}")] = {"searched_location": searched_location,
+                                                                                   "searched_role": searched_role}
                 next_ele = soup.find("li", class_="y735df0 _1iz8dgsa6 _1iz8dgs9v _1iz8dgsw")
                 if next_ele:
                     a_tags = next_ele.find_all("a")

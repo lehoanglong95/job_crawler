@@ -92,8 +92,6 @@ with DAG(
             print(f"START CRAWL WITH DEPTH: {depth}")
             if depth >= stop:
                 return
-            url_to_searched_term_dict[hash_string(url)] = {"searched_location": searched_location,
-                                              "searched_role": searched_role}
             # Check if the request was successful (status code 200)
             if response.status_code == 200:
                 # Parse the HTML content with BeautifulSoup
@@ -108,6 +106,8 @@ with DAG(
                     # Extract and print the href attributes
                     for a_tag in a_tags:
                         hrefs.append(f"https://au.jora.com/job{a_tag.get('href')}")
+                        url_to_searched_term_dict[hash_string(f"https://au.jora.com/job{a_tag.get('href')}")] = {"searched_location": searched_location,
+                                                                       "searched_role": searched_role}
                 div_next_page = soup.find('div', class_='multi-pages-pagination pagination-container')
                 if div_next_page:
                     next_page_buttons = div_next_page.find_all('a', class_='next-page-button')

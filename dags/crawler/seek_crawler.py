@@ -168,7 +168,9 @@ with DAG(
                         job_info["listed date"] = listed_date_ele.get_text()
                 job_description_ele = soup.find("div",  {'data-automation': 'jobAdDetails'})
                 job_description = job_description_ele.get_text(separator='\n',
-                                                               strip=True) if job_info_ele else ""
+                                                               strip=True) if job_description_ele else ""
+                print(f"JOB INFO: {job_info}")
+                print(f"JOB DESCRIPTION: {job_description}")
                 out_dict.append({"crawled_url": url,
                                  "crawled_website": "seek",
                                  "job_info": job_info,

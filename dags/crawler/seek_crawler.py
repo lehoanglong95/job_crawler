@@ -97,7 +97,7 @@ with DAG(
             print(f"response: {response}")
             if response.status_code == 200:
                 soup = BeautifulSoup(response.content, 'html.parser')
-                job_results_div = soup.find_all('div', class_='_1wkzzau0 a1msqi4y a1msqi4w')
+                job_results_div = soup.find_all('div', class_='y735df0 _1iz8dgs4y _1iz8dgs4w')
                 if job_results_div:
                     for job_result_div in job_results_div:
                         a_tags = job_result_div.find_all('a')
@@ -106,7 +106,7 @@ with DAG(
                                 href = a_tag.get("href")
                                 if href:
                                     hrefs.append(f"https://www.seek.com.au{href}")
-                next_ele = soup.find("li", class_="_1wkzzau0 a1msqia6 a1msqi9v a1msqiw")
+                next_ele = soup.find("li", class_="y735df0 _1iz8dgsa6 _1iz8dgs9v _1iz8dgsw")
                 if next_ele:
                     a_tags = next_ele.find_all("a")
                     if a_tags:

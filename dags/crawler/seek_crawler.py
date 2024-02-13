@@ -153,7 +153,7 @@ with DAG(
                 role = role_ele.get_text() if role_ele else ""
                 company_ele = soup.find('span', {'data-automation': 'advertiser-name'})
                 company = company_ele.get_text() if company_ele else ""
-                job_info_eles = soup.find_all('span', class_='_1wkzzau0 a1msqi4y a1msqir')
+                job_info_eles = soup.find_all('span', class_='y735df0 _1akoxc50 _1akoxc56')
                 job_info = {"role": role, "company": company}
                 job_info["other job info"] = []
                 if job_info_eles:
@@ -161,12 +161,12 @@ with DAG(
                         # job_info_ele = job_info_ele.find("span", class_="_1wkzzau0 a1msqi4y a1msqir")
                         # if job_info_ele:
                         job_info["other job info"].append(job_info_ele.get_text())
-                listed_date_divs = soup.find("div", class_="_1wkzzau0 a1msqi6y")
+                listed_date_divs = soup.find("div", class_="y735df0 _1iz8dgs6y")
                 for listed_date_div in listed_date_divs:
-                    listed_date_ele = listed_date_div.find("span", class_="_1wkzzau0 a1msqi4y lnocuo0 lnocuo1 lnocuo22 _1d0g9qk4 lnocuoa")
+                    listed_date_ele = listed_date_div.find("span", class_="y735df0 _1iz8dgs4y _94v4w0 _94v4w1 _94v4w22 _1wzghjf4 _94v4wa")
                     if listed_date_ele:
                         job_info["listed date"] = listed_date_ele.get_text()
-                job_description_ele = soup.find("div", class_="_1wkzzau0 _1pehz540")
+                job_description_ele = soup.find("div",  {'data-automation': 'jobAdDetails'})
                 job_description = job_description_ele.get_text(separator='\n',
                                                                strip=True) if job_info_ele else ""
                 out_dict.append({"crawled_url": url,

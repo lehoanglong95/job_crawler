@@ -35,15 +35,17 @@ def convert_listed_date_to_dateformat(listed_date: str):
         match = re.search(r'\d+', listed_date)
         if match:
             number = int(match.group())
-            if "hour" in listed_date or "hours" in listed_date:
+            if "minute" in listed_date or "minutes" in listed_date or "m" in listed_date:
+                listed_date_for_db = now().subtract(minutes=number).format("YYYY-MM-DD")
+            elif "hour" in listed_date or "hours" in listed_date or "h" in listed_date:
                 listed_date_for_db = now().subtract(hours=number).format("YYYY-MM-DD")
-            elif "day" in listed_date or "days" in listed_date:
+            elif "day" in listed_date or "days" in listed_date or "d" in listed_date:
                 listed_date_for_db = now().subtract(days=number).format("YYYY-MM-DD")
-            elif "week" in listed_date or "days" in listed_date:
+            elif "week" in listed_date or "weeks" in listed_date or "w" in listed_date:
                 listed_date_for_db = now().subtract(weeks=number).format("YYYY-MM-DD")
             elif "month" in listed_date or "months" in listed_date:
                 listed_date_for_db = now().subtract(months=number).format("YYYY-MM-DD")
-            elif "year" in listed_date or "years" in listed_date:
+            elif "year" in listed_date or "years" in listed_date or "y" in listed_date:
                 listed_date_for_db = now().subtract(years=number).format("YYYY-MM-DD")
             else:
                 print(listed_date)

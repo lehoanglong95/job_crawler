@@ -88,14 +88,14 @@ def extract_job_description(pg_hook, list_data: List[dict]):
 
     @tool("extract-job-info-tool", args_schema=JobInfoInput, return_direct=True)
     def extract_job_info_tool(
-            location: str = None,
-            role: str = None,
-            company: str = None,
-            listed_date: str = None,
-            min_salary: int = None,
-            max_salary: int = None,
-            salary: int = None,
-            contract_type: str = None,
+        location: str = None,
+        role: str = None,
+        company: str = None,
+        listed_date: str = None,
+        min_salary: int = None,
+        max_salary: int = None,
+        salary: int = None,
+        contract_type: str = None,
     ):
         """extract job info."""
         out = {

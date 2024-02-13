@@ -92,7 +92,9 @@ with DAG(
                 return
             url_to_searched_term_dict[url] = {"searched_location": searched_location,
                                               "searched_role": searched_role}
+            print(f"URL: {url}")
             response = requests.get(url, headers=headers)
+            print(f"response: {response}")
             if response.status_code == 200:
                 soup = BeautifulSoup(response.content, 'html.parser')
                 job_results_div = soup.find_all('div', class_='_1wkzzau0 a1msqi4y a1msqi4w')
@@ -122,7 +124,7 @@ with DAG(
             s_location = searched_dict["searched_location"]
             normalized_s_location = searched_dict["normalized_searched_location"]
             normalized_s_role = searched_dict["normalized_searched_role"]
-            raw_url=f"https://www.seek.com.au/{s_role}/{s_location}"
+            raw_url = f"https://www.seek.com.au/{s_role}/{s_location}"
             _get_job_dfs(raw_url,
                          out_hrefs,
                          0,
@@ -144,7 +146,6 @@ with DAG(
             # try:
             url = data.get("url")
             response = requests.get(url, headers=headers)
-            print(f"response: {response}")
             if response.status_code == 200:
                 soup = BeautifulSoup(response.content, 'html.parser')
                 role_ele = soup.find('h1', {'data-automation': 'job-detail-title'})

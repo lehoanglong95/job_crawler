@@ -80,24 +80,11 @@ class JobInfoForDB(JobInfoInput):
 
     @validator("listed_date_for_db", pre=True, always=True)
     def set_listed_date_for_db(cls, value, values):
-        import re
-        from pendulum import now
+        from utils import convert_listed_date_to_dateformat
 
         if values.get("listed_date") is not None:
             listed_date = values.get("listed_date")
-            match = re.search(r'\d+', listed_date)
-            if match:
-                number = int(match.group())
-                if "day" in listed_date or "days" in listed_date:
-                    listed_date_for_db = now().subtract(days=number).format("YYYY-MM-DD")
-                elif "week" in listed_date or "days" in listed_date:
-                    listed_date_for_db = now().subtract(weeks=number).format("YYYY-MM-DD")
-                else:
-                    print(listed_date)
-                    listed_date_for_db = None
-                return listed_date_for_db
-            else:
-                print(listed_date)
+            return convert_listed_date_to_dateformat(listed_date)
         return value
 
 

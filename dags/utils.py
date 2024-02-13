@@ -1,5 +1,5 @@
 from airflow.decorators import task
-
+from pendulum import now
 
 def normalize_text(input: str) -> str:
     if not input:
@@ -27,6 +27,28 @@ def chunk(input, number_of_chunks=50):
     chunk_size = len(input) // number_of_chunks
     return [input[i:i+chunk_size] for i in range(0, len(input), chunk_size)]
 
+
+def convert_listed_date_to_dateformat(listed_date: str):
+    import re
+    from pendulum import now
+    if listed_date is not None:
+        match = re.search(r'\d+', listed_date)
+        if match:
+            number = int(match.group())
+            if "day" in listed_date or "days" in listed_date:
+                listed_date_for_db = now().subtract(days=number).format("YYYY-MM-DD")
+            elif "week" in listed_date or "days" in listed_date:
+                listed_date_for_db = now().subtract(weeks=number).format("YYYY-MM-DD")
+            elif "month" in listed_date or "months" in listed_date:
+                listed_date_for_db = now().subtract(months=number).format("YYYY-MM-DD")
+            elif "year" in listed_date or "years" in listed_date:
+                listed_date_for_db = now().subtract(years=number).format("YYYY-MM-DD")
+            else:
+                print(listed_date)
+                listed_date_for_db = None
+            return listed_date_for_db
+        else:
+            print(listed_date)
 
 @task
 def save_to_s3(list_data):
@@ -157,6 +179,7 @@ def save_job_metadata_to_postgres(
 
     for data in list_data:
         job_metadata_id = str(uuid4())
+        data["listed_date_for_db"] = convert_listed_date_to_dateformat(data.get("listed_date", None))
         job_metadata_values = (
             job_metadata_id, data["crawled_website_id"], normalize_text(data['url']),
             normalize_text(data.get('location', "")), normalize_text(data.get('role', "")),

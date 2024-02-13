@@ -219,18 +219,10 @@ with DAG(
             return inner_skills
 
         def calculate_listed_date():
+            from utils import convert_listed_date_to_dateformat
+
             date_label = job_description.get("date_label", "")
-            if date_label:
-                match = re.search(r'\d+', date_label)
-                if match:
-                    number = int(match.group())
-                    if "week" in date_label:
-                        return now().subtract(weeks=number).format("YYYY-MM-DD")
-                    elif "day" in date_label:
-                        return now().subtract(days=number).format("YYYY-MM-DD")
-                    else:
-                        return None
-            return None
+            return convert_listed_date_to_dateformat(date_label)
 
         city = location.get("region_name", "")
         role = job_description.get("job_title")

@@ -24,7 +24,7 @@ job_crawler_postgres_conn = CustomVariable("postgres_job_crawler_conn_id",
 email = CustomVariable("my_email", "lehoanglong95@gmail.com")
 jora_searched_data_engineer = CustomVariable("jora_data_engineer",
                                              "Data+Engineer",
-                                             "date engineer")
+                                             "data engineer")
 jora_searched_ai_engineer = CustomVariable("jora_ai_engineer",
                                            "AI+Engineer",
                                            "ai engineer")

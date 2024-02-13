@@ -144,6 +144,7 @@ with DAG(
             # try:
             url = data.get("url")
             response = requests.get(url, headers=headers)
+            print(f"response: {response}")
             if response.status_code == 200:
                 soup = BeautifulSoup(response.content, 'html.parser')
                 role_ele = soup.find('h1', {'data-automation': 'job-detail-title'})

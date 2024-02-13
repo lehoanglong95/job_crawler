@@ -182,7 +182,7 @@ with DAG(
     searched_dicts = get_searched_dicts()
     job_description_link = get_job_description_link(crawled_urls=crawled_urls,
                                                     searched_dicts=searched_dicts)
-    job_descriptions = get_job_description.expand(urls=job_description_link)
+    job_descriptions = get_job_description.expand(list_data=job_description_link)
     save_to_s3.expand(list_data=job_descriptions)
     extracted_job_descriptions = extract_job_description.partial(pg_hook=pg_hook) \
         .expand(list_data=job_descriptions)

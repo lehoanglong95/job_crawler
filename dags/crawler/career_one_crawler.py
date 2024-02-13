@@ -266,6 +266,7 @@ with DAG(
         json_data["searched_role"] = data.get("searched_role", "")
         return [json_data]
 
-    job_description = get_job_descriptions()
+    payloads = get_payload()
+    job_description = get_job_descriptions(payloads=payloads)
     job_metadata = extract_job_description.expand(data=job_description)
     save_job_metadata_to_postgres.partial(pg_hook=pg_hook).expand(list_data=job_metadata)

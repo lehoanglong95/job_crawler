@@ -44,8 +44,10 @@ with DAG(
     def get_searched_dicts() -> List[dict]:
         return [
             {
-                "searched_role": jora_searched_data_engineer,
-                "searched_location": jora_searched_sydney,
+                "searched_role": jora_searched_data_engineer(),
+                "searched_location": jora_searched_sydney(),
+                "normalized_searched_role": str(jora_searched_data_engineer),
+                "normalized_searched_location": str(jora_searched_sydney)
             },
             # {
             #     "searched_role": jora_searched_ai_engineer,
@@ -123,12 +125,14 @@ with DAG(
         for searched_dict in searched_dicts:
             s_role = searched_dict["searched_role"]
             s_location = searched_dict["searched_location"]
-            raw_url = f"https://au.jora.com/j?sp=homepage&trigger_source=homepage&q={s_role()}&l={s_location()}"
+            normalized_s_role = searched_dict["normalized_searched_role"]
+            normalized_s_location = searched_dict["normalized_searched_location"]
+            raw_url = f"https://au.jora.com/j?sp=homepage&trigger_source=homepage&q={s_role}&l={s_location}"
             _get_job_dfs(raw_url,
                          out_hrefs,
                          0,
-                         str(s_role),
-                         str(s_location))
+                         normalized_s_role,
+                         normalized_s_location)
         out_hrefs = set(out_hrefs).difference(set(crawled_urls))
         out_hrefs = list(out_hrefs)
         print(f"len out hrefs: {len(out_hrefs)}")

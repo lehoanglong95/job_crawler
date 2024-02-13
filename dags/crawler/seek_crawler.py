@@ -44,8 +44,10 @@ with DAG(
     def get_searched_dicts() -> List[dict]:
         return [
             {
-                "searched_role": seek_searched_data_engineer,
-                "searched_location": seek_searched_sydney,
+                "searched_role": seek_searched_data_engineer(),
+                "searched_location": seek_searched_sydney(),
+                "normalized_searched_role": str(seek_searched_data_engineer),
+                "normalized_searched_location": str(seek_searched_sydney)
             },
             # {
             #     "searched_role": seek_searched_ai_engineer,
@@ -118,12 +120,14 @@ with DAG(
         for searched_dict in searched_dicts:
             s_role = searched_dict["searched_role"]
             s_location = searched_dict["searched_location"]
-            raw_url=f"https://www.seek.com.au/{s_role()}/{s_location()}"
+            normalized_s_location = searched_dict["normalized_searched_location"]
+            normalized_s_role = searched_dict["normalized_searched_role"]
+            raw_url=f"https://www.seek.com.au/{s_role}/{s_location}"
             _get_job_dfs(raw_url,
                          out_hrefs,
                          0,
-                         str(s_location),
-                         str(s_role))
+                         normalized_s_location,
+                         normalized_s_role)
         out_hrefs = list(set(out_hrefs).difference(crawled_urls))
         out = [{"url": url,
                 "searched_location": url_to_searched_term_dict[url]["searched_location"],

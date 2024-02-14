@@ -177,14 +177,6 @@ with DAG(
                                  "job_description": job_description,
                                  "searched_location": data["searched_location"],
                                  "searched_role": data["searched_role"]})
-            # except Exception as e:
-            #     print(f"get job description fail with error: {e}")
-            #     out_dict.append({"crawled_url": url,
-            #             "crawled_website": "seek",
-            #             "job_info": "",
-            #             "job_description": "",
-            #             "searched_location": data.get("searched_location"),
-            #             "searched_role": data.get("searched_role")})
         return out_dict
     crawled_urls = get_crawled_urls(
         "seek",

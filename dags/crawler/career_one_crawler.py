@@ -34,8 +34,12 @@ with DAG(
 
     pg_hook = PostgresHook(postgres_conn_id=job_crawler_postgres_conn(), schema='jobs')
 
+
     @task
-    def get_payload() -> List[dict]:
+    def get_job_descriptions(
+        url="https://seeker-api.careerone.com.au/api/v1/search-job",
+    ):
+
         def de_syd_payload(page):
             return {
                 'search_keywords': 'data engineer',
@@ -130,7 +134,7 @@ with DAG(
                                              {"id": "85520", "title": "Artificial Intelligence (AI) Engineer"},
                                              {"id": "85520", "title": "Artificial Inteligence (AI) Engineer"}],
                                "search_phrase": ""}, "locale": "AU", "bucket_code": "ORGANIC,PRIORITISE"}
-        return [
+        payloads = [
             {
                 "payload": de_syd_payload,
                 "searched_location": "Sydney",
@@ -144,11 +148,6 @@ with DAG(
             # }
         ]
 
-    @task
-    def get_job_descriptions(
-        payloads: List[dict],
-        url="https://seeker-api.careerone.com.au/api/v1/search-job",
-    ):
         job_descriptions = []
         headers = {
             'authority': 'seeker-api.careerone.com.au',
@@ -258,7 +257,6 @@ with DAG(
         json_data["searched_role"] = data.get("searched_role", "")
         return [json_data]
 
-    payloads = get_payload()
-    job_description = get_job_descriptions(payloads=payloads)
+    job_description = get_job_descriptions()
     job_metadata = extract_job_description.expand(data=job_description)
     save_job_metadata_to_postgres.partial(pg_hook=pg_hook).expand(list_data=job_metadata)

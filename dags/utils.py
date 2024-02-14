@@ -70,8 +70,8 @@ def save_to_s3(list_data):
         # try:
         crawled_url_hash = hash_string(data["crawled_url"])
         file_name = f"{crawled_url_hash}.txt"
-        searched_location = data.get["searched_location"]
-        searched_role = data.get["searched_role"]
+        searched_location = data.get("searched_location")
+        searched_role = data.get("searched_role")
         file_path = os.path.join(data["crawled_website"],
                                  now().format("YYYY-MM-DD"),
                                  searched_location,

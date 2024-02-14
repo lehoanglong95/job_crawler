@@ -178,6 +178,7 @@ with DAG(
                                  "searched_location": data["searched_location"],
                                  "searched_role": data["searched_role"]})
         return out_dict
+
     crawled_urls = get_crawled_urls(
         "seek",
         pg_hook=pg_hook,

@@ -180,7 +180,7 @@ with DAG(
 
         for payload in payloads:
             # get job description links per search page
-            number_of_pages = _calculate_number_of_pages()
+            number_of_pages = _calculate_number_of_pages(payload)
             for page_number in range(1, number_of_pages):
                 time.sleep(5)
                 res = requests.post(f"https://seeker-api.careerone.com.au/api/v1/search-job",

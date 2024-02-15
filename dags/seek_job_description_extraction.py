@@ -198,9 +198,9 @@ def extract_job_description(pg_hook, list_data: List[dict]):
                 continue
         job_info["role"] = data.get("job_info", {}).get("role", "") if data.get("job_info", {}).get("role", "") != "" else job_info["role"]
         job_info["company"] = data.get("job_info", {}).get("company", "") if data.get("job_info", {}).get("company", "") != "" else job_info["company"]
-        job_info["number_of_experience"] = job_des.get("number_of_experience", "")
+        job_info["number_of_experience"] = job_des.get("number_of_experience", 0)
         job_info["job_type"] = job_des.get("job_type", "")
-        job_info["skills"] = job_des.get("skills", "")
+        job_info["skills"] = job_des.get("skills", [])
         job_info["is_working_right"] = job_des.get("is_working_right", "")
         job_info_db = JobInfoForDB(**job_info)
         job_info_db.post_salary_validator()

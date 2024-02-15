@@ -50,26 +50,36 @@ with DAG(
                 "normalized_searched_role": str(seek_searched_data_engineer),
                 "normalized_searched_location": str(seek_searched_sydney)
             },
-            # {
-            #     "searched_role": seek_searched_ai_engineer,
-            #     "searched_location": seek_searched_sydney,
-            # },
-            # {
-            #     "searched_role": seek_searched_full_stack_developer,
-            #     "searched_location": seek_searched_sydney,
-            # },
-            # {
-            #     "searched_role": seek_searched_data_engineer,
-            #     "searched_location": seek_searched_melbourne,
-            # },
-            # {
-            #     "searched_role": seek_searched_ai_engineer,
-            #     "searched_location": seek_searched_melbourne,
-            # },
-            # {
-            #     "searched_role": seek_searched_full_stack_developer,
-            #     "searched_location": seek_searched_melbourne,
-            # }
+            {
+                "searched_role": seek_searched_ai_engineer,
+                "searched_location": seek_searched_sydney,
+                "normalized_searched_role": str(seek_searched_ai_engineer),
+                "normalized_searched_location": str(seek_searched_sydney)
+            },
+            {
+                "searched_role": seek_searched_full_stack_developer,
+                "searched_location": seek_searched_sydney,
+                "normalized_searched_role": str(seek_searched_full_stack_developer),
+                "normalized_searched_location": str(seek_searched_sydney)
+            },
+            {
+                "searched_role": seek_searched_data_engineer,
+                "searched_location": seek_searched_melbourne,
+                "normalized_searched_role": str(seek_searched_data_engineer),
+                "normalized_searched_location": str(seek_searched_melbourne)
+            },
+            {
+                "searched_role": seek_searched_ai_engineer,
+                "searched_location": seek_searched_melbourne,
+                "normalized_searched_role": str(seek_searched_ai_engineer),
+                "normalized_searched_location": str(seek_searched_melbourne)
+            },
+            {
+                "searched_role": seek_searched_full_stack_developer,
+                "searched_location": seek_searched_melbourne,
+                "normalized_searched_role": str(seek_searched_full_stack_developer),
+                "normalized_searched_location": str(seek_searched_melbourne)
+            }
         ]
 
     @task

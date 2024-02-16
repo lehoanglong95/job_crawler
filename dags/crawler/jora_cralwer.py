@@ -50,26 +50,36 @@ with DAG(
                 "normalized_searched_role": str(jora_searched_data_engineer),
                 "normalized_searched_location": str(jora_searched_sydney)
             },
-            # {
-            #     "searched_role": jora_searched_ai_engineer,
-            #     "searched_location": jora_searched_sydney,
-            # },
-            # {
-            #     "searched_role": jora_searched_full_stack_developer,
-            #     "searched_location": jora_searched_sydney,
-            # },
-            # {
-            #     "searched_role": jora_searched_data_engineer,
-            #     "searched_location": jora_searched_melbourne,
-            # },
-            # {
-            #     "searched_role": jora_searched_ai_engineer,
-            #     "searched_location": jora_searched_melbourne,
-            # },
-            # {
-            #     "searched_role": jora_searched_full_stack_developer,
-            #     "searched_location": jora_searched_melbourne,
-            # }
+            {
+                "searched_role": jora_searched_ai_engineer(),
+                "searched_location": jora_searched_sydney(),
+                "normalized_searched_role": str(jora_searched_ai_engineer),
+                "normalized_searched_location": str(jora_searched_sydney)
+            },
+            {
+                "searched_role": jora_searched_full_stack_developer(),
+                "searched_location": jora_searched_sydney(),
+                "normalized_searched_role": str(jora_searched_full_stack_developer),
+                "normalized_searched_location": str(jora_searched_sydney)
+            },
+            {
+                "searched_role": jora_searched_data_engineer(),
+                "searched_location": jora_searched_melbourne(),
+                "normalized_searched_role": str(jora_searched_data_engineer),
+                "normalized_searched_location": str(jora_searched_melbourne)
+            },
+            {
+                "searched_role": jora_searched_ai_engineer(),
+                "searched_location": jora_searched_melbourne(),
+                "normalized_searched_role": str(jora_searched_ai_engineer),
+                "normalized_searched_location": str(jora_searched_melbourne)
+            },
+            {
+                "searched_role": jora_searched_full_stack_developer(),
+                "searched_location": jora_searched_melbourne(),
+                "normalized_searched_role": str(jora_searched_full_stack_developer),
+                "normalized_searched_location": str(jora_searched_melbourne)
+            }
         ]
 
 

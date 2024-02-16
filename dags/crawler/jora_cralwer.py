@@ -150,7 +150,7 @@ with DAG(
         out = [{"url": url,
                 "searched_location": url_to_searched_term_dict[hash_string(url)]["searched_location"],
                 "searched_role": url_to_searched_term_dict[hash_string(url)]["searched_role"]} for url in out_hrefs]
-        return chunk(out)
+        return chunk(out, number_of_chunks=500)
 
 
     @task

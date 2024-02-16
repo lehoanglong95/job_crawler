@@ -124,12 +124,12 @@ with DAG(
                     if next_page_buttons:
                         for next_page_button in next_page_buttons:
                             time.sleep(3)
-                            _get_job_dfs(f"https://au.jora.com{next_page_button.get('href')}",
-                                         hrefs,
-                                         depth + 1,
-                                         searched_location,
-                                         searched_role,
-                                         stop)
+                            _get_job_dfs(url=f"https://au.jora.com{next_page_button.get('href')}",
+                                         hrefs=hrefs,
+                                         depth=depth + 1,
+                                         searched_location=searched_location,
+                                         searched_role=searched_role,
+                                         stop=stop)
             else:
                 print(f"Failed to fetch the page. Status code: {response.status_code}")
 
@@ -139,11 +139,11 @@ with DAG(
             normalized_s_role = searched_dict["normalized_searched_role"]
             normalized_s_location = searched_dict["normalized_searched_location"]
             raw_url = f"https://au.jora.com/j?sp=homepage&trigger_source=homepage&q={s_role}&l={s_location}"
-            _get_job_dfs(raw_url,
-                         out_hrefs,
-                         0,
-                         normalized_s_role,
-                         normalized_s_location)
+            _get_job_dfs(url=raw_url,
+                         hrefs=out_hrefs,
+                         depth=0,
+                         searched_location=normalized_s_location,
+                         searched_role=normalized_s_role)
         out_hrefs = set(out_hrefs).difference(set(crawled_urls))
         out_hrefs = list(out_hrefs)
         print(f"len out hrefs: {len(out_hrefs)}")

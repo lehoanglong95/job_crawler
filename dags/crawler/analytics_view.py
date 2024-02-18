@@ -66,9 +66,9 @@ with DAG(
             DO
             $$
             BEGIN
-                IF NOT EXISTS (SELECT 1 FROM pg_views WHERE viewname = 'ai_engineer_skills') THEN
+                IF NOT EXISTS (SELECT 1 FROM pg_views WHERE viewname = 'full_stack_skills') THEN
                     -- Create the view if it doesn't exist
-                    CREATE VIEW data_engineer_skills AS
+                    CREATE VIEW full_stack_skills AS
                     WITH de_job_metadata AS (
                         SELECT id 
                         FROM job_metadata 

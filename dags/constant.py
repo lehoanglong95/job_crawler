@@ -1,5 +1,6 @@
 from airflow.models import Variable
 
+
 class CustomVariable:
 
     def __init__(self,
@@ -30,7 +31,19 @@ jora_searched_ai_engineer = CustomVariable("jora_ai_engineer",
                                            "ai engineer")
 jora_searched_full_stack_developer = CustomVariable("jora_full_stack",
                                                     "Full+Stack+Developer",
-                                                    "full stack developer")
+                                                    "full stack engineer")
+jora_searched_backend_engineer = CustomVariable("jora_backend_engineer",
+                                                 "Backend+Engineer",
+                                                 "backend engineer")
+jora_searched_frontend_engineer = CustomVariable("jora_frontend_engineer",
+                                                 "frontend+developer",
+                                                 "frontend engineer")
+jora_searched_devops_engineer = CustomVariable("jora_devops_engineer",
+                                                 "DevOps+Engineer",
+                                                 "devops engineer")
+jora_searched_cybersecurity_engineer = CustomVariable("jora_cybersecurity_engineer",
+                                                 "cyber+security",
+                                                 "cyber security engineer")
 jora_searched_sydney = CustomVariable("jora_sydney",
                                       "Sydney+NSW",
                                       "sydney")
@@ -45,7 +58,19 @@ seek_searched_ai_engineer = CustomVariable("seek_ai_engineer",
                                            "ai engineer")
 seek_searched_full_stack_developer = CustomVariable("seek_full_stack",
                                                     "Full-Stack-Developer-jobs",
-                                                    "full stack developer")
+                                                    "full stack engineer")
+seek_searched_backend_engineer = CustomVariable("seek_backend_engineer",
+                                                "Backend-Developer-jobs",
+                                                "backend engineer")
+seek_searched_frontend_engineer = CustomVariable("seek_frontend_engineer",
+                                                 "Front-End-Developer-jobs",
+                                                 "frontend engineer")
+seek_searched_devops_engineer = CustomVariable("seek_devops_engineer",
+                                                 "DevOps-Engineer-jobs",
+                                                 "devops engineer")
+seek_searched_cybersecurity_engineer = CustomVariable("seek_cybersecurity_engineer",
+                                                      "cyber-security-jobs",
+                                                      "cyber security engineer")
 seek_searched_sydney = CustomVariable("seek_sydney",
                                       "in-All-Sydney-NSW",
                                       "sydney")

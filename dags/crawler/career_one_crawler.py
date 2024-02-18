@@ -997,12 +997,12 @@ with DAG(
             }
 
         payloads = [
-            {
-                "payload": de_syd_payload,
-                "searched_location": "sydney",
-                "searched_role": "data engineer"
-
-            },
+            # {
+            #     "payload": de_syd_payload,
+            #     "searched_location": "sydney",
+            #     "searched_role": "data engineer"
+            #
+            # },
             {
                 "payload": ai_eng_syd_payload,
                 "searched_location": "sydney",
@@ -1023,52 +1023,52 @@ with DAG(
                 "searched_location": "sydney",
                 "searched_role": "frontend engineer"
             },
-            {
-                "payload": devops_syd_payload,
-                "searched_location": "sydney",
-                "searched_role": "devops engineer"
-            },
-            {
-                "payload": cybersecurity_syd_payload,
-                "searched_location": "sydney",
-                "searched_role": "cyber security engineer"
-            },
+            # {
+            #     "payload": devops_syd_payload,
+            #     "searched_location": "sydney",
+            #     "searched_role": "devops engineer"
+            # },
+            # {
+            #     "payload": cybersecurity_syd_payload,
+            #     "searched_location": "sydney",
+            #     "searched_role": "cyber security engineer"
+            # },
             # {
             #     "payload": de_mel_payload,
             #     "searched_location": "melbourne",
             #     "searched_role": "data engineer"
             #
             # },
-            {
-                "payload": ai_eng_mel_payload,
-                "searched_location": "melbourne",
-                "searched_role": "AI Engineer"
-            },
-            {
-                "payload": full_stack_mel_payload,
-                "searched_location": "melbourne",
-                "searched_role": "full stack engineer"
-            },
-            {
-                "payload": backend_mel_payload,
-                "searched_location": "melbourne",
-                "searched_role": "backend engineer"
-            },
-            {
-                "payload": frontend_mel_payload,
-                "searched_location": "melbourne",
-                "searched_role": "frontend engineer"
-            },
-            {
-                "payload": devops_mel_payload,
-                "searched_location": "melbourne",
-                "searched_role": "devops engineer"
-            },
-            {
-                "payload": cybersecurity_mel_payload,
-                "searched_location": "melbourne",
-                "searched_role": "cyber security engineer"
-            },
+            # {
+            #     "payload": ai_eng_mel_payload,
+            #     "searched_location": "melbourne",
+            #     "searched_role": "AI Engineer"
+            # },
+            # {
+            #     "payload": full_stack_mel_payload,
+            #     "searched_location": "melbourne",
+            #     "searched_role": "full stack engineer"
+            # },
+            # {
+            #     "payload": backend_mel_payload,
+            #     "searched_location": "melbourne",
+            #     "searched_role": "backend engineer"
+            # },
+            # {
+            #     "payload": frontend_mel_payload,
+            #     "searched_location": "melbourne",
+            #     "searched_role": "frontend engineer"
+            # },
+            # {
+            #     "payload": devops_mel_payload,
+            #     "searched_location": "melbourne",
+            #     "searched_role": "devops engineer"
+            # },
+            # {
+            #     "payload": cybersecurity_mel_payload,
+            #     "searched_location": "melbourne",
+            #     "searched_role": "cyber security engineer"
+            # },
         ]
 
         job_descriptions = []

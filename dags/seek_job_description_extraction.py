@@ -84,7 +84,9 @@ def extract_job_description(pg_hook, list_data: List[dict]):
         get_openai_api_key_from_sm,
         get_crawled_website_id,
         hash_string,
+        create_file_path,
     )
+    from pendulum import now
 
     @tool("extract-job-info-tool", args_schema=JobInfoInput, return_direct=True)
     def extract_job_info_tool(
@@ -177,7 +179,11 @@ def extract_job_description(pg_hook, list_data: List[dict]):
     for data in list_data:
         crawled_url_hash = hash_string(data["crawled_url"])
         file_name = f"{crawled_url_hash}.txt"
-        file_path = os.path.join(data["crawled_website"], file_name)
+        file_path = create_file_path(data["crawled_website"],
+                                     now().format("YYYY-MM-DD"),
+                                     data.get("searched_location", ""),
+                                     data.get("searched_role", ""),
+                                     file_name)
         if not data["job_info"] and not data["job_description"]:
             print("DO NOT PROCESS")
             continue
@@ -198,7 +204,7 @@ def extract_job_description(pg_hook, list_data: List[dict]):
                 continue
         job_info["role"] = data.get("job_info", {}).get("role", "") if data.get("job_info", {}).get("role", "") != "" else job_info["role"]
         job_info["company"] = data.get("job_info", {}).get("company", "") if data.get("job_info", {}).get("company", "") != "" else job_info["company"]
-        job_info["number_of_experience"] = job_des.get("number_of_experience", 0)
+        job_info["number_of_experience"] = job_des.get("number_of_experience", None)
         job_info["job_type"] = job_des.get("job_type", "")
         job_info["skills"] = job_des.get("skills", [])
         job_info["is_working_right"] = job_des.get("is_working_right", "")

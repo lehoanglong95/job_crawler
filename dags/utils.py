@@ -1,5 +1,6 @@
 from airflow.decorators import task
 from pendulum import now
+import os
 
 def normalize_text(input: str) -> str:
     if not input:
@@ -54,6 +55,17 @@ def convert_listed_date_to_dateformat(listed_date: str):
         else:
             print(listed_date)
 
+def create_file_path(crawled_website: str,
+                     date_str: str,
+                     searched_location: str,
+                     searched_role: str,
+                     file_name: str):
+    return os.path.join(crawled_website,
+                        date_str,
+                        searched_location,
+                        searched_role,
+                        file_name)
+
 @task
 def save_to_s3(list_data):
     import os
@@ -72,11 +84,11 @@ def save_to_s3(list_data):
         file_name = f"{crawled_url_hash}.txt"
         searched_location = data.get("searched_location")
         searched_role = data.get("searched_role")
-        file_path = os.path.join(data["crawled_website"],
-                                 now().format("YYYY-MM-DD"),
-                                 searched_location,
-                                 searched_role,
-                                 file_name)
+        file_path = create_file_path(data["crawled_website"],
+                                     now().format("YYYY-MM-DD"),
+                                     searched_location,
+                                     searched_role,
+                                     file_name)
 
         # Check if the output folder exists; if not, create it
         if not os.path.exists(data["crawled_website"]):

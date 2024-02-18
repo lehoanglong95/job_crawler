@@ -104,10 +104,11 @@ def extract_job_description(pg_hook, list_data: List[dict]):
         PromptTemplate,
     )
     from langchain.tools import tool
-    import os
+    from pendulum import now
     from utils import (
         hash_string,
         merge_2_dicts,
+        create_file_path,
     )
     import json
 
@@ -173,7 +174,11 @@ def extract_job_description(pg_hook, list_data: List[dict]):
     for data in list_data:
         crawled_url_hash = hash_string(data["crawled_url"])
         file_name = f"{crawled_url_hash}.txt"
-        file_path = os.path.join(data["crawled_website"], file_name)
+        file_path = create_file_path(data["crawled_website"],
+                                     now().format("YYYY-MM-DD"),
+                                     data.get("searched_location", ""),
+                                     data.get("searched_role", ""),
+                                     file_name)
         if not data["job_info"] and not data["job_description"]:
             print("DO NOT PROCESS")
             continue

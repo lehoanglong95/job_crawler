@@ -1100,6 +1100,8 @@ with DAG(
                     no_of_pages = job_count // result_per_page + 1
             return no_of_pages
 
+        print(f"PAYLOAD LEN: {len(payloads)}")
+
         for payload in payloads:
             # get job description links per search page
             number_of_pages = _calculate_number_of_pages(payload["payload"](1))

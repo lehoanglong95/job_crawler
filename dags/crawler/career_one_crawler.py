@@ -27,6 +27,7 @@ with DAG(
     from utils import (
         save_job_metadata_to_postgres,
         get_crawled_website_id,
+        chunk,
     )
     from constant import (
         job_crawler_postgres_conn,
@@ -1122,17 +1123,15 @@ with DAG(
                                                  "searched_location": payload["searched_location"],
                                                  "searched_role": payload["searched_role"]})
 
-            return job_descriptions
+        print(f"len job descriptions: {len(job_descriptions)}")
+        return chunk(job_descriptions, number_of_chunks=100)
 
     @task
-    def extract_job_description(data: dict):
+    def extract_job_description(list_data: List[dict]):
 
-        url = data.get("url", "")
-        website_id_dict = get_crawled_website_id(pg_hook)
-        location = data.get("location", {})
-        job_description = data.get("job_description", {})
+        output = []
 
-        def get_skills():
+        def get_skills(job_description):
             inner_skills = []
             skills_details = job_description.get("skills_details", [])
             for skill in skills_details:
@@ -1147,40 +1146,47 @@ with DAG(
             date_label = job_description.get("date_label", "")
             return convert_listed_date_to_dateformat(date_label)
 
-        city = location.get("region_name", "")
-        role = job_description.get("job_title")
-        company = job_description.get("company_name")
-        min_salary = job_description.get("pay_min_normalised")
-        max_salary = job_description.get("pay_max_normalised")
-        state = location.get("state_name", "")
-        crawled_website = "careerone"
-        listed_date = calculate_listed_date()
-        career_levels = job_description.get("career_level_label", [])
-        job_type = "on-site"
-        contract_type = job_description.get("contract_type_label", "permanent")
-        skills = get_skills()
-        crawled_website_id = website_id_dict.get(crawled_website, -1)
-        job_info_for_db = JobInfoForDB(**{
-                    "url": url,
-                    "location": f"{city} {state}",
-                    "role": role,
-                    "company": company,
-                    "listed_date": listed_date,
-                    "min_salary": min_salary,
-                    "max_salary": max_salary,
-                    "contract_type": contract_type,
-                    "raw_content_file": "",
-                    "crawled_website": crawled_website,
-                    "career_levels": career_levels,
-                    "job_type": job_type,
-                    "skills": skills,
-               })
-        json_data = job_info_for_db.dict()
-        json_data["crawled_website_id"] = crawled_website_id
-        json_data["searched_location"] = data.get("searched_location", "")
-        json_data["searched_role"] = data.get("searched_role", "")
-        return [json_data]
+        for data in list_data:
+            url = data.get("url", "")
+            website_id_dict = get_crawled_website_id(pg_hook)
+            location = data.get("location", {})
+            job_description = data.get("job_description", {})
+
+            city = location.get("region_name", "")
+            role = job_description.get("job_title")
+            company = job_description.get("company_name")
+            min_salary = job_description.get("pay_min_normalised")
+            max_salary = job_description.get("pay_max_normalised")
+            state = location.get("state_name", "")
+            crawled_website = "careerone"
+            listed_date = calculate_listed_date()
+            career_levels = job_description.get("career_level_label", [])
+            job_type = "on-site"
+            contract_type = job_description.get("contract_type_label", "permanent")
+            skills = get_skills(job_description)
+            crawled_website_id = website_id_dict.get(crawled_website, -1)
+            job_info_for_db = JobInfoForDB(**{
+                        "url": url,
+                        "location": f"{city} {state}",
+                        "role": role,
+                        "company": company,
+                        "listed_date": listed_date,
+                        "min_salary": min_salary,
+                        "max_salary": max_salary,
+                        "contract_type": contract_type,
+                        "raw_content_file": "",
+                        "crawled_website": crawled_website,
+                        "career_levels": career_levels,
+                        "job_type": job_type,
+                        "skills": skills,
+                   })
+            json_data = job_info_for_db.dict()
+            json_data["crawled_website_id"] = crawled_website_id
+            json_data["searched_location"] = data.get("searched_location", "")
+            json_data["searched_role"] = data.get("searched_role", "")
+            output.append(json_data)
+        return output
 
     job_description = get_job_descriptions()
-    job_metadata = extract_job_description.expand(data=job_description)
+    job_metadata = extract_job_description.expand(list_data=job_description)
     save_job_metadata_to_postgres.partial(pg_hook=pg_hook).expand(list_data=job_metadata)

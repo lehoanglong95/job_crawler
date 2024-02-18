@@ -40,7 +40,7 @@ with DAG(
         url="https://seeker-api.careerone.com.au/api/v1/search-job",
     ):
 
-        def de_syd_payload(page):
+        def de_syd_payload(page: int):
             return {
                 'search_keywords': 'data engineer',
                 'search': 'data engineer',
@@ -113,7 +113,7 @@ with DAG(
                 'bucket_code': 'ORGANIC,PRIORITISE',
             }
 
-        def ai_eng_syd_payload(page):
+        def ai_eng_syd_payload(page: int):
             return {"search_keywords": "ai engineer", "search": "ai engineer", "sort_by": "", "job_type": [],
                     "categories": [], "skills": [], "source_code": [], "equal_opportunity_tags": [], "hiring_site": [],
                     "hiring_platform": [], "ad_type": [], "posted_within_days": {"days": 0, "value": "Any time"},
@@ -134,18 +134,940 @@ with DAG(
                                              {"id": "85520", "title": "Artificial Intelligence (AI) Engineer"},
                                              {"id": "85520", "title": "Artificial Inteligence (AI) Engineer"}],
                                "search_phrase": ""}, "locale": "AU", "bucket_code": "ORGANIC,PRIORITISE"}
+
+        def full_stack_syd_payload(page: int):
+            return {
+                "search_keywords": "full stack developer",
+                "search": "full stack developer",
+                "sort_by": "",
+                "job_type": [],
+                "categories": [
+                    {
+                        "id": 17,
+                        "name": "Information Technology (IT)",
+                        "short_name": "Information Technology",
+                        "slug": "information-technology",
+                        "live_job_count": 7992,
+                        "occupations": []
+                    }
+                ],
+                "skills": [],
+                "source_code": [],
+                "equal_opportunity_tags": [],
+                "hiring_site": [],
+                "hiring_platform": [],
+                "ad_type": [],
+                "posted_within_days": {
+                    "days": 0,
+                    "value": "Any time"
+                },
+                "keywords": [],
+                "sector": [],
+                "job_title": [],
+                "industry": [],
+                "company_size": [],
+                "job_mode": [],
+                "contract_type": [],
+                "career_level": [],
+                "perks": [],
+                "work_authorisation": [],
+                "education_level": [],
+                "languages": [],
+                "licenses": [],
+                "certifications": [],
+                "pay_max": "",
+                "pay_min": "",
+                "brands": [],
+                "employer_name": "",
+                "location": {
+                    "id": 15279,
+                    "type": "REGION",
+                    "label": "All Sydney NSW",
+                    "display_label": "Sydney NSW",
+                    "region_name": "Sydney NSW",
+                    "area_name": "",
+                    "state_name": "New South Wales",
+                    "suburb_name": "",
+                    "suburb_location_id": 0,
+                    "area_location_id": 0,
+                    "region_location_id": 15279,
+                    "state_location_id": 15295,
+                    "country_location_id": 15299,
+                    "state_code": "NSW",
+                    "country_name": "Australia",
+                    "country_code": "AU",
+                    "post_code": "",
+                    "slug": "sydney-nsw",
+                    "meta_robots": "index"
+                },
+                "include_surrounding_location": True,
+                "page": page,
+                "resultsPerPage": 20,
+                "parsed_filter": "1",
+                "parsed": {
+                    "skills": [
+                        {
+                            "attribute_id": "10",
+                            "attribute_code": "skills",
+                            "id": "36795",
+                            "value": "Full Stack",
+                            "strip_text_from_phrase": "full stack"
+                        }
+                    ],
+                    "job_title": [
+                        {
+                            "id": "1182",
+                            "title": "Developer"
+                        }
+                    ],
+                    "search_phrase": ""
+                },
+                "locale": "AU",
+                "bucket_code": "ORGANIC,PRIORITISE"
+            }
+
+        def frontend_syd_payload(page: int):
+            return {
+                "resultsPerPage": 20,
+                "page": page,
+                "job_type": [],
+                "pay_min": None,
+                "pay_max": None,
+                "ad_type": [],
+                "posted_within_days": {
+                    "days": 0,
+                    "value": "Any time"
+                },
+                "skills": [],
+                "keywords": [],
+                "brands": [],
+                "sector": [],
+                "industry": [],
+                "company_size": [],
+                "job_mode": [],
+                "contract_type": [],
+                "career_level": [],
+                "perks": [],
+                "work_authorisation": [],
+                "education_level": [],
+                "languages": [],
+                "certifications": [],
+                "include_surrounding_location": None,
+                "search": "Frontend Developer",
+                "search_keywords": None,
+                "categories": [],
+                "location": {
+                    "id": 15279,
+                    "type": "REGION",
+                    "label": "All Sydney NSW",
+                    "display_label": "Sydney NSW",
+                    "region_name": "Sydney NSW",
+                    "area_name": None,
+                    "state_name": "New South Wales",
+                    "suburb_name": None,
+                    "suburb_location_id": 0,
+                    "area_location_id": 0,
+                    "region_location_id": 15279,
+                    "state_location_id": 15295,
+                    "country_location_id": 15299,
+                    "state_code": "NSW",
+                    "country_name": "Australia",
+                    "country_code": "AU",
+                    "post_code": None,
+                    "slug": "sydney-nsw",
+                    "meta_robots": "index"
+                },
+                "sort_by": None,
+                "source_code": [],
+                "equal_opportunity_tags": [],
+                "hiring_site": [],
+                "hiring_platform": [],
+                "job_title": [],
+                "licenses": [],
+                "employer_name": None,
+                "parsed_filter": "1",
+                "parsed": {
+                    "job_title": [
+                        {
+                            "id": 69863,
+                            "title": "Frontend Developer",
+                            "slug": "Frontend Developer"
+                        }
+                    ]
+                },
+                "locale": "AU",
+                "bucket_code": "ORGANIC,PRIORITISE",
+                "allow_backfill": True,
+                "site_code": "careerone",
+                "platform_code": "careerone"
+            }
+
+        def backend_syd_payload(page: int):
+            return {
+                "resultsPerPage": 20,
+                "page": page,
+                "job_type": [],
+                "pay_min": None,
+                "pay_max": None,
+                "ad_type": [],
+                "posted_within_days": {
+                    "days": 0,
+                    "value": "Any time"
+                },
+                "skills": [],
+                "keywords": [],
+                "brands": [],
+                "sector": [],
+                "industry": [],
+                "company_size": [],
+                "job_mode": [],
+                "contract_type": [],
+                "career_level": [],
+                "perks": [],
+                "work_authorisation": [],
+                "education_level": [],
+                "languages": [],
+                "certifications": [],
+                "include_surrounding_location": True,
+                "search": "Backend Engineer",
+                "search_keywords": None,
+                "categories": [],
+                "location": {
+                    "id": 15279,
+                    "type": "REGION",
+                    "label": "All Sydney NSW",
+                    "display_label": "Sydney NSW",
+                    "region_name": "Sydney NSW",
+                    "suburb_name": None,
+                    "area_name": None,
+                    "state_name": "New South Wales",
+                    "suburb_location_id": 0,
+                    "area_location_id": 0,
+                    "region_location_id": 15279,
+                    "state_location_id": 15295,
+                    "country_location_id": 15299,
+                    "state_code": "NSW",
+                    "country_name": "Australia",
+                    "country_code": "AU",
+                    "post_code": None,
+                    "slug": "sydney-nsw",
+                    "label_highlighted": "All <span>Syd</span>ney NSW"
+                },
+                "sort_by": None,
+                "source_code": [],
+                "equal_opportunity_tags": [],
+                "hiring_site": [],
+                "hiring_platform": [],
+                "job_title": [],
+                "licenses": [],
+                "employer_name": None,
+                "parsed_filter": "1",
+                "parsed": {
+                    "job_title": [
+                        {
+                            "id": 78543,
+                            "title": "Backend Engineer",
+                            "slug": "Backend Engineer"
+                        }
+                    ]
+                },
+                "locale": "AU",
+                "bucket_code": "ORGANIC,PRIORITISE",
+                "allow_backfill": True,
+                "site_code": "careerone",
+                "platform_code": "careerone"
+            }
+
+        def devops_syd_payload(page: int):
+            return {
+                "resultsPerPage": 20,
+                "page": page,
+                "job_type": [],
+                "pay_min": None,
+                "pay_max": None,
+                "ad_type": [],
+                "posted_within_days": {
+                    "days": 0,
+                    "value": "Any time"
+                },
+                "skills": [],
+                "keywords": [],
+                "brands": [],
+                "sector": [],
+                "industry": [],
+                "company_size": [],
+                "job_mode": [],
+                "contract_type": [],
+                "career_level": [],
+                "perks": [],
+                "work_authorisation": [],
+                "education_level": [],
+                "languages": [],
+                "certifications": [],
+                "include_surrounding_location": True,
+                "search": "devops",
+                "search_keywords": "devops",
+                "categories": [],
+                "location": {
+                    "id": 15279,
+                    "type": "REGION",
+                    "label": "All Sydney NSW",
+                    "display_label": "Sydney NSW",
+                    "region_name": "Sydney NSW",
+                    "suburb_name": None,
+                    "area_name": None,
+                    "state_name": "New South Wales",
+                    "suburb_location_id": 0,
+                    "area_location_id": 0,
+                    "region_location_id": 15279,
+                    "state_location_id": 15295,
+                    "country_location_id": 15299,
+                    "state_code": "NSW",
+                    "country_name": "Australia",
+                    "country_code": "AU",
+                    "post_code": None,
+                    "slug": "sydney-nsw",
+                    "label_highlighted": "All <span>Syd</span>ney NSW"
+                },
+                "sort_by": None,
+                "source_code": [],
+                "equal_opportunity_tags": [],
+                "hiring_site": [],
+                "hiring_platform": [],
+                "job_title": [],
+                "licenses": [],
+                "employer_name": None,
+                "parsed_filter": 0,
+                "parsed": {
+                    "job_title": []
+                },
+                "locale": "AU",
+                "bucket_code": "ORGANIC,PRIORITISE",
+                "allow_backfill": True,
+                "site_code": "careerone",
+                "platform_code": "careerone"
+            }
+
+        def cybersecurity_syd_payload(page: int):
+            return {
+                "resultsPerPage": 20,
+                "page": page,
+                "job_type": [],
+                "pay_min": None,
+                "pay_max": None,
+                "ad_type": [],
+                "posted_within_days": {
+                    "days": 0,
+                    "value": "Any time"
+                },
+                "skills": [],
+                "keywords": [],
+                "brands": [],
+                "sector": [],
+                "industry": [],
+                "company_size": [],
+                "job_mode": [],
+                "contract_type": [],
+                "career_level": [],
+                "perks": [],
+                "work_authorisation": [],
+                "education_level": [],
+                "languages": [],
+                "certifications": [],
+                "include_surrounding_location": True,
+                "search": "cyber security",
+                "search_keywords": "cyber security",
+                "categories": [],
+                "location": {
+                    "id": 15279,
+                    "type": "REGION",
+                    "label": "All Sydney NSW",
+                    "display_label": "Sydney NSW",
+                    "region_name": "Sydney NSW",
+                    "suburb_name": None,
+                    "area_name": None,
+                    "state_name": "New South Wales",
+                    "suburb_location_id": 0,
+                    "area_location_id": 0,
+                    "region_location_id": 15279,
+                    "state_location_id": 15295,
+                    "country_location_id": 15299,
+                    "state_code": "NSW",
+                    "country_name": "Australia",
+                    "country_code": "AU",
+                    "post_code": None,
+                    "slug": "sydney-nsw",
+                    "label_highlighted": "All <span>Syd</span>ney NSW"
+                },
+                "sort_by": None,
+                "source_code": [],
+                "equal_opportunity_tags": [],
+                "hiring_site": [],
+                "hiring_platform": [],
+                "job_title": [],
+                "licenses": [],
+                "employer_name": None,
+                "parsed_filter": 0,
+                "parsed": {
+                    "job_title": []
+                },
+                "locale": "AU",
+                "bucket_code": "ORGANIC,PRIORITISE",
+                "allow_backfill": True,
+                "site_code": "careerone",
+                "platform_code": "careerone"
+            }
+
+        def de_mel_payload(page: int):
+            return {
+                "resultsPerPage": 20,
+                "page": page,
+                "job_type": [],
+                "pay_min": None,
+                "pay_max": None,
+                "ad_type": [],
+                "posted_within_days": {
+                    "days": 0,
+                    "value": "Any time"
+                },
+                "skills": [],
+                "keywords": [],
+                "brands": [],
+                "sector": [],
+                "industry": [],
+                "company_size": [],
+                "job_mode": [],
+                "contract_type": [],
+                "career_level": [],
+                "perks": [],
+                "work_authorisation": [],
+                "education_level": [],
+                "languages": [],
+                "certifications": [],
+                "include_surrounding_location": True,
+                "search": "Data Engineer",
+                "search_keywords": "",
+                "categories": [
+                    {
+                        "id": 17,
+                        "name": "Information Technology",
+                        "slug": "information-technology",
+                        "occupations": []
+                    }
+                ],
+                "location": {
+                    "id": 15267,
+                    "type": "REGION",
+                    "label": "All Melbourne VIC",
+                    "display_label": "Melbourne VIC",
+                    "region_name": "Melbourne VIC",
+                    "suburb_name": None,
+                    "area_name": None,
+                    "state_name": "Victoria",
+                    "suburb_location_id": 0,
+                    "area_location_id": 0,
+                    "region_location_id": 15267,
+                    "state_location_id": 15292,
+                    "country_location_id": 15299,
+                    "state_code": "VIC",
+                    "country_name": "Australia",
+                    "country_code": "AU",
+                    "post_code": None,
+                    "slug": "melbourne-vic",
+                    "label_highlighted": "All <span>Mel</span>bourne VIC"
+                },
+                "sort_by": None,
+                "source_code": [],
+                "equal_opportunity_tags": [],
+                "hiring_site": [],
+                "hiring_platform": [],
+                "job_title": [],
+                "licenses": [],
+                "employer_name": None,
+                "parsed_filter": "1",
+                "parsed": {
+                    "job_title": [
+                        {
+                            "id": 4166,
+                            "title": "Data Engineer",
+                            "slug": "Data Engineer"
+                        }
+                    ],
+                    "occupations": []
+                },
+                "locale": "AU",
+                "bucket_code": "ORGANIC,PRIORITISE",
+                "allow_backfill": True,
+                "site_code": "careerone",
+                "platform_code": "careerone"
+            }
+
+        def ai_eng_mel_payload(page: int):
+            return
+
+        def full_stack_mel_payload(page: int):
+            return {
+                "resultsPerPage": 20,
+                "page": page,
+                "job_type": [],
+                "pay_min": None,
+                "pay_max": None,
+                "ad_type": [],
+                "posted_within_days": {
+                    "days": 0,
+                    "value": "Any time"
+                },
+                "skills": [],
+                "keywords": [],
+                "brands": [],
+                "sector": [],
+                "industry": [],
+                "company_size": [],
+                "job_mode": [],
+                "contract_type": [],
+                "career_level": [],
+                "perks": [],
+                "work_authorisation": [],
+                "education_level": [],
+                "languages": [],
+                "certifications": [],
+                "include_surrounding_location": True,
+                "search": "Full Stack Developer",
+                "search_keywords": "",
+                "categories": [
+                    {
+                        "id": 17,
+                        "name": "Information Technology",
+                        "slug": "information-technology",
+                        "occupations": []
+                    }
+                ],
+                "location": {
+                    "id": 15267,
+                    "type": "REGION",
+                    "label": "All Melbourne VIC",
+                    "display_label": "Melbourne VIC",
+                    "region_name": "Melbourne VIC",
+                    "suburb_name": None,
+                    "area_name": None,
+                    "state_name": "Victoria",
+                    "suburb_location_id": 0,
+                    "area_location_id": 0,
+                    "region_location_id": 15267,
+                    "state_location_id": 15292,
+                    "country_location_id": 15299,
+                    "state_code": "VIC",
+                    "country_name": "Australia",
+                    "country_code": "AU",
+                    "post_code": None,
+                    "slug": "melbourne-vic",
+                    "label_highlighted": "All <span>Mel</span>bourne VIC"
+                },
+                "sort_by": None,
+                "source_code": [],
+                "equal_opportunity_tags": [],
+                "hiring_site": [],
+                "hiring_platform": [],
+                "job_title": [],
+                "licenses": [],
+                "employer_name": None,
+                "parsed_filter": "1",
+                "parsed": {
+                    "job_title": [
+                        {
+                            "id": 39733,
+                            "title": "Full Stack Developer",
+                            "slug": "Full Stack Developer"
+                        }
+                    ],
+                    "occupations": []
+                },
+                "locale": "AU",
+                "bucket_code": "ORGANIC,PRIORITISE",
+                "allow_backfill": True,
+                "site_code": "careerone",
+                "platform_code": "careerone"
+            }
+
+        def frontend_mel_payload(page: int):
+            return {
+                "resultsPerPage": 20,
+                "page": page,
+                "job_type": [],
+                "pay_min": None,
+                "pay_max": None,
+                "ad_type": [],
+                "posted_within_days": {
+                    "days": 0,
+                    "value": "Any time"
+                },
+                "skills": [],
+                "keywords": [],
+                "brands": [],
+                "sector": [],
+                "industry": [],
+                "company_size": [],
+                "job_mode": [],
+                "contract_type": [],
+                "career_level": [],
+                "perks": [],
+                "work_authorisation": [],
+                "education_level": [],
+                "languages": [],
+                "certifications": [],
+                "include_surrounding_location": True,
+                "search": "Frontend Developer",
+                "search_keywords": "",
+                "categories": [],
+                "location": {
+                    "id": 15267,
+                    "type": "REGION",
+                    "label": "All Melbourne VIC",
+                    "display_label": "Melbourne VIC",
+                    "region_name": "Melbourne VIC",
+                    "suburb_name": None,
+                    "area_name": None,
+                    "state_name": "Victoria",
+                    "suburb_location_id": 0,
+                    "area_location_id": 0,
+                    "region_location_id": 15267,
+                    "state_location_id": 15292,
+                    "country_location_id": 15299,
+                    "state_code": "VIC",
+                    "country_name": "Australia",
+                    "country_code": "AU",
+                    "post_code": None,
+                    "slug": "melbourne-vic",
+                    "label_highlighted": "All <span>Mel</span>bourne VIC"
+                },
+                "sort_by": None,
+                "source_code": [],
+                "equal_opportunity_tags": [],
+                "hiring_site": [],
+                "hiring_platform": [],
+                "job_title": [],
+                "licenses": [],
+                "employer_name": None,
+                "parsed_filter": "1",
+                "parsed": {
+                    "job_title": [
+                        {
+                            "id": 69863,
+                            "title": "Frontend Developer",
+                            "slug": "Frontend Developer"
+                        }
+                    ]
+                },
+                "locale": "AU",
+                "bucket_code": "ORGANIC,PRIORITISE",
+                "allow_backfill": True,
+                "site_code": "careerone",
+                "platform_code": "careerone"
+            }
+
+        def backend_mel_payload(page: int):
+            return {
+                "resultsPerPage": 20,
+                "page": page,
+                "job_type": [],
+                "pay_min": None,
+                "pay_max": None,
+                "ad_type": [],
+                "posted_within_days": {
+                    "days": 0,
+                    "value": "Any time"
+                },
+                "skills": [],
+                "keywords": [],
+                "brands": [],
+                "sector": [],
+                "industry": [],
+                "company_size": [],
+                "job_mode": [],
+                "contract_type": [],
+                "career_level": [],
+                "perks": [],
+                "work_authorisation": [],
+                "education_level": [],
+                "languages": [],
+                "certifications": [],
+                "include_surrounding_location": True,
+                "search": "Backend Engineer",
+                "search_keywords": "",
+                "categories": [],
+                "location": {
+                    "id": 15267,
+                    "type": "REGION",
+                    "label": "All Melbourne VIC",
+                    "display_label": "Melbourne VIC",
+                    "region_name": "Melbourne VIC",
+                    "suburb_name": None,
+                    "area_name": None,
+                    "state_name": "Victoria",
+                    "suburb_location_id": 0,
+                    "area_location_id": 0,
+                    "region_location_id": 15267,
+                    "state_location_id": 15292,
+                    "country_location_id": 15299,
+                    "state_code": "VIC",
+                    "country_name": "Australia",
+                    "country_code": "AU",
+                    "post_code": None,
+                    "slug": "melbourne-vic",
+                    "label_highlighted": "All <span>Mel</span>bourne VIC"
+                },
+                "sort_by": None,
+                "source_code": [],
+                "equal_opportunity_tags": [],
+                "hiring_site": [],
+                "hiring_platform": [],
+                "job_title": [],
+                "licenses": [],
+                "employer_name": None,
+                "parsed_filter": "1",
+                "parsed": {
+                    "job_title": [
+                        {
+                            "id": 78543,
+                            "title": "Backend Engineer",
+                            "slug": "Backend Engineer"
+                        }
+                    ]
+                },
+                "locale": "AU",
+                "bucket_code": "ORGANIC,PRIORITISE",
+                "allow_backfill": True,
+                "site_code": "careerone",
+                "platform_code": "careerone"
+            }
+
+        def devops_mel_payload(page: int):
+            return {
+                "resultsPerPage": 20,
+                "page": page,
+                "job_type": [],
+                "pay_min": None,
+                "pay_max": None,
+                "ad_type": [],
+                "posted_within_days": {
+                    "days": 0,
+                    "value": "Any time"
+                },
+                "skills": [],
+                "keywords": [],
+                "brands": [],
+                "sector": [],
+                "industry": [],
+                "company_size": [],
+                "job_mode": [],
+                "contract_type": [],
+                "career_level": [],
+                "perks": [],
+                "work_authorisation": [],
+                "education_level": [],
+                "languages": [],
+                "certifications": [],
+                "include_surrounding_location": True,
+                "search": "devops",
+                "search_keywords": "devops",
+                "categories": [
+                    {
+                        "id": 17,
+                        "name": "Information Technology",
+                        "slug": "information-technology",
+                        "occupations": []
+                    }
+                ],
+                "location": {
+                    "id": 15267,
+                    "type": "REGION",
+                    "label": "All Melbourne VIC",
+                    "display_label": "Melbourne VIC",
+                    "region_name": "Melbourne VIC",
+                    "suburb_name": None,
+                    "area_name": None,
+                    "state_name": "Victoria",
+                    "suburb_location_id": 0,
+                    "area_location_id": 0,
+                    "region_location_id": 15267,
+                    "state_location_id": 15292,
+                    "country_location_id": 15299,
+                    "state_code": "VIC",
+                    "country_name": "Australia",
+                    "country_code": "AU",
+                    "post_code": None,
+                    "slug": "melbourne-vic",
+                    "label_highlighted": "All <span>Mel</span>bourne VIC"
+                },
+                "sort_by": None,
+                "source_code": [],
+                "equal_opportunity_tags": [],
+                "hiring_site": [],
+                "hiring_platform": [],
+                "job_title": [],
+                "licenses": [],
+                "employer_name": None,
+                "parsed_filter": 0,
+                "parsed": {
+                    "job_title": []
+                },
+                "locale": "AU",
+                "bucket_code": "ORGANIC,PRIORITISE",
+                "allow_backfill": True,
+                "site_code": "careerone",
+                "platform_code": "careerone"
+            }
+
+        def cybersecurity_mel_payload(page: int):
+            return {
+                "resultsPerPage": 20,
+                "page": page,
+                "job_type": [],
+                "pay_min": None,
+                "pay_max": None,
+                "ad_type": [],
+                "posted_within_days": {
+                    "days": 0,
+                    "value": "Any time"
+                },
+                "skills": [],
+                "keywords": [],
+                "brands": [],
+                "sector": [],
+                "industry": [],
+                "company_size": [],
+                "job_mode": [],
+                "contract_type": [],
+                "career_level": [],
+                "perks": [],
+                "work_authorisation": [],
+                "education_level": [],
+                "languages": [],
+                "certifications": [],
+                "include_surrounding_location": True,
+                "search": "cyber security",
+                "search_keywords": "cyber security",
+                "categories": [
+                    {
+                        "id": 17,
+                        "name": "Information Technology",
+                        "slug": "information-technology",
+                        "occupations": []
+                    }
+                ],
+                "location": {
+                    "id": 15267,
+                    "type": "REGION",
+                    "label": "All Melbourne VIC",
+                    "display_label": "Melbourne VIC",
+                    "region_name": "Melbourne VIC",
+                    "suburb_name": None,
+                    "area_name": None,
+                    "state_name": "Victoria",
+                    "suburb_location_id": 0,
+                    "area_location_id": 0,
+                    "region_location_id": 15267,
+                    "state_location_id": 15292,
+                    "country_location_id": 15299,
+                    "state_code": "VIC",
+                    "country_name": "Australia",
+                    "country_code": "AU",
+                    "post_code": None,
+                    "slug": "melbourne-vic",
+                    "label_highlighted": "All <span>Mel</span>bourne VIC"
+                },
+                "sort_by": None,
+                "source_code": [],
+                "equal_opportunity_tags": [],
+                "hiring_site": [],
+                "hiring_platform": [],
+                "job_title": [],
+                "licenses": [],
+                "employer_name": None,
+                "parsed_filter": 0,
+                "parsed": {
+                    "job_title": []
+                },
+                "locale": "AU",
+                "bucket_code": "ORGANIC,PRIORITISE",
+                "allow_backfill": True,
+                "site_code": "careerone",
+                "platform_code": "careerone"
+            }
+
         payloads = [
             {
                 "payload": de_syd_payload,
-                "searched_location": "Sydney",
+                "searched_location": "sydney",
                 "searched_role": "data engineer"
 
             },
+            {
+                "payload": ai_eng_syd_payload,
+                "searched_location": "sydney",
+                "searched_role": "AI Engineer"
+            },
+            {
+                "payload": full_stack_syd_payload,
+                "searched_location": "sydney",
+                "searched_role": "full stack engineer"
+            },
+            {
+                "payload": backend_syd_payload,
+                "searched_location": "sydney",
+                "searched_role": "backend engineer"
+            },
+            {
+                "payload": frontend_syd_payload,
+                "searched_location": "sydney",
+                "searched_role": "frontend engineer"
+            },
+            {
+                "payload": devops_syd_payload,
+                "searched_location": "sydney",
+                "searched_role": "devops engineer"
+            },
+            {
+                "payload": cybersecurity_syd_payload,
+                "searched_location": "sydney",
+                "searched_role": "cyber security engineer"
+            },
             # {
-            #     "payload": ai_eng_syd_payload,
-            #     "searched_location": "Sydney",
-            #     "searched_role": "AI Engineer"
-            # }
+            #     "payload": de_mel_payload,
+            #     "searched_location": "melbourne",
+            #     "searched_role": "data engineer"
+            #
+            # },
+            {
+                "payload": ai_eng_mel_payload,
+                "searched_location": "melbourne",
+                "searched_role": "AI Engineer"
+            },
+            {
+                "payload": full_stack_mel_payload,
+                "searched_location": "melbourne",
+                "searched_role": "full stack engineer"
+            },
+            {
+                "payload": backend_mel_payload,
+                "searched_location": "melbourne",
+                "searched_role": "backend engineer"
+            },
+            {
+                "payload": frontend_mel_payload,
+                "searched_location": "melbourne",
+                "searched_role": "frontend engineer"
+            },
+            {
+                "payload": devops_mel_payload,
+                "searched_location": "melbourne",
+                "searched_role": "devops engineer"
+            },
+            {
+                "payload": cybersecurity_mel_payload,
+                "searched_location": "melbourne",
+                "searched_role": "cyber security engineer"
+            },
         ]
 
         job_descriptions = []

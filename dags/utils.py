@@ -64,15 +64,9 @@ def is_valid_date_format(date_string):
     pattern = r"^\d{4}-\d{2}-\d{2}$"
     return bool(re.match(pattern, date_string))
 
-def convert_listed_date_to_dateformat(listed_date: str, crawled_date):
+def convert_listed_date_to_dateformat(listed_date: str):
     import re
-    from pendulum import now, from_format
-    if not crawled_date:
-        crawled_date = now()
-    else:
-        s = crawled_date.strftime("%Y-%m-%d")
-        pendulum_datetime = from_format(s, "YYYY-MM-DD")
-        crawled_date = pendulum_datetime.add(hours=12)
+    from pendulum import now
     if listed_date is not None:
         if is_valid_date_format(listed_date):
             return listed_date
@@ -80,17 +74,17 @@ def convert_listed_date_to_dateformat(listed_date: str, crawled_date):
         if match:
             number = int(match.group())
             if "minute" in listed_date or "minutes" in listed_date or re.search(r"\d+m", listed_date):
-                listed_date_for_db = crawled_date.subtract(minutes=number).format("YYYY-MM-DD")
+                listed_date_for_db = now().subtract(minutes=number).format("YYYY-MM-DD")
             elif "hour" in listed_date or "hours" in listed_date or re.search(r"\d+h", listed_date):
-                listed_date_for_db = crawled_date.subtract(hours=number).format("YYYY-MM-DD")
+                listed_date_for_db = now().subtract(hours=number).format("YYYY-MM-DD")
             elif "day" in listed_date or "days" in listed_date or re.search(r"\d+d", listed_date):
-                listed_date_for_db = crawled_date.subtract(days=number).format("YYYY-MM-DD")
+                listed_date_for_db = now().subtract(days=number).format("YYYY-MM-DD")
             elif "week" in listed_date or "weeks" in listed_date or re.search(r"\d+w", listed_date):
-                listed_date_for_db = crawled_date.subtract(weeks=number).format("YYYY-MM-DD")
+                listed_date_for_db = now().subtract(weeks=number).format("YYYY-MM-DD")
             elif "month" in listed_date or "months" in listed_date:
-                listed_date_for_db = crawled_date.subtract(months=number).format("YYYY-MM-DD")
+                listed_date_for_db = now().subtract(months=number).format("YYYY-MM-DD")
             elif "year" in listed_date or "years" in listed_date or re.search(r"\d+y", listed_date):
-                listed_date_for_db = crawled_date.subtract(years=number).format("YYYY-MM-DD")
+                listed_date_for_db = now().subtract(years=number).format("YYYY-MM-DD")
             else:
                 listed_date_for_db = None
             return listed_date_for_db

@@ -50,7 +50,7 @@ with DAG(
         except Exception as e:
             # Rollback the transaction in case of error
             connection.rollback()
-        print("Batch update failed:", e)
+            print("Batch update failed:", e)
 
         cursor.close()
         connection.close()

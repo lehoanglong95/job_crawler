@@ -8,7 +8,7 @@ with DAG(
         dag_id="jora_crawler",
         start_date=datetime(2024, 2, 11),
         description="a dag to crawl data engineer job Sydney in jora",
-        schedule_interval="0 1 * * *",
+        schedule_interval="0 */3 * * *",
         concurrency=8,
         max_active_tasks=3,
         tags=["crawler", "jora"],
@@ -44,58 +44,85 @@ with DAG(
 
     pg_hook = PostgresHook(postgres_conn_id=job_crawler_postgres_conn(), schema='jobs')
 
+    locations = [
+        jora_searched_sydney,
+        jora_searched_melbourne
+    ]
 
+    roles = [
+        jora_searched_data_engineer,
+        jora_searched_ai_engineer,
+        jora_searched_full_stack_developer,
+        jora_searched_backend_engineer,
+        jora_searched_frontend_engineer,
+        jora_searched_devops_engineer,
+        jora_searched_cybersecurity_engineer,
+    ]
     @task
     def get_searched_dicts() -> List[dict]:
+        print(f"DAY: {dag.start_date.day}")
+        print(f"HOUR: {dag.start_date.hour}")
+        location = locations[int(dag.start_date.day) % len(locations)]
+        role = roles[int(dag.start_date.hour) % len(roles)]
+        print(f"LOCATION: {str(location)}")
+        print(f"ROLE: {str(role)}")
         return [
             {
-                "searched_role": jora_searched_backend_engineer(),
-                "searched_location": jora_searched_sydney(),
-                "normalized_searched_role": str(jora_searched_backend_engineer),
-                "normalized_searched_location": str(jora_searched_sydney)
-            },
-            {
-                "searched_role": jora_searched_frontend_engineer(),
-                "searched_location": jora_searched_sydney(),
-                "normalized_searched_role": str(jora_searched_frontend_engineer),
-                "normalized_searched_location": str(jora_searched_sydney)
-            },
-            {
-                "searched_role": jora_searched_devops_engineer(),
-                "searched_location": jora_searched_sydney(),
-                "normalized_searched_role": str(jora_searched_devops_engineer),
-                "normalized_searched_location": str(jora_searched_sydney)
-            },
-            {
-                "searched_role": jora_searched_cybersecurity_engineer(),
-                "searched_location": jora_searched_sydney(),
-                "normalized_searched_role": str(jora_searched_cybersecurity_engineer),
-                "normalized_searched_location": str(jora_searched_sydney)
-            },
-            {
-                "searched_role": jora_searched_backend_engineer(),
-                "searched_location": jora_searched_melbourne(),
-                "normalized_searched_role": str(jora_searched_backend_engineer),
-                "normalized_searched_location": str(jora_searched_melbourne)
-            },
-            {
-                "searched_role": jora_searched_frontend_engineer(),
-                "searched_location": jora_searched_melbourne(),
-                "normalized_searched_role": str(jora_searched_frontend_engineer),
-                "normalized_searched_location": str(jora_searched_melbourne)
-            },
-            {
-                "searched_role": jora_searched_devops_engineer(),
-                "searched_location": jora_searched_melbourne(),
-                "normalized_searched_role": str(jora_searched_devops_engineer),
-                "normalized_searched_location": str(jora_searched_melbourne)
-            },
-            {
-                "searched_role": jora_searched_cybersecurity_engineer(),
-                "searched_location": jora_searched_melbourne(),
-                "normalized_searched_role": str(jora_searched_cybersecurity_engineer),
-                "normalized_searched_location": str(jora_searched_melbourne)
-            },
+                "searched_role": role(),
+                "searched_location": location(),
+                "normalized_searched_role": str(role),
+                "normalized_searched_location": str(location)
+            }
+        ]
+        # return [
+        #     {
+        #         "searched_role": jora_searched_backend_engineer(),
+        #         "searched_location": jora_searched_sydney(),
+        #         "normalized_searched_role": str(jora_searched_backend_engineer),
+        #         "normalized_searched_location": str(jora_searched_sydney)
+        #     },
+        #     {
+        #         "searched_role": jora_searched_frontend_engineer(),
+        #         "searched_location": jora_searched_sydney(),
+        #         "normalized_searched_role": str(jora_searched_frontend_engineer),
+        #         "normalized_searched_location": str(jora_searched_sydney)
+        #     },
+        #     {
+        #         "searched_role": jora_searched_devops_engineer(),
+        #         "searched_location": jora_searched_sydney(),
+        #         "normalized_searched_role": str(jora_searched_devops_engineer),
+        #         "normalized_searched_location": str(jora_searched_sydney)
+        #     },
+        #     {
+        #         "searched_role": jora_searched_cybersecurity_engineer(),
+        #         "searched_location": jora_searched_sydney(),
+        #         "normalized_searched_role": str(jora_searched_cybersecurity_engineer),
+        #         "normalized_searched_location": str(jora_searched_sydney)
+        #     },
+        #     {
+        #         "searched_role": jora_searched_backend_engineer(),
+        #         "searched_location": jora_searched_melbourne(),
+        #         "normalized_searched_role": str(jora_searched_backend_engineer),
+        #         "normalized_searched_location": str(jora_searched_melbourne)
+        #     },
+        #     {
+        #         "searched_role": jora_searched_frontend_engineer(),
+        #         "searched_location": jora_searched_melbourne(),
+        #         "normalized_searched_role": str(jora_searched_frontend_engineer),
+        #         "normalized_searched_location": str(jora_searched_melbourne)
+        #     },
+        #     {
+        #         "searched_role": jora_searched_devops_engineer(),
+        #         "searched_location": jora_searched_melbourne(),
+        #         "normalized_searched_role": str(jora_searched_devops_engineer),
+        #         "normalized_searched_location": str(jora_searched_melbourne)
+        #     },
+        #     {
+        #         "searched_role": jora_searched_cybersecurity_engineer(),
+        #         "searched_location": jora_searched_melbourne(),
+        #         "normalized_searched_role": str(jora_searched_cybersecurity_engineer),
+        #         "normalized_searched_location": str(jora_searched_melbourne)
+        #     },
             # {
             #     "searched_role": jora_searched_data_engineer(),
             #     "searched_location": jora_searched_sydney(),
@@ -132,7 +159,7 @@ with DAG(
             #     "normalized_searched_role": str(jora_searched_full_stack_developer),
             #     "normalized_searched_location": str(jora_searched_melbourne)
             # }
-        ]
+        # ]
 
 
     @task

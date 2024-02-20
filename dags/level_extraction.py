@@ -2,7 +2,7 @@ from base_dag import DAG
 from pendulum import datetime
 
 with DAG(
-    'create_tables_dag',
+    'level_extraction',
     description='DAG to create tables and database in PostgreSQL',
     schedule_interval="0 13 * * *",  # Set to None for one-time execution
     start_date=datetime(2024, 2, 19),

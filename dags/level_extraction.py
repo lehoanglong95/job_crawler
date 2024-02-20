@@ -3,7 +3,7 @@ from pendulum import datetime
 
 with DAG(
     'level_extraction',
-    description='DAG to create tables and database in PostgreSQL',
+    description='DAG to extract level from role in database',
     schedule_interval="0 13 * * *",  # Set to None for one-time execution
     start_date=datetime(2024, 2, 19),
     catchup=False,

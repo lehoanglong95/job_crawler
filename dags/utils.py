@@ -15,6 +15,8 @@ class Level(str, Enum):
 
 
 def get_level_from_role(role: str):
+    if not role:
+        return ""
     role = normalize_text(role)
     if "junior" in role:
         return Level.Junior.value
@@ -204,8 +206,8 @@ def save_job_metadata_to_postgres(
     INSERT INTO job_metadata (
         id, crawled_website_id, url, location, role, company, listed_date, raw_listed_date, min_salary, max_salary, 
         contract_type, number_of_experience, job_type, is_working_right, raw_content_file, crawled_date,
-        searched_location, searched_role
-    ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+        searched_location, searched_role, level
+    ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
     ON CONFLICT (crawled_website_id, location, role, company, listed_date, contract_type) DO UPDATE
     SET
         url = EXCLUDED.url,
@@ -223,7 +225,8 @@ def save_job_metadata_to_postgres(
         raw_content_file = EXCLUDED.raw_content_file,
         crawled_date = EXCLUDED.crawled_date,
         searched_location = EXCLUDED.searched_location,
-        searched_role = EXCLUDED.searched_role
+        searched_role = EXCLUDED.searched_role,
+        level = EXCLUDED.level
     RETURNING id
     """
 
@@ -242,7 +245,7 @@ def save_job_metadata_to_postgres(
             data.get("number_of_experience", None), normalize_text(data.get('job_type', "")),
             data.get('is_working_right', True), normalize_text(data.get('raw_content_file', '')),
             now().format("YYYY-MM-DD"), normalize_text(data.get("searched_location", "")),
-            normalize_text(data.get("searched_role", ""))
+            normalize_text(data.get("searched_role", "")), get_level_from_role(data.get("role", ""))
         )
         job_metadata_id = pg_hook.get_first(insert_job_metadata_sql, parameters=job_metadata_values)[0]
         print(job_metadata_id)
@@ -250,10 +253,6 @@ def save_job_metadata_to_postgres(
             skills = [normalize_text(str(e)) for e in data["skills"]]
             skills = set(skills)
             skills_values = [(job_metadata_id, skill) for skill in skills]
-            # print(f"skills_values: {skills_values}")
-            # skills_values = skills_values[:2]
-            # print(f"skills_values: {skills_values}")
-            # for skills_value in skills_values:
             with pg_hook.get_conn() as conn:
                 with conn.cursor() as cursor:
                     cursor.executemany(insert_skills_query, skills_values)

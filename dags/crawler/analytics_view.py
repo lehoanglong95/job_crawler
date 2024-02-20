@@ -80,20 +80,79 @@ with DAG(
                 END IF;
             END
             $$
-            """
+            """,
             
-            # create cloud view
             """
             DO
             $$
             BEGIN
-                IF NOT EXISTS (SELECT 1 FROM pg_views WHERE viewname = 'ai_engineer_skills') THEN
+                IF NOT EXISTS (SELECT 1 FROM pg_views WHERE viewname = 'backend_engineer_skills') THEN
                     -- Create the view if it doesn't exist
                     CREATE VIEW data_engineer_skills AS
                     WITH de_job_metadata AS (
                         SELECT id 
                         FROM job_metadata 
-                        WHERE searched_role = 'full stack developer'
+                        WHERE searched_role = 'backend engineer'
+                    )
+                    SELECT A.id, B.skill
+                    FROM de_job_metadata A
+                    JOIN skills B ON A.id = B.job_id;
+                END IF;
+            END
+            $$
+            """,
+
+            """
+            DO
+            $$
+            BEGIN
+                IF NOT EXISTS (SELECT 1 FROM pg_views WHERE viewname = 'frontend_engineer_skills') THEN
+                    -- Create the view if it doesn't exist
+                    CREATE VIEW data_engineer_skills AS
+                    WITH de_job_metadata AS (
+                        SELECT id 
+                        FROM job_metadata 
+                        WHERE searched_role = 'frontend engineer'
+                    )
+                    SELECT A.id, B.skill
+                    FROM de_job_metadata A
+                    JOIN skills B ON A.id = B.job_id;
+                END IF;
+            END
+            $$
+            """,
+
+            """
+            DO
+            $$
+            BEGIN
+                IF NOT EXISTS (SELECT 1 FROM pg_views WHERE viewname = 'devops_engineer_skills') THEN
+                    -- Create the view if it doesn't exist
+                    CREATE VIEW data_engineer_skills AS
+                    WITH de_job_metadata AS (
+                        SELECT id 
+                        FROM job_metadata 
+                        WHERE searched_role = 'devops engineer'
+                    )
+                    SELECT A.id, B.skill
+                    FROM de_job_metadata A
+                    JOIN skills B ON A.id = B.job_id;
+                END IF;
+            END
+            $$
+            """,
+
+            """
+            DO
+            $$
+            BEGIN
+                IF NOT EXISTS (SELECT 1 FROM pg_views WHERE viewname = 'cybersecurity_engineer_skills') THEN
+                    -- Create the view if it doesn't exist
+                    CREATE VIEW data_engineer_skills AS
+                    WITH de_job_metadata AS (
+                        SELECT id 
+                        FROM job_metadata 
+                        WHERE searched_role = 'cyber security engineer'
                     )
                     SELECT A.id, B.skill
                     FROM de_job_metadata A

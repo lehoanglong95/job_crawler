@@ -53,7 +53,8 @@ with DAG(
                 number_of_experience INTEGER,
                 job_type TEXT,
                 is_working_right BOOLEAN,
-                raw_content_file TEXT
+                raw_content_file TEXT,
+                level TEXT
             );
             """,
 

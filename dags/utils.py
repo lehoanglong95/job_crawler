@@ -1,6 +1,36 @@
 from airflow.decorators import task
 from pendulum import now
 import os
+from enum import Enum
+
+
+class Level(str, Enum):
+    Junior = "junior"
+    MidLevel = "mid-level"
+    Senior = "senior"
+    Staff = "staff"
+    Principal = "principal"
+    Lead = "lead"
+    Head = "head"
+
+
+def get_level_from_role(role: str):
+    role = normalize_text(role)
+    if "junior" in role:
+        return Level.Junior.value
+    elif "midlevel" in role or "mid-level" in role:
+        return Level.MidLevel.value
+    elif "senior" in role:
+        return Level.Senior.value
+    elif "staff" in role:
+        return Level.Staff.value
+    elif "principal" in role:
+        return Level.Principal.value
+    elif "lead" in role:
+        return Level.Lead.value
+    elif "head" in role:
+        return Level.Head.value
+    return Level.MidLevel.value
 
 def normalize_text(input: str) -> str:
     if not input:
@@ -29,27 +59,39 @@ def chunk(input, number_of_chunks=50):
     return [input[i:i+chunk_size] for i in range(0, len(input), chunk_size)]
 
 
-def convert_listed_date_to_dateformat(listed_date: str):
+def is_valid_date_format(date_string):
     import re
-    from pendulum import now
+    pattern = r"^\d{4}-\d{2}-\d{2}$"
+    return bool(re.match(pattern, date_string))
+
+def convert_listed_date_to_dateformat(listed_date: str, crawled_date):
+    import re
+    from pendulum import now, from_format
+    if not crawled_date:
+        crawled_date = now()
+    else:
+        s = crawled_date.strftime("%Y-%m-%d")
+        pendulum_datetime = from_format(s, "YYYY-MM-DD")
+        crawled_date = pendulum_datetime.add(hours=12)
     if listed_date is not None:
+        if is_valid_date_format(listed_date):
+            return listed_date
         match = re.search(r'\d+', listed_date)
         if match:
             number = int(match.group())
             if "minute" in listed_date or "minutes" in listed_date or re.search(r"\d+m", listed_date):
-                listed_date_for_db = now().subtract(minutes=number).format("YYYY-MM-DD")
+                listed_date_for_db = crawled_date.subtract(minutes=number).format("YYYY-MM-DD")
             elif "hour" in listed_date or "hours" in listed_date or re.search(r"\d+h", listed_date):
-                listed_date_for_db = now().subtract(hours=number).format("YYYY-MM-DD")
+                listed_date_for_db = crawled_date.subtract(hours=number).format("YYYY-MM-DD")
             elif "day" in listed_date or "days" in listed_date or re.search(r"\d+d", listed_date):
-                listed_date_for_db = now().subtract(days=number).format("YYYY-MM-DD")
+                listed_date_for_db = crawled_date.subtract(days=number).format("YYYY-MM-DD")
             elif "week" in listed_date or "weeks" in listed_date or re.search(r"\d+w", listed_date):
-                listed_date_for_db = now().subtract(weeks=number).format("YYYY-MM-DD")
+                listed_date_for_db = crawled_date.subtract(weeks=number).format("YYYY-MM-DD")
             elif "month" in listed_date or "months" in listed_date:
-                listed_date_for_db = now().subtract(months=number).format("YYYY-MM-DD")
+                listed_date_for_db = crawled_date.subtract(months=number).format("YYYY-MM-DD")
             elif "year" in listed_date or "years" in listed_date or re.search(r"\d+y", listed_date):
-                listed_date_for_db = now().subtract(years=number).format("YYYY-MM-DD")
+                listed_date_for_db = crawled_date.subtract(years=number).format("YYYY-MM-DD")
             else:
-                print(listed_date)
                 listed_date_for_db = None
             return listed_date_for_db
         else:

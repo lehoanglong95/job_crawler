@@ -14,6 +14,7 @@ with DAG(
         tags=["crawler", "jora"],
 ) as dag:
     from typing import List, Set
+    from random import randint
     import time
     from airflow.decorators import task
     from airflow.providers.postgres.hooks.postgres import PostgresHook
@@ -77,6 +78,9 @@ with DAG(
                 role = roles[0][2]
             elif int(execution_date.hour) == 18:
                 role = roles[0][3]
+            else:
+                rd = randint(0, 3)
+                role = roles[0][rd]
         else:
             location = locations[1]
             if int(execution_date.hour) == 0:
@@ -87,6 +91,9 @@ with DAG(
                 role = roles[0][2]
             elif int(execution_date.hour) == 18:
                 role = roles[0][0]
+            else:
+                rd = randint(0, 3)
+                role = roles[0][rd]
         print(f"LOCATION: {str(location)}")
         print(f"ROLE: {str(role)}")
         return [

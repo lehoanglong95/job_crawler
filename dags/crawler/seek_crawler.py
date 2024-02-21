@@ -15,6 +15,7 @@ with DAG(
 ) as dag:
 
     import time
+    from random import randint
     from typing import List, Set
     import requests
     from bs4 import BeautifulSoup
@@ -80,6 +81,9 @@ with DAG(
                 role = roles[0][2]
             elif int(execution_date.hour) == 21:
                 role = roles[0][3]
+            else:
+                rd = randint(0, 3)
+                role = roles[0][rd]
         else:
             location = locations[1]
             if int(execution_date.hour) == 3:
@@ -90,6 +94,9 @@ with DAG(
                 role = roles[0][2]
             elif int(execution_date.hour) == 21:
                 role = roles[0][0]
+            else:
+                rd = randint(0, 3)
+                role = roles[0][rd]
         print(f"LOCATION: {str(location)}")
         print(f"ROLE: {str(role)}")
         # print(f"DAY: {execution_date.day}")

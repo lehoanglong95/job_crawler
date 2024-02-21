@@ -65,35 +65,37 @@ with DAG(
     ]
 
     @task
-    def get_searched_dicts() -> List[dict]:
-        print(f"DAY: {dag.start_date.day}")
-        print(f"HOUR: {dag.start_date.hour}")
-        if int(dag.start_date.day) % 4 == 0 or int(dag.start_date.day) % 4 == 1:
+    def get_searched_dicts(**context) -> List[dict]:
+        execution_date = context['execution_date']
+        print(f"execution_date: {execution_date}")
+        print(f"DAY: {execution_date.day}")
+        print(f"HOUR: {execution_date.hour}")
+        if int(execution_date.day) % 4 == 0 or int(execution_date.day) % 4 == 1:
             location = locations[0]
-            if int(dag.start_date.hour) == 3:
+            if int(execution_date.hour) == 3:
                 role = roles[0][0]
-            elif int(dag.start_date.hour) == 9:
+            elif int(execution_date.hour) == 9:
                 role = roles[0][1]
-            elif int(dag.start_date.hour) == 15:
+            elif int(execution_date.hour) == 15:
                 role = roles[0][2]
-            elif int(dag.start_date.hour) == 21:
+            elif int(execution_date.hour) == 21:
                 role = roles[0][3]
         else:
             location = locations[1]
-            if int(dag.start_date.hour) == 3:
+            if int(execution_date.hour) == 3:
                 role = roles[0][0]
-            elif int(dag.start_date.hour) == 9:
+            elif int(execution_date.hour) == 9:
                 role = roles[0][1]
-            elif int(dag.start_date.hour) == 15:
+            elif int(execution_date.hour) == 15:
                 role = roles[0][2]
-            elif int(dag.start_date.hour) == 21:
+            elif int(execution_date.hour) == 21:
                 role = roles[0][0]
         print(f"LOCATION: {str(location)}")
         print(f"ROLE: {str(role)}")
-        # print(f"DAY: {dag.start_date.day}")
-        # print(f"HOUR: {dag.start_date.hour}")
-        # location = locations[int(dag.start_date.day) % len(locations)]
-        # role = roles[int(dag.start_date.hour) % len(roles)]
+        # print(f"DAY: {execution_date.day}")
+        # print(f"HOUR: {execution_date.hour}")
+        # location = locations[int(execution_date.day) % len(locations)]
+        # role = roles[int(execution_date.hour) % len(roles)]
         # print(f"LOCATION: {str(location)}")
         # print(f"ROLE: {str(role)}")
         # return [

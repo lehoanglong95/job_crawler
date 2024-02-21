@@ -63,28 +63,29 @@ with DAG(
         ]
     ]
     @task
-    def get_searched_dicts() -> List[dict]:
-        print(f"DAY: {dag.start_date.day}")
-        print(f"HOUR: {dag.start_date.hour}")
-        if int(dag.start_date.day) % 4 == 0 or int(dag.start_date.day) % 4 == 1:
+    def get_searched_dicts(**context) -> List[dict]:
+        execution_date = context['execution_date']
+        print(f"DAY: {execution_date.day}")
+        print(f"HOUR: {execution_date.hour}")
+        if int(execution_date.day) % 4 == 0 or int(execution_date.day) % 4 == 1:
             location = locations[0]
-            if int(dag.start_date.hour) == 0:
+            if int(execution_date.hour) == 0:
                 role = roles[0][0]
-            elif int(dag.start_date.hour) == 6:
+            elif int(execution_date.hour) == 6:
                 role = roles[0][1]
-            elif int(dag.start_date.hour) == 12:
+            elif int(execution_date.hour) == 12:
                 role = roles[0][2]
-            elif int(dag.start_date.hour) == 18:
+            elif int(execution_date.hour) == 18:
                 role = roles[0][3]
         else:
             location = locations[1]
-            if int(dag.start_date.hour) == 0:
+            if int(execution_date.hour) == 0:
                 role = roles[0][0]
-            elif int(dag.start_date.hour) == 6:
+            elif int(execution_date.hour) == 6:
                 role = roles[0][1]
-            elif int(dag.start_date.hour) == 12:
+            elif int(execution_date.hour) == 12:
                 role = roles[0][2]
-            elif int(dag.start_date.hour) == 18:
+            elif int(execution_date.hour) == 18:
                 role = roles[0][0]
         print(f"LOCATION: {str(location)}")
         print(f"ROLE: {str(role)}")

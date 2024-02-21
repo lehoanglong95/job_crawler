@@ -88,7 +88,7 @@ class JobInfoForDB(JobInfoInput):
         return value
 
 
-@task(max_active_tis_per_dagrun=3)
+@task(max_active_tis_per_dagrun=4)
 def extract_job_description(pg_hook, list_data: List[dict]):
     from utils import (
         get_openai_api_key_from_sm,

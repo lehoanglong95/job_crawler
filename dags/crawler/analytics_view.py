@@ -47,7 +47,7 @@ with DAG(
             BEGIN
                 IF NOT EXISTS (SELECT 1 FROM pg_views WHERE viewname = 'ai_engineer_skills') THEN
                     -- Create the view if it doesn't exist
-                    CREATE VIEW data_engineer_skills AS
+                    CREATE VIEW ai_engineer_skills AS
                     WITH de_job_metadata AS (
                         SELECT id 
                         FROM job_metadata 
@@ -72,7 +72,7 @@ with DAG(
                     WITH de_job_metadata AS (
                         SELECT id 
                         FROM job_metadata 
-                        WHERE searched_role = 'full stack developer'
+                        WHERE searched_role = 'full stack engineer'
                     )
                     SELECT A.id, B.skill
                     FROM de_job_metadata A
@@ -88,7 +88,7 @@ with DAG(
             BEGIN
                 IF NOT EXISTS (SELECT 1 FROM pg_views WHERE viewname = 'backend_engineer_skills') THEN
                     -- Create the view if it doesn't exist
-                    CREATE VIEW data_engineer_skills AS
+                    CREATE VIEW backend_engineer_skills AS
                     WITH de_job_metadata AS (
                         SELECT id 
                         FROM job_metadata 
@@ -108,7 +108,7 @@ with DAG(
             BEGIN
                 IF NOT EXISTS (SELECT 1 FROM pg_views WHERE viewname = 'frontend_engineer_skills') THEN
                     -- Create the view if it doesn't exist
-                    CREATE VIEW data_engineer_skills AS
+                    CREATE VIEW frontend_engineer_skills AS
                     WITH de_job_metadata AS (
                         SELECT id 
                         FROM job_metadata 
@@ -128,7 +128,7 @@ with DAG(
             BEGIN
                 IF NOT EXISTS (SELECT 1 FROM pg_views WHERE viewname = 'devops_engineer_skills') THEN
                     -- Create the view if it doesn't exist
-                    CREATE VIEW data_engineer_skills AS
+                    CREATE VIEW devops_engineer_skills AS
                     WITH de_job_metadata AS (
                         SELECT id 
                         FROM job_metadata 
@@ -148,7 +148,7 @@ with DAG(
             BEGIN
                 IF NOT EXISTS (SELECT 1 FROM pg_views WHERE viewname = 'cybersecurity_engineer_skills') THEN
                     -- Create the view if it doesn't exist
-                    CREATE VIEW data_engineer_skills AS
+                    CREATE VIEW cybersecurity_engineer_skills AS
                     WITH de_job_metadata AS (
                         SELECT id 
                         FROM job_metadata 
@@ -160,6 +160,25 @@ with DAG(
                 END IF;
             END
             $$
+            """
+
+            """
+        DO
+        $$
+        BEGIN
+            IF NOT EXISTS (SELECT 1 FROM pg_views WHERE viewname = 'salary_skills') THEN
+                -- Create the view if it doesn't exist
+                CREATE VIEW salary_skills AS
+                WITH salary_skills_metadata AS (
+                    SELECT id, (COALESCE(max_salary, 0) + COALESCE(min_salary, 0)) / 2 AS salary
+                    FROM job_metadata WHERE min_salary IS NOT NULL AND max_salary IS NOT NULL
+                )
+                SELECT A.id, A.salary, B.skill
+                FROM salary_skills_metadata A
+                JOIN skills B ON A.id = B.job_id;
+            END IF;
+        END
+        $$
             """
         ]
 

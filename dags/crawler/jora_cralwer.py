@@ -8,9 +8,9 @@ with DAG(
         dag_id="jora_crawler",
         start_date=datetime(2024, 2, 11),
         description="a dag to crawl data engineer job Sydney in jora",
-        schedule_interval="0 */3 * * *",
-        concurrency=8,
-        max_active_tasks=3,
+        schedule_interval="0 */6 * * *",
+        concurrency=16,
+        max_active_tasks=8,
         tags=["crawler", "jora"],
 ) as dag:
     from typing import List, Set
@@ -50,20 +50,42 @@ with DAG(
     ]
 
     roles = [
-        jora_searched_data_engineer,
-        jora_searched_ai_engineer,
-        jora_searched_full_stack_developer,
-        jora_searched_backend_engineer,
-        jora_searched_frontend_engineer,
-        jora_searched_devops_engineer,
-        jora_searched_cybersecurity_engineer,
+        [
+            jora_searched_data_engineer,
+            jora_searched_ai_engineer,
+            jora_searched_full_stack_developer,
+            jora_searched_backend_engineer,
+        ],
+        [
+            jora_searched_frontend_engineer,
+            jora_searched_devops_engineer,
+            jora_searched_cybersecurity_engineer,
+        ]
     ]
     @task
     def get_searched_dicts() -> List[dict]:
         print(f"DAY: {dag.start_date.day}")
         print(f"HOUR: {dag.start_date.hour}")
-        location = locations[int(dag.start_date.day) % len(locations)]
-        role = roles[int(dag.start_date.hour) % len(roles)]
+        if int(dag.start_date.day) % 4 == 0 or int(dag.start_date.day) % 4 == 1:
+            location = locations[0]
+            if int(dag.start_date.hour) == 0:
+                role = roles[0][0]
+            elif int(dag.start_date.hour) == 6:
+                role = roles[0][1]
+            elif int(dag.start_date.hour) == 12:
+                role = roles[0][2]
+            elif int(dag.start_date.hour) == 18:
+                role = roles[0][3]
+        else:
+            location = locations[1]
+            if int(dag.start_date.hour) == 0:
+                role = roles[0][0]
+            elif int(dag.start_date.hour) == 6:
+                role = roles[0][1]
+            elif int(dag.start_date.hour) == 12:
+                role = roles[0][2]
+            elif int(dag.start_date.hour) == 18:
+                role = roles[0][0]
         print(f"LOCATION: {str(location)}")
         print(f"ROLE: {str(role)}")
         return [

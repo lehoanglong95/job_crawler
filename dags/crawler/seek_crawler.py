@@ -8,7 +8,7 @@ with DAG(
     dag_id="seek_crawler",
     start_date=datetime(2024, 2, 11),
     description="a dag to crawl data engineer job Sydney in seek",
-    schedule_interval="1 */3 * * *",
+    schedule_interval="1 */6 * * *",
     concurrency=8,
     max_active_tasks=3,
     tags=["crawler", "seek"],
@@ -51,30 +51,59 @@ with DAG(
     ]
 
     roles = [
-        seek_searched_data_engineer,
-        seek_searched_ai_engineer,
-        seek_searched_full_stack_developer,
-        seek_searched_backend_engineer,
-        seek_searched_frontend_engineer,
-        seek_searched_devops_engineer,
-        seek_searched_cybersecurity_engineer,
+        [
+            seek_searched_data_engineer,
+            seek_searched_ai_engineer,
+            seek_searched_full_stack_developer,
+            seek_searched_backend_engineer,
+        ],
+        [
+            seek_searched_frontend_engineer,
+            seek_searched_devops_engineer,
+            seek_searched_cybersecurity_engineer,
+        ]
     ]
+
     @task
     def get_searched_dicts() -> List[dict]:
         print(f"DAY: {dag.start_date.day}")
         print(f"HOUR: {dag.start_date.hour}")
-        location = locations[int(dag.start_date.day) % len(locations)]
-        role = roles[int(dag.start_date.hour) % len(roles)]
+        if int(dag.start_date.day) % 4 == 0 or int(dag.start_date.day) % 4 == 1:
+            location = locations[0]
+            if int(dag.start_date.hour) == 1:
+                role = roles[0][0]
+            elif int(dag.start_date.hour) == 7:
+                role = roles[0][1]
+            elif int(dag.start_date.hour) == 13:
+                role = roles[0][2]
+            elif int(dag.start_date.hour) == 19:
+                role = roles[0][3]
+        else:
+            location = locations[1]
+            if int(dag.start_date.hour) == 1:
+                role = roles[0][0]
+            elif int(dag.start_date.hour) == 7:
+                role = roles[0][1]
+            elif int(dag.start_date.hour) == 13:
+                role = roles[0][2]
+            elif int(dag.start_date.hour) == 19:
+                role = roles[0][0]
         print(f"LOCATION: {str(location)}")
         print(f"ROLE: {str(role)}")
-        return [
-            {
-                "searched_role": role(),
-                "searched_location": location(),
-                "normalized_searched_role": str(role),
-                "normalized_searched_location": str(location)
-            }
-        ]
+        # print(f"DAY: {dag.start_date.day}")
+        # print(f"HOUR: {dag.start_date.hour}")
+        # location = locations[int(dag.start_date.day) % len(locations)]
+        # role = roles[int(dag.start_date.hour) % len(roles)]
+        # print(f"LOCATION: {str(location)}")
+        # print(f"ROLE: {str(role)}")
+        # return [
+        #     {
+        #         "searched_role": role(),
+        #         "searched_location": location(),
+        #         "normalized_searched_role": str(role),
+        #         "normalized_searched_location": str(location)
+        #     }
+        # ]
     # @task
     # def get_searched_dicts() -> List[dict]:
     #     return [

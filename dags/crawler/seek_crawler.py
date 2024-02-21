@@ -8,7 +8,7 @@ with DAG(
     dag_id="seek_crawler",
     start_date=datetime(2024, 2, 11),
     description="a dag to crawl data engineer job Sydney in seek",
-    schedule_interval="1 */6 * * *",
+    schedule_interval="3 */6 * * *",
     concurrency=8,
     max_active_tasks=3,
     tags=["crawler", "seek"],
@@ -70,23 +70,23 @@ with DAG(
         print(f"HOUR: {dag.start_date.hour}")
         if int(dag.start_date.day) % 4 == 0 or int(dag.start_date.day) % 4 == 1:
             location = locations[0]
-            if int(dag.start_date.hour) == 1:
+            if int(dag.start_date.hour) == 3:
                 role = roles[0][0]
-            elif int(dag.start_date.hour) == 7:
+            elif int(dag.start_date.hour) == 9:
                 role = roles[0][1]
-            elif int(dag.start_date.hour) == 13:
+            elif int(dag.start_date.hour) == 15:
                 role = roles[0][2]
-            elif int(dag.start_date.hour) == 19:
+            elif int(dag.start_date.hour) == 21:
                 role = roles[0][3]
         else:
             location = locations[1]
-            if int(dag.start_date.hour) == 1:
+            if int(dag.start_date.hour) == 3:
                 role = roles[0][0]
-            elif int(dag.start_date.hour) == 7:
+            elif int(dag.start_date.hour) == 9:
                 role = roles[0][1]
-            elif int(dag.start_date.hour) == 13:
+            elif int(dag.start_date.hour) == 15:
                 role = roles[0][2]
-            elif int(dag.start_date.hour) == 19:
+            elif int(dag.start_date.hour) == 21:
                 role = roles[0][0]
         print(f"LOCATION: {str(location)}")
         print(f"ROLE: {str(role)}")

@@ -10,7 +10,7 @@ with DAG(
     description="a dag to crawl data engineer job Sydney in seek",
     schedule_interval="3 */6 * * *",
     concurrency=8,
-    max_active_tasks=3,
+    max_active_tasks=2,
     tags=["crawler", "seek"],
 ) as dag:
 
@@ -343,6 +343,7 @@ with DAG(
     job_description_link = get_job_description_link(crawled_urls=crawled_urls,
                                                     searched_dicts=searched_dicts)
     job_descriptions = get_job_description.expand(list_data=job_description_link)
-    save_to_s3.expand(list_data=job_descriptions)
-    extracted_job_descriptions = extract_job_description.partial(pg_hook=pg_hook).expand(list_data=job_descriptions)
+    job_descriptions_from_s3 = save_to_s3.expand(list_data=job_descriptions)
+    extracted_job_descriptions = extract_job_description.partial(pg_hook=pg_hook)\
+        .expand(list_data=job_descriptions_from_s3)
     save_job_metadata_to_postgres.partial(pg_hook=pg_hook).expand(list_data=extracted_job_descriptions)

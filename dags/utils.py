@@ -144,6 +144,7 @@ def save_to_s3(list_data):
         print("do not remove file after upload")
         cnt += 1
     print(f"LEN OUT: {cnt}")
+    return list_data
             # time.sleep(10)
             # os.remove(file_name)
         # except Exception as e:

@@ -125,108 +125,14 @@ with DAG(
                 role = roles[1][rd]
         print(f"LOCATION: {str(location)}")
         print(f"ROLE: {str(role)}")
-        # print(f"DAY: {execution_date.day}")
-        # print(f"HOUR: {execution_date.hour}")
-        # location = locations[int(execution_date.day) % len(locations)]
-        # role = roles[int(execution_date.hour) % len(roles)]
-        # print(f"LOCATION: {str(location)}")
-        # print(f"ROLE: {str(role)}")
-        # return [
-        #     {
-        #         "searched_role": role(),
-        #         "searched_location": location(),
-        #         "normalized_searched_role": str(role),
-        #         "normalized_searched_location": str(location)
-        #     }
-        # ]
-    # @task
-    # def get_searched_dicts() -> List[dict]:
-    #     return [
-    #         {
-    #             "searched_role": seek_searched_backend_engineer(),
-    #             "searched_location": seek_searched_sydney(),
-    #             "normalized_searched_role": str(seek_searched_backend_engineer),
-    #             "normalized_searched_location": str(seek_searched_sydney)
-    #         },
-    #         {
-    #             "searched_role": seek_searched_frontend_engineer(),
-    #             "searched_location": seek_searched_sydney(),
-    #             "normalized_searched_role": str(seek_searched_frontend_engineer),
-    #             "normalized_searched_location": str(seek_searched_sydney)
-    #         },
-    #         {
-    #             "searched_role": seek_searched_devops_engineer(),
-    #             "searched_location": seek_searched_sydney(),
-    #             "normalized_searched_role": str(seek_searched_devops_engineer),
-    #             "normalized_searched_location": str(seek_searched_sydney)
-    #         },
-    #         {
-    #             "searched_role": seek_searched_cybersecurity_engineer(),
-    #             "searched_location": seek_searched_sydney(),
-    #             "normalized_searched_role": str(seek_searched_cybersecurity_engineer),
-    #             "normalized_searched_location": str(seek_searched_sydney)
-    #         },
-    #         {
-    #             "searched_role": seek_searched_backend_engineer(),
-    #             "searched_location": seek_searched_melbourne(),
-    #             "normalized_searched_role": str(seek_searched_backend_engineer),
-    #             "normalized_searched_location": str(seek_searched_melbourne)
-    #         },
-    #         {
-    #             "searched_role": seek_searched_frontend_engineer(),
-    #             "searched_location": seek_searched_melbourne(),
-    #             "normalized_searched_role": str(seek_searched_frontend_engineer),
-    #             "normalized_searched_location": str(seek_searched_melbourne)
-    #         },
-    #         {
-    #             "searched_role": seek_searched_devops_engineer(),
-    #             "searched_location": seek_searched_melbourne(),
-    #             "normalized_searched_role": str(seek_searched_devops_engineer),
-    #             "normalized_searched_location": str(seek_searched_melbourne)
-    #         },
-    #         {
-    #             "searched_role": seek_searched_cybersecurity_engineer(),
-    #             "searched_location": seek_searched_melbourne(),
-    #             "normalized_searched_role": str(seek_searched_cybersecurity_engineer),
-    #             "normalized_searched_location": str(seek_searched_melbourne)
-    #         },
-            # {
-            #     "searched_role": seek_searched_data_engineer(),
-            #     "searched_location": seek_searched_sydney(),
-            #     "normalized_searched_role": str(seek_searched_data_engineer),
-            #     "normalized_searched_location": str(seek_searched_sydney)
-            # },
-            # {
-            #     "searched_role": seek_searched_ai_engineer(),
-            #     "searched_location": seek_searched_sydney(),
-            #     "normalized_searched_role": str(seek_searched_ai_engineer),
-            #     "normalized_searched_location": str(seek_searched_sydney)
-            # },
-            # {
-            #     "searched_role": seek_searched_full_stack_developer(),
-            #     "searched_location": seek_searched_sydney(),
-            #     "normalized_searched_role": str(seek_searched_full_stack_developer),
-            #     "normalized_searched_location": str(seek_searched_sydney)
-            # },
-            # {
-            #     "searched_role": seek_searched_data_engineer(),
-            #     "searched_location": seek_searched_melbourne(),
-            #     "normalized_searched_role": str(seek_searched_data_engineer),
-            #     "normalized_searched_location": str(seek_searched_melbourne)
-            # },
-            # {
-            #     "searched_role": seek_searched_ai_engineer(),
-            #     "searched_location": seek_searched_melbourne(),
-            #     "normalized_searched_role": str(seek_searched_ai_engineer),
-            #     "normalized_searched_location": str(seek_searched_melbourne)
-            # },
-            # {
-            #     "searched_role": seek_searched_full_stack_developer(),
-            #     "searched_location": seek_searched_melbourne(),
-            #     "normalized_searched_role": str(seek_searched_full_stack_developer),
-            #     "normalized_searched_location": str(seek_searched_melbourne)
-            # }
-        # ]
+        return [
+            {
+                "searched_role": role(),
+                "searched_location": location(),
+                "normalized_searched_role": str(role),
+                "normalized_searched_location": str(location)
+            }
+        ]
 
     @task
     def get_job_description_link(

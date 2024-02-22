@@ -71,7 +71,7 @@ with DAG(
         print(f"execution_date: {execution_date}")
         print(f"DAY: {execution_date.day}")
         print(f"HOUR: {execution_date.hour}")
-        if int(execution_date.day) % 4 == 0 or int(execution_date.day) % 4 == 1:
+        if int(execution_date.day) % 4 == 0:
             location = locations[0]
             if int(execution_date.hour) == 3:
                 role = roles[0][0]
@@ -84,7 +84,20 @@ with DAG(
             else:
                 rd = randint(0, 3)
                 role = roles[0][rd]
-        else:
+        elif int(execution_date.day) % 4 == 1:
+            location = locations[0]
+            if int(execution_date.hour) == 3:
+                role = roles[1][0]
+            elif int(execution_date.hour) == 9:
+                role = roles[1][1]
+            elif int(execution_date.hour) == 15:
+                role = roles[1][2]
+            elif int(execution_date.hour) == 21:
+                role = roles[1][0]
+            else:
+                rd = randint(0, 2)
+                role = roles[1][rd]
+        elif int(execution_date.day) % 4 == 2:
             location = locations[1]
             if int(execution_date.hour) == 3:
                 role = roles[0][0]
@@ -97,6 +110,19 @@ with DAG(
             else:
                 rd = randint(0, 3)
                 role = roles[0][rd]
+        else:
+            location = locations[1]
+            if int(execution_date.hour) == 3:
+                role = roles[1][0]
+            elif int(execution_date.hour) == 9:
+                role = roles[1][1]
+            elif int(execution_date.hour) == 15:
+                role = roles[1][2]
+            elif int(execution_date.hour) == 21:
+                role = roles[1][0]
+            else:
+                rd = randint(0, 2)
+                role = roles[1][rd]
         print(f"LOCATION: {str(location)}")
         print(f"ROLE: {str(role)}")
         # print(f"DAY: {execution_date.day}")

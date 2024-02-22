@@ -26,7 +26,7 @@ class JobInfoInput(BaseModel):
         if values.get("min_salary") is None or values.get("min_salary") >= 1000000:
             if values.get("salary") is not None:
                 return values.get("salary") if values.get("salary") < 1000000 else None
-        if values.get("min_salary") >= 1000000:
+        if values.get("min_salary") is not None and values.get("min_salary") >= 1000000:
             return None
         return value
 
@@ -37,7 +37,7 @@ class JobInfoInput(BaseModel):
                 return values.get("salary")
             if values.get("min_salary") is not None and values.get("min_salary") < 1000000:
                 return values.get("min_salary")
-        if values.get("max_salary") >= 1000000:
+        if values.get("max_salary") is not None and values.get("max_salary") >= 1000000:
             return None
         return value
 

@@ -23,17 +23,22 @@ class JobInfoInput(BaseModel):
 
     @validator("min_salary", pre=True, always=True)
     def set_default_min_salary(cls, value, values):
-        if values.get("min_salary") is None and values.get("salary") is not None:
-            return values.get("salary")
+        if values.get("min_salary") is None or values.get("min_salary") >= 1000000:
+            if values.get("salary") is not None:
+                return values.get("salary") if values.get("salary") < 1000000 else None
+        if values.get("min_salary") >= 1000000:
+            return None
         return value
 
     @validator("max_salary", pre=True, always=True)
     def set_default_max_salary(cls, value, values):
-        if values.get("max_salary") is None:
-            if values.get("salary") is not None:
+        if values.get("max_salary") is None or values.get("max_salary") >= 1000000:
+            if values.get("salary") is not None and values.get("salary") < 1000000:
                 return values.get("salary")
-            if values.get("min_salary") is not None:
+            if values.get("min_salary") is not None and values.get("min_salary") < 1000000:
                 return values.get("min_salary")
+        if values.get("max_salary") >= 1000000:
+            return None
         return value
 
     @validator("contract_type", pre=True, always=True)

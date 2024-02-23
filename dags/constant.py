@@ -1,6 +1,3 @@
-from airflow.models import Variable
-
-
 class CustomVariable:
 
     def __init__(self,
@@ -12,10 +9,9 @@ class CustomVariable:
         self.val = val
         self.normalize_text = normalize_text
         self.default_value = default_value
-        Variable.set(key, val)
 
     def __call__(self):
-        return Variable.get(self.key, default_var=self.default_value)
+        return self.val
 
     def __repr__(self):
         return self.normalize_text if self.normalize_text else self.val

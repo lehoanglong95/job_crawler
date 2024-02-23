@@ -33,7 +33,7 @@ with DAG(
         job_crawler_postgres_conn,
     )
 
-    pg_hook = PostgresHook(postgres_conn_id=job_crawler_postgres_conn(), schema='jobs')
+    pg_hook = PostgresHook(postgres_conn_id=job_crawler_postgres_conn, schema='jobs')
 
 
     @task

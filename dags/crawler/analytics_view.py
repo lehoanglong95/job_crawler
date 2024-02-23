@@ -14,7 +14,7 @@ with DAG(
     from airflow.providers.postgres.hooks.postgres import PostgresHook
     from constant import job_crawler_postgres_conn
 
-    pg_hook = PostgresHook(postgres_conn_id=job_crawler_postgres_conn(), schema='jobs')
+    pg_hook = PostgresHook(postgres_conn_id=job_crawler_postgres_conn, schema='jobs')
 
     @task
     def create_analytics_view():

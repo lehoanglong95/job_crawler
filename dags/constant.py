@@ -20,8 +20,9 @@ class CustomVariable:
     def __repr__(self):
         return self.normalize_text if self.normalize_text else self.val
 
-job_crawler_postgres_conn = CustomVariable("postgres_job_crawler_conn_id",
-                                          "postgres_job_crawler_conn_id")
+# job_crawler_postgres_conn = CustomVariable("postgres_job_crawler_conn_id",
+#                                           "postgres_job_crawler_conn_id")
+job_crawler_postgres_conn = "postgres_job_crawler_conn_id"
 email = CustomVariable("my_email", "lehoanglong95@gmail.com")
 jora_searched_data_engineer = CustomVariable("jora_data_engineer",
                                              "Data+Engineer",

@@ -43,7 +43,7 @@ with DAG(
         extract_job_description,
     )
 
-    pg_hook = PostgresHook(postgres_conn_id=job_crawler_postgres_conn(), schema='jobs')
+    pg_hook = PostgresHook(postgres_conn_id=job_crawler_postgres_conn, schema='jobs')
 
     locations = [
         jora_searched_sydney,

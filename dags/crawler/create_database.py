@@ -74,7 +74,7 @@ with DAG(
         ]
 
         # Connect to the PostgreSQL database
-        pg_hook = PostgresHook(postgres_conn_id=job_crawler_postgres_conn(), schema='jobs')
+        pg_hook = PostgresHook(postgres_conn_id=job_crawler_postgres_conn, schema='jobs')
 
         # Execute each SQL statement
         for sql_statement in sql_statements:

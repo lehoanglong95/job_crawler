@@ -15,7 +15,7 @@ with DAG(
     import pandas as pd
     from utils import get_level_from_role
 
-    pg_hook = PostgresHook(postgres_conn_id=job_crawler_postgres_conn(), schema='jobs')
+    pg_hook = PostgresHook(postgres_conn_id=job_crawler_postgres_conn, schema='jobs')
 
     @task
     def update_level():

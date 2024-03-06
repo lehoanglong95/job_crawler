@@ -6,7 +6,7 @@ from base_dag import (
 # Define the DAG using the with statement
 with DAG(
         dag_id="jora_crawler",
-        start_date=datetime(2024, 2, 11),
+        start_date=datetime(2024, 3, 2),
         description="a dag to crawl data engineer job Sydney in jora",
         schedule_interval="0 0,6,12,18 * * *",
         concurrency=8,

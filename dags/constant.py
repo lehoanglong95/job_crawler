@@ -16,8 +16,7 @@ class CustomVariable:
     def __repr__(self):
         return self.normalize_text if self.normalize_text else self.val
 
-# job_crawler_postgres_conn = CustomVariable("postgres_job_crawler_conn_id",
-#                                           "postgres_job_crawler_conn_id")
+
 job_crawler_postgres_conn = "postgres_job_crawler_conn_id"
 email = CustomVariable("my_email", "lehoanglong95@gmail.com")
 jora_searched_data_engineer = CustomVariable("jora_data_engineer",
@@ -74,3 +73,23 @@ seek_searched_sydney = CustomVariable("seek_sydney",
 seek_searched_melbourne = CustomVariable("seek_melbourne",
                                          "in-Melbourne-VIC-3000",
                                          "melbourne")
+
+class Role:
+    backend_engineer = "backend engineer"
+    devops_engineer = "devops engineer"
+    uncategorized = "uncategorized"
+    data_analyst = "data analyst"
+    data_engineer = "data engineer"
+    cyber_security_engineer = "cyber security engineer"
+    ai_engineer = "ai engineer"
+    fullstack_engineer = "fullstack engineer"
+    frontend_engineer = "frontend engineer"
+    data_architect = "data architect"
+    designer = "designer"
+    data_scientist = "data scientist"
+    qa_qc_engineer = "qa/qc engineer"
+    database_engineer = "database engineer"
+    project_manager = "project manager"
+    android_engineer = "android engineer"
+    recruiter = "recruiter"
+    ios_engineer = "ios engineer"

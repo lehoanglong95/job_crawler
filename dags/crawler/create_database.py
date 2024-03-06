@@ -54,7 +54,8 @@ with DAG(
                 job_type TEXT,
                 is_working_right BOOLEAN,
                 raw_content_file TEXT,
-                level TEXT
+                level TEXT,
+                extraction_role TEXT,
             );
             """,
 

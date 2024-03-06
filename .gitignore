@@ -3,3 +3,4 @@ dags/*/__pycache__
 dags/__pycache__
 .idea/*
 lambda/*
+extract_role/*

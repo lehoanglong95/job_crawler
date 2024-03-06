@@ -66,6 +66,7 @@ def is_valid_date_format(date_string):
     pattern = r"^\d{4}-\d{2}-\d{2}$"
     return bool(re.match(pattern, date_string))
 
+
 def convert_listed_date_to_dateformat(listed_date: str):
     import re
     from pendulum import now
@@ -92,6 +93,7 @@ def convert_listed_date_to_dateformat(listed_date: str):
             return listed_date_for_db
         else:
             print(listed_date)
+
 
 def create_file_path(crawled_website: str,
                      date_str: str,
@@ -270,3 +272,168 @@ def get_crawled_urls(crawled_website_name: str,
     else:
         print(f"website dict: {website_dict}")
         print(f"crawled website name: {crawled_website_name}")
+
+
+def categorize_it_role(role):
+    from constant import Role
+    categories = {
+        Role.data_engineer: [
+            ["data", "engineer"],
+            ["data", "governance"],
+            ["snowflake"],
+            ["hadoop"]
+        ],
+        Role.ai_engineer: [
+            ["ai"],
+            ["ml"],
+            ["machine", "learning"],
+            ["computer vision"],
+            ["computer-vision"],
+            ["nlp"]
+        ],
+        Role.data_analyst: [
+            ["data", "analyst"],
+            ["finance", "data"],
+            ["digital"],
+            ["bi"],
+            ["visualization"],
+            ["business"],
+            ["analytics"]
+        ],
+        Role.data_scientist: [
+            ["scientist"],
+        ],
+        Role.backend_engineer: [
+            ["backend"],
+            ["back end"],
+            ["software", "engineer"],
+            ["c#"],
+            ["python"],
+            ["java"],
+            [".net"],
+            ["go lang"],
+            ["golang"],
+            ["api"],
+            ["compiler"],
+            ["c++"],
+            ["back-end"],
+            ["back - end"],
+            ["php"]
+        ],
+        Role.frontend_engineer: [
+            ["frontend"],
+            ["angular"],
+            ["front end"],
+            ["react"],
+            ["front", "end"]
+        ],
+        Role.fullstack_engineer: [
+            ["fullstack"],
+            ["full stack"],
+            ["javascript"],
+            ["web"],
+            ["node"],
+            ["full-stack"]
+        ],
+        Role.devops_engineer: [
+            ["aws"],
+            ["azure"],
+            ["gcp"],
+            ["devops"],
+            ["cloud"],
+            ["infrastructure"],
+            ["platform"],
+            ["network"],
+            ["system"],
+            ["integration"],
+            ["dev", "ops"],
+            ["sysops"],
+            ["sys", "ops"],
+            ["devsecops"],
+            ["integrity"],
+            ["kubernetes"],
+            ["splunk"],
+            ["site reliability engineer"]
+        ],
+        Role.cyber_security_engineer: [
+            ["security"],
+            ["fraud"],
+            ["cyber"],
+            ["risk"]
+        ],
+        Role.qa_qc_engineer: [
+            ["test"],
+            ["qa"],
+            ["qc"]
+        ],
+        Role.data_architect: [
+            ["architect"],
+            ["architecture"]
+        ],
+        Role.recruiter: [
+            ["recruitment"]
+        ],
+        Role.database_engineer: [
+            ["oracle"],
+            ["postgres"],
+            ["mysql"],
+
+        ],
+        Role.designer: [
+            ["design"],
+            ["graphic"],
+            ["ux/ui"],
+        ],
+        Role.ios_engineer: [
+            ["ios"]
+        ],
+        Role.android_engineer: [
+            ["android"]
+        ],
+        Role.project_manager: [
+            ["project", "manager"]
+        ]
+    }
+
+    for category, substrings in categories.items():
+        for substring in substrings:
+            if all(word.lower() in role.lower() for word in substring):
+                return category
+    categories_1 = {
+        Role.data_engineer: [
+            ["data"],
+            ["etl"],
+            ["elt"]
+        ],
+        Role.backend_engineer: [
+            ["developer"],
+            ["engineering"],
+            ["senior engineer"],
+            ["lead engineer"],
+            ["principal engineer"],
+            ["technology"],
+            ["technical"],
+            ["software", "development"],
+            ["tech lead"],
+            ["programmer"],
+            ["endpoint"],
+            ["staff engineer"],
+            ["software"],
+            ["programmer"]
+        ],
+        Role.data_analyst: [
+            ["analyst"],
+        ],
+        Role.ai_engineer: [
+            ["research engineer"],
+        ],
+        Role.designer: [
+            ["ui"],
+            ["ux"]
+        ]
+    }
+    for category, substrings in categories_1.items():
+        for substring in substrings:
+            if all(word.lower() in role.lower() for word in substring):
+                return category
+    return Role.uncategorized

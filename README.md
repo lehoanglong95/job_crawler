@@ -1,6 +1,6 @@
 # Job Analytics Project
 
-![Job Analytic Website](website.png)
+![Job Analytic Website](https://iili.io/JW2EYHg.png)
 
 ## Overview
 
